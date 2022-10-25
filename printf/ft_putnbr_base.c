@@ -9,29 +9,7 @@
 /*   Updated: 2022/07/16 16:50:05 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include<stdio.h>
-#include <unistd.h>
-
-int	lenbase(char *str)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (str[i] != '\0')
-	{
-		while (str[j] != '\0')
-		{
-			if ((str[i] == str[j] && i != j) || str[i] == '-' || str[i] == '+')
-				return (0);
-			j++;
-		}
-	i++;
-	j = 0;
-	}
-	return (i);
-}
+#include "ft_printf.h"
 
 void	ft_rec(long int nbr, int len, char *base)
 {
@@ -44,19 +22,19 @@ void	ft_rec(long int nbr, int len, char *base)
 	}
 }
 
-void	ft_putnbr_base(int nbr, char *base)
+void	ft_putnbr_base(unsigned long nbr, char *base)
 {
 	int			len;
 	long int	nb;
 
 	nb = (long int)nbr;
-	len = lenbase(base);
+	len = 16;
 	if (!(len == 0 || len == 1))
 	{
 		if (nb < 0)
 		{
-			nb = -nb;
-			write(1, "-", 1);
+			//nb = -nb;
+			//write(1, "-", 1);
 		}
 		ft_rec(nb, len, base);
 	}

@@ -9,32 +9,19 @@
 /*   Updated: 2022/07/07 17:39:48 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	ft_putchar(char c)
+void	ft_pourcentu(unsigned long nb)
 {
-	c = c + 48;
-	write(1, &c, 1);
-}
-
-void	ft_putnbr(int nb)
-{
-	if (nb < -2147483647)
-	{
-		write(1, "-", 1);
-		write(1, "2147483648", 10);
-		return ;
-	}	
-	if (nb < 0)
-	{
-		write(1, "-", 1);
-		nb = -nb;
-	}	
 	if (nb < 10)
-		ft_putchar(nb);
+	{
+			nb = nb + 48;
+			write(1, &nb, 1);
+	}
 	else
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_pourcentu(nb / 10);
+		ft_pourcentu(nb % 10);
 	}
 }

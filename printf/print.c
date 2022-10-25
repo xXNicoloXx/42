@@ -1,13 +1,8 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include "ft_printf.h"
 
-
-int printf( const char * restrict format, ... );
-void	ft_putnbr(int nb);
-void	ft_putstr(char *str);
-void	ft_putnbr_base(int nbr, char *base);
-void ft_pourcentP(char *str);
 
 
 int ft_nbr_arg(const char *str)
@@ -33,9 +28,9 @@ int ft_nbr_arg(const char *str)
     return (nbr_arg);
 }
 
-int ft_affarg(const char *str,char lettre, int i_arg, va_list list)
+void ft_affarg(char lettre, int i_arg, va_list list)
 {
-    int printint;
+    long printint;
     char *printchar;
 
     if (lettre == 'c')      // char
@@ -56,7 +51,6 @@ int ft_affarg(const char *str,char lettre, int i_arg, va_list list)
         }
         ft_putnbr(printint);
     }
-
     if (lettre == 's')      // char*
     {
         while (i_arg+1)
@@ -66,7 +60,7 @@ int ft_affarg(const char *str,char lettre, int i_arg, va_list list)
         }
         ft_putstr(printchar);
     }
-        if (lettre == 'p')      // %p
+    if (lettre == 'p')      // %p
     {
         while (i_arg+1)
         {
@@ -75,33 +69,88 @@ int ft_affarg(const char *str,char lettre, int i_arg, va_list list)
         }
         ft_pourcentP(printchar);
     }
-
-
+    if (lettre == 'x')      // x (min base hexa)
+    {
+        while (i_arg+1)
+        {
+            printint = va_arg(list  , long long);
+            i_arg--;
+        }
+        ft_putnbr_base(printint, "0123456789abcdef");
+    }
+    if (lettre == 'X')      // X (max base hexa)
+    {
+        while (i_arg+1)
+        {
+            printint = va_arg(list  , int);
+            i_arg--;
+        }
+        ft_putnbr_base(printint, "0123456789ABCDEF");
+    }
+    if (lettre == 'i')      // entier en base 10
+    {
+        while (i_arg+1)
+        {
+            printint = va_arg(list  , int);
+            i_arg--;
+        }
+        ft_putnbr(printint);
+    }
+    if (lettre == 'u')      // entier en base 10
+    {
+        while (i_arg+1)
+        {
+            printint = va_arg(list  , int);
+            i_arg--;
+        }
+        printint = (unsigned int) printint;
+        ft_pourcentu(printint);
+    }
 }
 
+void ft_pourcentP(char *str)
+{
+    unsigned long test;
+
+    test = (unsigned long) str;
+    write(1, "0", 1); 
+    write(1, "x", 1); 
+    ft_print_pourcentP(test);
+}
+void	ft_print_pourcentP(unsigned long nbr)
+{
+	char *base;
+
+	base = "0123456789abcdef";
+	if (nbr < 16)
+		write (1, &base[nbr], 1);
+	else
+	{
+		ft_print_pourcentP(nbr / 16);
+		ft_print_pourcentP(nbr % 16);
+	}
+}
 
 int    ft_printf(const char *str,  ...)
 {
     int i;
-    int nbr_arg;
+    //int nbr_arg;
     int i_arg;
 
     i = 0;
     i_arg = 0;
-    nbr_arg = ft_nbr_arg(str);
+    //nbr_arg = ft_nbr_arg(str);
     
     va_list list;
     va_start(list, str);
-
     while (str[i] != '\0')
     {
         if (str[i] == '%')
         {
             i++;
             if ((str[i] == 'c') || (str[i] == 's') || (str[i] == 'p') || (str[i] == 'd') || (str[i] == 'i') || (str[i] == 'u') || (str[i] == 'x') || (str[i] == 'X'))
-            {
-                
-                ft_affarg(str, str[i], i_arg, list);
+            {   
+                ft_affarg(str[i], i_arg, list);
                 i_arg++;
                 i++;
             }
@@ -115,45 +164,16 @@ int    ft_printf(const char *str,  ...)
         else
             write(1, &str[i], 1);
         i++;
-        
     }
-    
-    
-
-    printf("\n%s\n",str);
-    printf("nbr arg = %d\n",nbr_arg);
-    
+    //printf("nbr arg = %d\n",nbr_arg);
     return (0);
-
-
-
 }
-
-
-
-
-int main (void)
+/*int main (void)
 {
-    char *poucentp = "test";
+    char *poucentp = "4";
+    int nbr = 172;
+    int nbrr = 728764;
 
-    ft_printf("\tBonjour %c %d %s %p les amis", 108, 109, "|", poucentp);
-    printf("\tBonjour %c %d %s %p les amis", 108, 109, "|", poucentp);
-    
-    printf("\n");
-}
-
-
-
-
-void ft_pourcentP(char *str)
-{
-    char * base;
-    unsigned long test;
-
-    base = "0123456789abcdef";
-    test = (unsigned long) str;
-    test = 827456;
-    ft_putnbr_base(test, base);
-    //printf("%ld", test);
-
-}
+    ft_printf("test %% %c %d %s %p %x %X %i %u\n", 108, -0x092, "|", poucentp, nbr, nbr ,nbrr, nbrr);
+    printf("test %% %c %d %s %p %x %X %i %u\n", 108, -0x92, "|", poucentp, nbr, nbr , nbrr, nbrr);
+}*/
