@@ -1,38 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:56:36 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/07 15:01:56 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/07 15:44:15 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/07 15:44:21 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h> 
-#include <stdio.h> 
+void	*memcpy( void * destination, const void * source, size_t size );
 
-void	*ft_memset(void *b, int c, size_t len)
+void	*ft_memcpy( void * destination, const void * source, size_t size)
 {
-	char	*str;
-
-	str = b;
-	while (len)
-	{
-		*str = (unsigned char)c;
-		str++;
-		len--;
-	}
-	return (b);
+	
 }
-/*int main (void)
+void main(void)
 {
 
-    void *ptr[20] ;
-    int value = 50;
-    int n = 5;
-	int test = 50;
-    printf("%s\n\n", ft_memset(ptr, value, n));
-	printf("%s", memset(ptr, value, test));
-}*/
+}

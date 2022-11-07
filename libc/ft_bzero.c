@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:56:36 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/07 15:01:56 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/07 15:04:37 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/07 15:27:27 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h> 
 #include <stdio.h> 
+#include <stddef.h>
 
-void	*ft_memset(void *b, int c, size_t len)
+void	t_bzero(void *s, size_t n)
 {
 	char	*str;
 
-	str = b;
-	while (len)
+	str = s;
+	while (n)
 	{
-		*str = (unsigned char)c;
+		*str = '\0';
 		str++;
-		len--;
+		n--;
 	}
-	return (b);
 }
-/*int main (void)
-{
-
-    void *ptr[20] ;
-    int value = 50;
-    int n = 5;
-	int test = 50;
-    printf("%s\n\n", ft_memset(ptr, value, n));
-	printf("%s", memset(ptr, value, test));
-}*/

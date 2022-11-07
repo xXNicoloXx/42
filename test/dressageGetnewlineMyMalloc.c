@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dressageGetnewlineMyMalloc.c                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/07 13:41:01 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/07 14:08:20 by ngriveau         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include<stdio.h>
 #include<fcntl.h>
 #include <unistd.h>
@@ -61,8 +73,8 @@ char *ft(int fd1)
 		if (i >= size)
 		{
 			test = read(fd1, str, size);
-			printf("%d\n",test);
-			printf("\n\t\tREAD %d str = %s\n", readnbr, str);   ///////
+			//printf("%d\n",test);
+			//printf("\n\t\tREAD %d str = %s\n", readnbr, str);   ///////
 			readnbr++;
 			i = 0;
 		}
@@ -81,7 +93,7 @@ char *ft(int fd1)
 		}
 	}
 	str[i] = 'V';
-	//printf("\n\t\toutro str = %s\n",str);   //////////////
+	printf("\n\t\toutro str = %s\n",str);   //////////////
 	//free(str);  
 	return(ligne);
 }
@@ -92,8 +104,6 @@ int main ()
 	//int fd = 0;
 
 	printf("%s",ft(fd));
-	/*printf("\n========\n");
-	printf("%s",ft(fd));
 	printf("\n========\n");
 	printf("%s",ft(fd));
 	printf("\n========\n");
@@ -103,6 +113,8 @@ int main ()
 	printf("\n========\n");
 	printf("%s",ft(fd));
 	printf("\n========\n");
-	printf("%s",ft(fd));*/
+	printf("%s",ft(fd));
+	printf("\n========\n");
+	printf("%s",ft(fd));
 	close(fd);
 }
