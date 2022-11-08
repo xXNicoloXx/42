@@ -1,37 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 14:39:00 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 15:48:05 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ftlendest(char *str )
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	int	i;
+	size_t	srcsize;
+	size_t	i;
 
+	if (!dst || !src)
+		return (0);
+	srcsize = ft_strlen(src);
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
-{
-	int				dest_len;
-	unsigned int	i;
-
-	dest_len = ftlendest(dest);
-	i = 0;
-	while (i < nb && src[i] != '\0')
+	if (dstsize != 0)
 	{
-		dest[dest_len + i] = src[i];
-		i++;
+		while (src[i] != '\0' && i < (dstsize - 1))
+		{
+			dst[i] = src[i];
+			i++;
+		}
+		dst[i] = '\0';
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	return (srcsize);
 }

@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 16:07:10 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 16:08:35 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ftlendest(char *str )
+#include <ctype.h>
+#include <stdio.h>
+
+int	ft_toupper( int character )
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
-{
-	int				dest_len;
-	unsigned int	i;
-
-	dest_len = ftlendest(dest);
-	i = 0;
-	while (i < nb && src[i] != '\0')
+	if ('a' <= character && character <= 'z')
 	{
-		dest[dest_len + i] = src[i];
-		i++;
+		return (character - 32);
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	return (character);
 }
+
+// int main(void)
+// {
+// 	int i = -2;
+// 	printf("%c \t", toupper(i));
+//     printf("%c \t\t\t %c\n", ft_toupper(i),i);
+// 	while (i<130)
+// 	{
+//         printf("%c \t", toupper(i));
+//     	printf("%c \t \n", ft_toupper(i));
+// 		i++;
+// 	}
+// }

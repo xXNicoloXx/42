@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 16:09:55 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 16:11:22 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ftlendest(char *str )
+#include <ctype.h>
+#include <stdio.h>
+
+int	ft_tolower(int character)
 {
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
-{
-	int				dest_len;
-	unsigned int	i;
-
-	dest_len = ftlendest(dest);
-	i = 0;
-	while (i < nb && src[i] != '\0')
+	if (64 < character && character < 91)
 	{
-		dest[dest_len + i] = src[i];
-		i++;
+		return (character + 32);
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	return (character);
 }
+
+// int main(void)
+// {
+// 	int i = -2;
+// 	while (i<130)
+// 	{
+//         printf("%c \t", tolower(i));
+//     	printf("%c \t %c\n", ft_tolower(i),i);
+// 		i++;
+// 	}
+// }

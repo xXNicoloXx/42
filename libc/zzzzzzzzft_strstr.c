@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 19:09:07 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 19:10:27 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 16:26:19 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 16:27:23 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
 #include <stdio.h>
 
-char	*ft_strnstr(char *src, char *cmp, int n)
+char	*ft_strstr(char *src, char *cmp )
 {
 	int	i;
 	int	j;
@@ -23,14 +23,13 @@ char	*ft_strnstr(char *src, char *cmp, int n)
 	j = 0;
 	while (src[i] != '\0')
 	{
+		printf("\t\t%c\n", src[i]);
 		k = i;
 		while (src[k] == cmp[j] && cmp[j] != '\0')
 		{
 			k++;
 			j++;
 		}
-		if (k > n)
-			return (0);
 		if (cmp[j] == '\0')
 			return (&src[i]);
 		i++;
@@ -41,13 +40,9 @@ char	*ft_strnstr(char *src, char *cmp, int n)
 
 // int main(void)
 // {
-//	 int i = 0;
-//     while (i < 20)
-//     {
-//     char *srcstr = "Bonjour les amis comment ca va ?";
-//     char *cmpstr = "s";
-//     printf("%s\n", strnstr(srcstr, cmpstr, i));
-//     printf("%s\n\n\n", ft_strnstr(srcstr, cmpstr, i));
-//     i++;
-//     }
+//     char *srcstr = "1234";
+//     char *cmpstr = "2";
+
+//     printf("|%s|\n", strstr(srcstr, cmpstr));
+//     printf("|%s|\n", ft_strstr(srcstr, cmpstr));
 // }

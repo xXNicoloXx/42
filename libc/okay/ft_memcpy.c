@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:44:15 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/07 18:56:04 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/08 11:45:41 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	size_t	i;
 
 	i = 0;
-	while (size)
+	while (n)
 	{
-		*((unsigned char *)destination + i) = *((unsigned char *)source + i);
+		*((unsigned char *)dest + i) = *((unsigned char *)src + i);
 		i++;
-		size--;
+		n--;
 	}
-	return (destination);
+	return (dest);
 }
 /*
 

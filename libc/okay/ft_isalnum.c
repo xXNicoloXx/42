@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 13:25:55 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 13:29:45 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ftlendest(char *str )
-{
-	int	i;
+#include <stdio.h>
+#include <ctype.h>
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+int	ft_isalnum(int str)
+{	
+	if (!((47 < str && str < 58) || (64 < str && str < 91)
+			|| (96 < str && str < 123)))
+		return (0);
+	return (1);
 }
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+/*int main(void)
 {
-	int				dest_len;
-	unsigned int	i;
-
-	dest_len = ftlendest(dest);
-	i = 0;
-	while (i < nb && src[i] != '\0')
+	int i = 0;
+	while (i<127)
 	{
-		dest[dest_len + i] = src[i];
+		printf("%d \t", isalnum(i));
+		printf("%d \t %c\n", ft_isalnum(i),i);
 		i++;
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
-}
+}*/

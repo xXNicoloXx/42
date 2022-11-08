@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/09 17:27:41 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/07/09 18:18:07 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 13:02:07 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 13:17:41 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
 #include <stdio.h>
+#include <ctype.h>
 
-int	ft_strlen(char *str)
+int	ft_isalpha(int str)
 {	
-	int	i;
+	if (!((64 < str && str < 91) || (96 < str && str < 123)))
+		return (0);
+	return (1);
+}
 
-	i = 0;
-	while (!(str[i] == '\0'))
+/*int main(void)
+{
+	int i = 0;
+	while (i<127)
 	{
+		printf("%d\n", isalpha(i));
+		printf("%d\n\n\n", ft_isalpha(i));
 		i++;
 	}
-	return (i);
-}
+}*/

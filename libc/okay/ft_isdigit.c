@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 13:21:17 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 13:23:09 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ftlendest(char *str )
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+int	ft_isdigit(int str)
+{	
+	if (!((47 < str && str < 58)))
+		return (0);
+	return (1);
 }
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+/*int main(void)
 {
-	int				dest_len;
-	unsigned int	i;
-
-	dest_len = ftlendest(dest);
-	i = 0;
-	while (i < nb && src[i] != '\0')
+	int i = 0;
+	while (i<127)
 	{
-		dest[dest_len + i] = src[i];
+		printf("%d \t", isdigit(i));
+		printf("%d \t %c\n\n", ft_isdigit(i),i);
 		i++;
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
-}
+}*/

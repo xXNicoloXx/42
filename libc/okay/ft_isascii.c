@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 13:30:41 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 13:32:39 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ftlendest(char *str )
-{
-	int	i;
+#include<stdio.h>
 
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
+int	ft_isascii(int str)
+{	
+	if (!(-1 < str && str < 128))
+		return (0);
+	return (1);
 }
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+/*int main(void)
 {
-	int				dest_len;
-	unsigned int	i;
-
-	dest_len = ftlendest(dest);
-	i = 0;
-	while (i < nb && src[i] != '\0')
+	int i = -4;
+	while (i<130)
 	{
-		dest[dest_len + i] = src[i];
+		printf("%d \t", isascii(i));
+		printf("%d \t %c\n", ft_isascii(i),i);
 		i++;
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
-}
+}*/

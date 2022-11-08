@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 16:41:46 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 17:52:44 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	ftlendest(char *str )
+#include <stddef.h>
+#include <stdio.h>
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*str;
 
+	str = (unsigned char *)s;
 	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
-{
-	int				dest_len;
-	unsigned int	i;
-
-	dest_len = ftlendest(dest);
-	i = 0;
-	while (i < nb && src[i] != '\0')
+	while (n)
 	{
-		dest[dest_len + i] = src[i];
+		if (str[i] == (unsigned char)c)
+			return (&str[i]);
+		n--;
 		i++;
 	}
-	dest[dest_len + i] = '\0';
-	return (dest);
+	return (NULL);
 }
+
+// int main(void)
+// {
+// printf("%p\n",ft_memchr("Bonjour les amis", 'r', 6));
+// printf("%p",memchr("Bonjour les amis", 'r', 6));
+// }

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 09:49:25 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/07/16 14:09:14 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/08 19:17:19 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 int	ft_atoi(char *str)
 {
@@ -25,9 +27,13 @@ int	ft_atoi(char *str)
 	{
 		i++;
 	}
-	while (str[i] == '-' || str[i] == '+')
-		if (str[i++] == '-')
-			signe = -signe;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		i++;
+		signe = -signe;
+	}
 	while ('0' <= str[i] && str[i] <= '9')
 	{
 		nb = nb * 10 + str[i] - 48;
@@ -35,3 +41,10 @@ int	ft_atoi(char *str)
 	}
 	return (nb * signe);
 }
+
+// int main(void)
+// {
+// 	char *test = "    +286543554s";
+// 	printf("%d\n", ft_atoi(test));
+// 	printf("%d", atoi(test));
+// }

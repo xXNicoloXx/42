@@ -3,12 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 18:24:44 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/07/13 12:51:33 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 16:39:54 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 16:39:56 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <stdio.h>
+#include <string.h>
 
 int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
