@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 16:32:29 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/09 11:41:50 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/09 11:39:56 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/09 11:41:19 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-char	*ft_strchr(char *str, int lettre)
+char	*ft_strdup(char *str)
 {
-	int	i;
+	int		i;
+	char	*dup;
 
 	i = 0;
 	while (str[i] != '\0')
+		i++;
+	dup = malloc(sizeof(char) * i);
+	i = 0;
+	while (str[i] != '\0')
 	{
+		dup[i] = str[i];
 		i++;
 	}
-	i--;
-	while (str[i] != lettre)
-	{
-		if (str[i] == '\0')
-			return (NULL);
-		i--;
-	}
-	return (&str[i]);
+	dup[i] = '\0';
+	return (dup);
 }
 
-//  int main (void)
-//  {
-//      char *texte = "376126521657241627416719781641337638127418";
-//      int lettre = '7';
-
-//      printf("1:%s\n", strrchr(texte, lettre));
-//      printf("2:%s", ft_strchr(texte, lettre));    
-//  }
+// int main (void)
+// {
+//     char *test = "Bonjoujcsyfjwgfwr les \n amis";
+//     printf("%s\n", ft_strdup(test));
+//     printf("%s", strdup(test));
+//     return(0);
+// }
