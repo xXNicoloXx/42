@@ -1,43 +1,61 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 11:54:39 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/09 14:24:04 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/09 13:13:00 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/09 14:27:18 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_strlen(const char *str)
 {
-	int		i;
-	char	*str;
+	int	i;
 
 	i = 0;
-	str = malloc(sizeof(len));
+	while (!(str[i] == '\0'))
+	{
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)));
 	if (str == NULL)
 		return (NULL);
-	while (len)
+	while (s1[i] != '\0')
 	{
-		str[i] = s[start];
+		str[j] = s1[i];
 		i++;
-		start++;
-		len--;
+		j++;
 	}
-	str[i] = '\0';
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		str[j] = s2[i];
+		i++;
+		j++;
+	}
+	str[j] = '\0';
 	return (str);
 }
 
-// int main (void)
+// int main(void)
 // {
-// 	char *test = "123456789";
-// 	int start = 2;
-// 	int len = 5;
-// 	printf("ft = %s\n",ft_substr(test,start,len));
+//     char *test = "";
+//     char *oui = "";
+//     printf("%s",ft_strjoin(test, oui));
 // }
