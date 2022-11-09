@@ -1,46 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 14:39:00 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/09 12:04:57 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/09 11:54:39 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/09 13:09:32 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
+#include <stdio.h>
+#include <stdlib.h>
 
-int	ft_strlen(const char *str)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
-	while (!(str[i] == '\0'))
+	str = malloc(sizeof(len));
+	while (len)
 	{
+		str[i] = s[start];
 		i++;
+		start++;
+		len--;
 	}
-	return (i);
+	str[i] = '\0';
+	return (str);
 }
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	srcsize;
-	size_t	i;
-
-	if (!dst || !src)
-		return (0);
-	srcsize = ft_strlen(src);
-	i = 0;
-	if (dstsize != 0)
-	{
-		while (src[i] != '\0' && i < (dstsize - 1))
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
-	}
-	return (srcsize);
-}
+// int main (void)
+// {
+// 	char *test = "123456789";
+// 	int start = 2;
+// 	int len = 5;
+// 	printf("ft = %s\n",ft_substr(test,start,len));
+// }
