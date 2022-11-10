@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmpi.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:41:37 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 13:42:03 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 14:35:42 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char    *ft_strmapi(char const *s, char (*f)(unsigned int, char)
+char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-
+    unsigned int i;
+    
+    
 }
