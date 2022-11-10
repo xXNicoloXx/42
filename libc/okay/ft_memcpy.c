@@ -6,16 +6,12 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 15:44:15 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 11:45:41 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:24:30 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stddef.h>
-#include <string.h>
+#include "libft.h"
 
-// void	*memcpy( void * destination, const void * source, size_t size );
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

@@ -6,12 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:32:56 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 13:34:08 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:22:24 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<stdio.h>
-#include <ctype.h>
+#include "libft.h"
 
 int	ft_isprint(int str)
 {	

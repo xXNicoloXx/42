@@ -6,14 +6,13 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 10:23:26 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:35:30 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-int	ft_strlen(const char *str)
+static int	ft_strlen(const char *str)
 {
 	int	i;
 
@@ -25,7 +24,7 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-int	ftcount(int i, int j, const char *s1, const char *set)
+static int	ftcount(int i, int j, const char *s1, const char *set)
 {
 	int	count;
 
@@ -47,7 +46,7 @@ int	ftcount(int i, int j, const char *s1, const char *set)
 	return (i);
 }
 
-char	*ftmymalloc(int count, char *str)
+static char	*ftmymalloc(int count, char *str)
 {
 	if (count <= 0)
 	{
@@ -67,7 +66,7 @@ char	*ftmymalloc(int count, char *str)
 	return (str);
 }
 
-int	ftmyi(int i, int j, const char *s1, const char *set)
+static int	ftmyi(int i, int j, const char *s1, const char *set)
 {
 	while (set[j] != '\0' && i > 0)
 	{

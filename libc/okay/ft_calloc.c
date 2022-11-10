@@ -6,13 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 19:33:14 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/09 11:36:04 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:30:32 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include "libft.h"
 
 void	*ft_calloc(size_t nitems, size_t size)
 {

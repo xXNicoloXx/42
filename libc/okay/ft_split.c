@@ -6,15 +6,13 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:29:02 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 10:46:42 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:27:51 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
-char	**ft_malloctab(char const *str, char **tab, char c)
+static char	**ft_malloctab(char const *str, char **tab, char c)
 {
 	int	i;
 	int	mot;
@@ -37,7 +35,7 @@ char	**ft_malloctab(char const *str, char **tab, char c)
 	return (tab);
 }
 
-char	**ft_mallocmot(char const *str, char **tab, char c)
+static char	**ft_mallocmot(char const *str, char **tab, char c)
 {
 	int	i;
 	int	j;
@@ -63,7 +61,7 @@ char	**ft_mallocmot(char const *str, char **tab, char c)
 	return (tab);
 }
 
-char	**ft_str_to_tab(char const *str, char **tab, char c)
+static char	**ft_str_to_tab(char const *str, char **tab, char c)
 {
 	int	i;
 	int	j;

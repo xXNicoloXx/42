@@ -6,12 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:09:55 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 16:11:22 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:36:23 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <ctype.h>
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_tolower(int character)
 {

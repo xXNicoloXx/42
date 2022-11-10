@@ -6,12 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:25:55 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 13:29:45 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 17:32:26 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <ctype.h>
+#include "libft.h"
 
 int	ft_isalnum(int str)
 {	

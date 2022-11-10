@@ -6,13 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:39:56 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/09 11:41:19 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:28:50 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdlib.h>
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strdup(char *str)
 {

@@ -6,12 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:41:46 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/08 17:52:44 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:23:30 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include <stdio.h>
+#include "libft.h"
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 15:04:37 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 17:28:47 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/10 18:26:26 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 18:26:38 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	t_bzero(void *s, size_t n)
+void ft_putnbr_fd(int n, int fd)
 {
-	char	*str;
+    char *nbr;
 
-	str = s;
-	while (n)
-	{
-		*str = '\0';
-		str++;
-		n--;
-	}
+    nbr = ft_itoa(n);
+    ft_putstr_fd(nbr, fd);
 }

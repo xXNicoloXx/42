@@ -6,12 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:42:06 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/09 11:42:44 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:28:07 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include <stdio.h>
+#include "libft.h"
 
 char	*ft_strchr(char *str, int lettre)
 {

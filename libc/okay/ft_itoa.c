@@ -6,14 +6,13 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:52:49 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 13:20:56 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:23:09 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
+#include "libft.h"
 
-char	*ft_nbr_to_str(char *str, int n, int signe, int size)
+static char	*ft_nbr_to_str(char *str, int n, int signe, int size)
 {
 	int	nbr;
 	int	i;
@@ -32,7 +31,7 @@ char	*ft_nbr_to_str(char *str, int n, int signe, int size)
 	return (str);
 }
 
-char	*ft_min_int(int c)
+static char	*ft_min_int(int c)
 {
 	char	*str;
 
