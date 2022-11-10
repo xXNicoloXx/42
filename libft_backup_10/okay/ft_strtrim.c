@@ -6,14 +6,29 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 19:23:45 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:35:30 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (!(str[i] == '\0'))
+	{
+		i++;
+	}
+	return (i);
+}
+
 static int	ftcount(int i, int j, const char *s1, const char *set)
 {
+	int	count;
+
+	count = ft_strlen(s1);
 	j = 0;
 	while (s1[i] != '\0')
 		i++;
@@ -33,7 +48,6 @@ static int	ftcount(int i, int j, const char *s1, const char *set)
 
 static char	*ftmymalloc(int count, char *str)
 {
-	free(str);
 	if (count <= 0)
 	{
 		str = malloc(sizeof(char) * 1);
@@ -79,9 +93,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	count = ft_strlen(s1);
 	count = ftcount(i, j, s1, set);
 	i = ftmyi(i, j, s1, set);
-	str = malloc(sizeof(char) * 1);
-	if (str == NULL)
-		return (NULL);
 	str = ftmymalloc(count, str);
 	if (count <= 0)
 		return (str);

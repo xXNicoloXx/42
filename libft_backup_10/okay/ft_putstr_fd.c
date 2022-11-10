@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:27:18 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while(s[i])
 	{
 		write(fd, &s[i], 1);
 		i++;

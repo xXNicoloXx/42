@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ngriveau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/07/12 18:24:44 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/07/12 21:37:15 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <stdio.h>
 
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
-{
+int	ft_strcmp(char *s1, char *s2)
+{	
 	int	i;
+	int	a;
 
 	i = 0;
-	while (s[i])
+	while (s1[i] == s2[i])
 	{
-		write(fd, &s[i], 1);
+		if (s1[i] == '\0' && s2[i] == '\0')
+			return (0);
 		i++;
 	}
+	a = s1[i] - s2[i];
+	return (a);
 }
-
-// int main()
-// {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
-// }

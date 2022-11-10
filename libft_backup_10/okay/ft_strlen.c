@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/07/09 17:27:41 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 18:31:43 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (!(str[i] == '\0'))
 	{
-		write(fd, &s[i], 1);
 		i++;
 	}
+	return (i);
 }
-
-// int main()
-// {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
-// }

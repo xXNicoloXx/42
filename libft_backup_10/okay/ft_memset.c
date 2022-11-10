@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/07 14:56:36 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 18:24:51 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	i;
+	char	*str;
 
-	i = 0;
-	while (s[i])
+	str = b;
+	while (len)
 	{
-		write(fd, &s[i], 1);
-		i++;
+		*str = (unsigned char)c;
+		str++;
+		len--;
 	}
+	return (b);
 }
+/*int main (void)
+{
 
-// int main()
-// {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
-// }
+    void *ptr[20] ;
+    int value = 50;
+    int n = 5;
+	int test = 50;
+    printf("%s\n\n", ft_memset(ptr, value, n));
+	printf("%s", memset(ptr, value, test));
+}*/

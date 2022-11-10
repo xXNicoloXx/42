@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:52:49 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:56:49 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/10 18:23:09 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static char	*ft_nbr_to_str(char *str, int n, int signe, int size)
 {
+	int	nbr;
 	int	i;
 
 	i = 0;
@@ -30,7 +31,7 @@ static char	*ft_nbr_to_str(char *str, int n, int signe, int size)
 	return (str);
 }
 
-static char	*ft_min_int(void)
+static char	*ft_min_int(int c)
 {
 	char	*str;
 
@@ -60,7 +61,7 @@ char	*ft_itoa(int n)
 	signe = 1;
 	size = 0;
 	if (n == -2147483648)
-		return (ft_min_int());
+		return (ft_min_int(size));
 	if (n < 0)
 	{
 		signe = -1;

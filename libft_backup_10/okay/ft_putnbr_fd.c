@@ -1,31 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/10 18:26:26 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 18:26:38 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void ft_putnbr_fd(int n, int fd)
 {
-	int	i;
+    char *nbr;
 
-	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
-		i++;
-	}
+    nbr = ft_itoa(n);
+    ft_putstr_fd(nbr, fd);
 }
-
-// int main()
-// {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
-// }

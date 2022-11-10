@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 16:07:10 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 18:36:35 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_toupper( int character )
 {
-	int	i;
-
-	i = 0;
-	while (s[i])
+	if ('a' <= character && character <= 'z')
 	{
-		write(fd, &s[i], 1);
-		i++;
+		return (character - 32);
 	}
+	return (character);
 }
 
-// int main()
+// int main(void)
 // {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
+// 	int i = -2;
+// 	printf("%c \t", toupper(i));
+//     printf("%c \t\t\t %c\n", ft_toupper(i),i);
+// 	while (i<130)
+// 	{
+//         printf("%c \t", toupper(i));
+//     	printf("%c \t \n", ft_toupper(i));
+// 		i++;
+// 	}
 // }

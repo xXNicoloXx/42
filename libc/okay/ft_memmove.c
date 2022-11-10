@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 09:35:29 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 19:20:27 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	int	i;
+	size_t			i;
+	unsigned long	adresse1;
+	unsigned long	adresse2;
 
 	i = 0;
-	while (s[i])
+	adresse1 = (unsigned long) src;
+	adresse2 = (unsigned long) dest;
+	if (adresse1 < adresse2)
 	{
-		write(fd, &s[i], 1);
-		i++;
+		while (n)
+		{
+			*((unsigned char *)dest + n - 1) = *((unsigned char *)src + n - 1);
+			n--;
+		}
 	}
+	else
+	{
+		while (n)
+		{
+			*((unsigned char *)dest + i) = *((unsigned char *) src + i);
+			n--;
+			i++;
+		}
+	}
+	return (dest);
 }
-
-// int main()
-// {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
-// }

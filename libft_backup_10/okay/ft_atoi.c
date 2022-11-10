@@ -1,31 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/07/16 09:49:25 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 17:30:36 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+int	ft_atoi(char *str)
 {
 	int	i;
+	int	signe;
+	int	nb;
 
+	signe = 1;
 	i = 0;
-	while (s[i])
+	nb = 0;
+	while (('\t' <= str[i] && str[i] <= '\r') || (str[i] == ' '))
 	{
-		write(fd, &s[i], 1);
 		i++;
 	}
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		i++;
+		signe = -signe;
+	}
+	while ('0' <= str[i] && str[i] <= '9')
+	{
+		nb = nb * 10 + str[i] - 48;
+		i++;
+	}
+	return (nb * signe);
 }
 
-// int main()
+// int main(void)
 // {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
+// 	char *test = "    +286543554s";
+// 	printf("%d\n", ft_atoi(test));
+// 	printf("%d", atoi(test));
 // }

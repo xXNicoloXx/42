@@ -1,31 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/09 13:13:00 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 18:29:56 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int	i;
+	char	*str;
+	int		i;
+	int		j;
 
 	i = 0;
-	while (s[i])
+	j = 0;
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2)));
+	if (str == NULL)
+		return (NULL);
+	while (s1[i] != '\0')
 	{
-		write(fd, &s[i], 1);
+		str[j] = s1[i];
 		i++;
+		j++;
 	}
+	i = 0;
+	while (s2[i] != '\0')
+	{
+		str[j] = s2[i];
+		i++;
+		j++;
+	}
+	str[j] = '\0';
+	return (str);
 }
 
-// int main()
+// int main(void)
 // {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
+//     char *test = "";
+//     char *oui = "";
+//     printf("%s",ft_strjoin(test, oui));
 // }

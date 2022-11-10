@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/08 15:20:04 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/08 15:49:01 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	ft_putstr_fd(char *s, int fd)
+char	ftlendest(char *str )
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
-	{
-		write(fd, &s[i], 1);
+	while (str[i] != '\0')
 		i++;
-	}
+	return (i);
 }
 
-// int main()
-// {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
-// }
+char	*ft_strncat(char *dest, char *src, unsigned int nb)
+{
+	int				dest_len;
+	unsigned int	i;
+
+	dest_len = ftlendest(dest);
+	i = 0;
+	while (i < nb && src[i] != '\0')
+	{
+		dest[dest_len + i] = src[i];
+		i++;
+	}
+	dest[dest_len + i] = '\0';
+	return (dest);
+}

@@ -1,31 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 16:56:09 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:41:44 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/09 11:54:39 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/10 18:36:09 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *s, int fd)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
+	int		i;
+	char	*str;
 
 	i = 0;
-	while (s[i])
+	str = malloc(sizeof(len));
+	if (str == NULL)
+		return (NULL);
+	while (len)
 	{
-		write(fd, &s[i], 1);
+		str[i] = s[start];
 		i++;
+		start++;
+		len--;
 	}
+	str[i] = '\0';
+	return (str);
 }
 
-// int main()
+// int main (void)
 // {
-//     int fd = open("test.txt", O_WRONLY);
-// 	ft_putstr_fd("Bonjourssdsadadadsa sdsdsles amis", fd);
+// 	char *test = "123456789";
+// 	int start = 2;
+// 	int len = 5;
+// 	printf("ft = %s\n",ft_substr(test,start,len));
 // }
