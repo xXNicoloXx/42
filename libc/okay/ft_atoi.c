@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 09:49:25 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 17:30:36 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/11 09:53:53 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_atoi(char *str)
 	}
 	return (nb * signe);
 }
+// may la boss
 
 // int main(void)
 // {
