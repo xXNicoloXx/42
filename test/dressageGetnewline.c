@@ -91,6 +91,7 @@ int main ()
 	ft(fd);
 	printf("\n========\n");
 	close(fd);
+	//bonjour
 
 
 }
