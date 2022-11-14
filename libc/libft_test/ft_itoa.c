@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:52:49 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/14 17:25:16 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/14 18:42:45 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static char	*ft_min_int(void)
 	char	*str;
 
 	str = malloc(sizeof(char) * 12);
+	if (str == NULL)
+		return (NULL);
 	str[0] = '-';
 	str[1] = '2';
 	str[2] = '1';
@@ -55,6 +57,8 @@ static char *ft_itoa_zero()
 	char	*str;
 
 	str = malloc(sizeof(char) * 2);
+	if (str == NULL)
+		return (NULL);
 	str[0] = '0';
 	str[1] = '\0';
 	return (str);
