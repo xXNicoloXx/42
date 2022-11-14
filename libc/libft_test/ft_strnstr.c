@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 19:09:07 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/11 11:26:30 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:46:07 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strnstr(const char *src, const char *cmp, size_t n)
 	i = 0;
 	j = 0;
 	str = (char *) src;
-	while (src[i] != '\0')
+	while (src[i] != '\0' || i == 0 )
 	{
 		k = i;
 		while (src[k] == cmp[j] && cmp[j] != '\0')
@@ -41,7 +41,7 @@ char	*ft_strnstr(const char *src, const char *cmp, size_t n)
 
 // int main(void)
 // {
-//	 int i = 0;
+// 	 int i = 0;
 //     while (i < 20)
 //     {
 //     char *srcstr = "Bonjour les amis comment ca va ?";

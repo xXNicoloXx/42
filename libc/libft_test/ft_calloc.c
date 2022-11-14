@@ -6,19 +6,23 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 19:33:14 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 17:30:32 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:25:51 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t nitems, size_t size)
+void	*ft_calloc(size_t nbitems, size_t size)
 {
 	size_t	count;
+	size_t	tmax;
 	char	*str;
 
-	count = nitems * size;
-	str = malloc(nitems * size);
+	tmax = (size_t) -1;
+	if (nbitems * (tmax / size) >= tmax && size != 0)
+	 	return (NULL);
+	count = nbitems * size;
+	str = malloc(nbitems * size);
 	if (str == NULL)
 		return (NULL);
 	else

@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:39:56 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:28:50 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/14 14:41:47 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(char *str)
 	i = 0;
 	while (str[i] != '\0')
 		i++;
-	dup = malloc(sizeof(char) * i);
+	dup = malloc(sizeof(char) * i + 1);
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -33,8 +33,11 @@ char	*ft_strdup(char *str)
 
 // int main (void)
 // {
-//     char *test = "Bonjoujcsyfjwgfwr les \n amis";
-//     printf("%s\n", ft_strdup(test));
-//     printf("%s", strdup(test));
+//     //char *test = "Bonjoujcsyfjwgfwr les \n amis";
+// 	char * s = ft_strdup((char*)"coucou");
+// 	char * a = strdup((char*)"coucou");
+	
+//     printf("ft%d |%d||%d|\n", strcmp(s, "coucou"), s[5], s[6]);
+//     printf("st%d |%d||%d|", strcmp(a, "coucou"), a[5], a[6]);
 //     return(0);
 // }

@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:42:06 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:28:07 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/14 09:47:02 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 char	*ft_strchr(char *str, int lettre)
 {
 	int	i;
+	unsigned char ch;
 
 	i = 0;
-	while (str[i] != lettre)
+	ch = (unsigned char) lettre;
+	//printf("%d | %c\n ", lettre, lettre);
+	while (str[i] != ch)
 	{
 		if (str[i] == '\0')
 			return (NULL);
@@ -30,6 +33,7 @@ char	*ft_strchr(char *str, int lettre)
 //     char *texte = "ciuyguyguygciuyguygcd";
 //     int lettre = 'g';
 
-//     printf("1:%s\n", strchr(texte, lettre));
-//     printf("2:%s", ft_strchr(texte, lettre));    
+//     printf("1:%s\n", strchr("tripoulle", 't' + 256));
+//     printf("2:%s", ft_strchr("tripoulle", 't' + 256));    
+	
 // }
