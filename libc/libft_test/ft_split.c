@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 18:29:02 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 19:25:14 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/14 17:18:00 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,18 @@ static char	**ft_malloctab(char const *str, char **tab, char c)
 	mot = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] != c)
+	//	printf("str[%d] = %c, mot = %d\n",i, str[i], mot);
+		if (str[i] == c)
+			i++;
+		else
 		{
 			mot ++;
-			while (str[i] != c)
+			while(str[i] != c && str[i] != '\0')
 				i++;
-		}
-		else
-			i++;
+		}	
+		
 	}
+	//printf("mot= %d\n",mot);
 	tab = malloc(sizeof(char *) * (mot + 1));
 	tab[mot] = '\0';
 	return (tab);
@@ -52,7 +55,7 @@ static char	**ft_mallocmot(char const *str, char **tab, char c)
 			mot++;
 			while (str[i] != c && str[i] != '\0')
 				i++;
-			tab[mot] = malloc(sizeof(char) * (i - j));
+			tab[mot] = malloc(sizeof(char) * (i - j + 1));
 			tab[mot][i - j] = '\0';
 		}
 		else
@@ -107,8 +110,8 @@ char	**ft_split(char const *str, char c)
 // 	int i;
 
 // 	i = 0; 
-//     char **tab = ft_split("     Bonjour     kjrhg     le      ?    ", ' ');
-// 	while (i < 8)
+//     char **tab = ft_split("Tripouille", ' ');
+// 	while (i < 2)
 // 	{
 // 	printf("|%s|\n" , tab[i]);
 // 	i++;
