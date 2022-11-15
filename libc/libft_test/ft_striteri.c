@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 15:05:23 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 19:26:10 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:21:20 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	i = 0;
 	while (s[i] != '\0')
 	{
-		(*f)(i, s);
+		(*f)(i, s + i);
 		i++;
 	}
 }

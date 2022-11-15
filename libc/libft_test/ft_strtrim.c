@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/14 16:54:34 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:07:50 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ static char	*ftmymalloc(int count, char *str)
 	}
 	else
 	{
-		//printf("count = %d", count);
 		str = malloc(sizeof(char) * count + 1);
 		if (str == NULL)
 			return (NULL);
@@ -71,7 +70,6 @@ static char	*ftmymalloc(int count, char *str)
 
 static int	ftmyi(int i, int j, const char *s1, const char *set)
 {
-	//printf("\t\t%d%d\n",i,j);
 	while (set[j] != '\0')
 	{
 		if (s1[i] == set[j])
@@ -82,7 +80,6 @@ static int	ftmyi(int i, int j, const char *s1, const char *set)
 		else
 			j++;
 	}
-	//printf("i = %d \n",i);
 	return (i);
 }
 
@@ -96,7 +93,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i = 0;
 	j = 0;
 	count = ftcount(i, j, s1, set) - ftcountpt2(i, j, s1, set);
-	//printf("count = %d\n", count);
 	i = ftmyi(i, j, s1, set);
 	str = malloc(sizeof(char) * 1);
 	if (str == NULL)

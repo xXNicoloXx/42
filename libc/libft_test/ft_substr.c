@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:54:39 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/14 15:52:06 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:07:25 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	if (len < start || ((size_t) ft_strlen(s)) <= start)
-		return ( ft_strdup(""));
+		return (ft_strdup(""));
 	if (((size_t) ft_strlen(s)) <= len)
 		str = malloc(sizeof(char) * (ft_strlen(s) - start + 1));
 	else if (((size_t) ft_strlen(s)) > len)

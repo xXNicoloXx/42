@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 11:39:56 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/14 14:41:47 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:02:52 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	*ft_strdup(char *str)
 //     //char *test = "Bonjoujcsyfjwgfwr les \n amis";
 // 	char * s = ft_strdup((char*)"coucou");
 // 	char * a = strdup((char*)"coucou");
-	
 //     printf("ft%d |%d||%d|\n", strcmp(s, "coucou"), s[5], s[6]);
 //     printf("st%d |%d||%d|", strcmp(a, "coucou"), a[5], a[6]);
 //     return(0);

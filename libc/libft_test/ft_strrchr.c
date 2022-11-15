@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 16:32:29 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/14 10:24:52 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:03:32 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 char	*ft_strrchr(char *str, int lettre)
 {
-	int	i;
-	unsigned char ch;
+	int				i;
+	unsigned char	ch;
 
 	i = 0;
 	ch = (unsigned char) lettre;
@@ -40,7 +40,6 @@ char	*ft_strrchr(char *str, int lettre)
 //      //char *texte = "tripouille";
 //      int lettre = 'V';
 // 	char * empty = (char*)calloc(1, 1);
-
 //      printf("1:|%s|\n", strrchr(empty, lettre));
 //      printf("2:|%s|", ft_strrchr(empty, lettre));    
 //  }

@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 13:41:37 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/10 18:32:28 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:06:36 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,23 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 	char			*str;
 
-	str = malloc(sizeof(char) * ft_strlen(s));
+	i = 0;
+	while (s[i])
+		i++;
+	str = malloc(sizeof(char) * i + 1);
+	str[i] = '\0';
 	if (str == NULL)
 		return (NULL);
-	while (s[i] == '\0')
+	i = 0;
+	while (s[i] != '\0')
 	{
 		str[i] = (*f)(i, s[i]);
 		i++;
 	}
 	return (str);
 }
+
+// void main (void)
+// {
+// 	char * s = ft_strmapi("1234", addOne);
+// }

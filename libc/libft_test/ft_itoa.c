@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 10:52:49 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/14 18:42:45 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 12:10:01 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,24 @@ static char	*ft_nbr_to_str(char *str, int n, int signe, int size)
 	return (str);
 }
 
-static char	*ft_min_int(void)
+static	char	*ft_itoa_zero(void)
 {
 	char	*str;
 
+	str = malloc(sizeof(char) * 2);
+	if (str == NULL)
+		return (NULL);
+	str[0] = '0';
+	str[1] = '\0';
+	return (str);
+}
+
+static char	*ft_min_int(int n)
+{
+	char	*str;
+
+	if (n == 0)
+		return (ft_itoa_zero());
 	str = malloc(sizeof(char) * 12);
 	if (str == NULL)
 		return (NULL);
@@ -52,18 +66,6 @@ static char	*ft_min_int(void)
 	return (str);
 }
 
-static char *ft_itoa_zero()
-{
-	char	*str;
-
-	str = malloc(sizeof(char) * 2);
-	if (str == NULL)
-		return (NULL);
-	str[0] = '0';
-	str[1] = '\0';
-	return (str);
-}
-
 char	*ft_itoa(int n)
 {
 	char	*nbr;
@@ -73,10 +75,8 @@ char	*ft_itoa(int n)
 
 	signe = 1;
 	size = 0;
-	if (n == -2147483648)
-		return (ft_min_int());
-	if (n == 0)
-		return (ft_itoa_zero());
+	if (n == -2147483648 || n == 0)
+		return (ft_min_int(n));
 	if (n < 0)
 	{
 		signe = -1;
