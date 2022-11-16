@@ -168,12 +168,12 @@ int    ft_printf(const char *str,  ...)
     //printf("nbr arg = %d\n",nbr_arg);
     return (0);
 }
-/*int main (void)
+int main (void)
 {
     char *poucentp = "4";
-    int nbr = 172;
+    int nbr = 15;
     int nbrr = 728764;
 
-    ft_printf("test %% %c %d %s %p %x %X %i %u\n", 108, -0x092, "|", poucentp, nbr, nbr ,nbrr, nbrr);
-    printf("test %% %c %d %s %p %x %X %i %u\n", 108, -0x92, "|", poucentp, nbr, nbr , nbrr, nbrr);
-}*/
+    ft_printf("test %%  %d %s %p %x %X %i %u\n",  1, "|", poucentp, nbr, nbr ,nbrr, nbrr);
+    printf("test %%  %d %s %p %x %X %i %u\n", 1, "|", poucentp, nbr, nbr , nbrr, nbrr);
+}

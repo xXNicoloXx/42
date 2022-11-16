@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 19:33:14 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/15 12:09:13 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/15 14:48:41 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_calloc(size_t nbitems, size_t size)
 	char	*str;
 
 	tmax = (size_t) -1;
-	if (nbitems * (tmax / size) >= tmax && size != 0)
+	if (size != 0 && nbitems > (tmax / size))
 		return (NULL);
 	count = nbitems * size;
 	str = malloc(nbitems * size);
