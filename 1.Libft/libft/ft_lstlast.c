@@ -1,39 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 14:39:00 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/17 17:56:37 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/17 13:55:16 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/17 17:39:52 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+t_list	*ft_lstlast(t_list	*lst)
 {
-	size_t	i;
-	size_t	j;
-	size_t	dest_len;
-	size_t	src_len;
+	t_list	*adresse;
 
-	src_len = ft_strlen((char *)src);
-	dest_len = ft_strlen((char *)dst);
-	j = dest_len;
-	i = 0;
-	if (dest_len < size - 1 && size > 0)
-	{
-		while (src[i] && (dest_len + i < size - 1))
-		{
-			dst[j] = src[i];
-			j++;
-			i++;
-		}
-		dst[j] = 0;
-	}
-	if (dest_len >= size)
-		dest_len = size;
-	return (dest_len + src_len);
+	adresse = lst;
+	if (lst == 0)
+		return (0);
+	while (adresse->next != NULL)
+		adresse = adresse->next;
+	return (adresse);
 }

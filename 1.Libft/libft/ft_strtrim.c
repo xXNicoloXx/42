@@ -6,111 +6,102 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/15 12:07:50 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:03:18 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ftcountpt2(int i, int j, const char *s1, const char *set)
+static char	*find_begin(char const *s1, char const *set)
 {
-	j = 0;
-	while (set[j] != '\0')
-	{
-		if (s1[i] == set[j])
-		{
-			j = 0;
-			i++;
-		}
-		else
-			j++;
-	}
-	return (i);
-}
+	size_t	i;
+	size_t	j;
+	int		in_set;
 
-static int	ftcount(int i, int j, const char *s1, const char *set)
-{
+	in_set = 0;
+	i = 0;
 	j = 0;
-	while (s1[i] != '\0')
+	while (s1[i])
+	{
+		in_set = 0;
+		j = 0;
+		while (set[j])
+		{
+			if (s1[i] == set[j])
+				in_set = 1;
+			j++;
+		}
+		if (!in_set)
+			break ;
 		i++;
-	i--;
-	while (set[j] != '\0' && i > 0)
-	{
-		if (s1[i] == set[j])
-		{
-			j = 0;
-			i--;
-		}
-		else
-			j++;
 	}
-	i++;
-	return (i);
+	return ((char *) s1 + i);
 }
 
-static char	*ftmymalloc(int count, char *str)
+static char	*find_end(char const *s1, char const *set, char const *begin)
 {
-	free(str);
-	if (count <= 0)
+	size_t	i;
+	size_t	j;
+	int		in_set;
+
+	in_set = 0;
+	i = ft_strlen(s1) - 1;
+	j = 0;
+	while (s1 + i >= begin)
 	{
-		str = malloc(sizeof(char) * 1);
-		if (str == NULL)
-			return (NULL);
-		str[0] = '\0';
+		in_set = 0;
+		j = 0;
+		while (set[j])
+		{
+			if (s1[i] == set[j])
+				in_set = 1;
+			j++;
+		}
+		if (!in_set)
+			break ;
+		i--;
 	}
-	else
-	{
-		str = malloc(sizeof(char) * count + 1);
-		if (str == NULL)
-			return (NULL);
-		str[count] = '\0';
-	}
-	return (str);
+	if (s1 + i < begin)
+		return ((char *) begin);
+	return ((char *) s1 + i);
 }
 
-static int	ftmyi(int i, int j, const char *s1, const char *set)
+static char	*fill_str(char const *begin, char const *end)
 {
-	while (set[j] != '\0')
+	char	*new;
+	size_t	i;
+
+	new = malloc(sizeof(char) * (end - begin + 2));
+	if (!new)
+		return (NULL);
+	i = 0;
+	while (begin + i <= end)
 	{
-		if (s1[i] == set[j])
-		{
-			j = 0;
-			i++;
-		}
-		else
-			j++;
+		new[i] = begin[i];
+		i++;
 	}
-	return (i);
+	new[i] = '\0';
+	return (new);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	int		i;
-	int		j;
-	int		count;
-	char	*str;
+	char	*begin;
+	char	*end;
+	char	*new;
 
-	i = 0;
-	j = 0;
-	count = ftcount(i, j, s1, set) - ftcountpt2(i, j, s1, set);
-	i = ftmyi(i, j, s1, set);
-	str = malloc(sizeof(char) * 1);
-	if (str == NULL)
-		return (NULL);
-	str = ftmymalloc(count, str);
-	if (count <= 0)
-		return (str);
-	while (count)
+	begin = find_begin(s1, set);
+	end = find_end(s1, set, s1);
+	if (!s1[0] || end < begin)
 	{
-		str[j] = s1[i];
-		i++;
-		j++;
-		count--;
+		new = malloc(sizeof(char) * 1);
+		if (!new)
+			return (NULL);
+		new[0] = '\0';
 	}
-	return (str);
+	else
+		new = fill_str(begin, end);
+	if (!new)
+		return (NULL);
+	return (new);
 }
-
-// int main(void)
-// {
-//     printf("|%s|\n",ft_strtrim("   xxxtripouille", " x"));
-// }

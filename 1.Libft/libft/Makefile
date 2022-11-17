@@ -7,9 +7,18 @@ LIBC =	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 ADDITIONAL =	ft_itoa.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_putstr_fd.c \
 				ft_split.c ft_strjoin.c ft_strmapi.c ft_strtrim.c ft_substr.c ft_striteri.c
 
+BONUS = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c  \
+		ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
+
+
 SRCS = ${LIBC} ${ADDITIONAL}
 
 OBJS = ${SRCS:.c=.o}
+
+BONUSSRCS = ${LIBC} ${ADDITIONAL} ${BONUS}
+
+BONUSOBJS = ${BONUSSRCS:.c=.o}
+
 
 LIB = libft.a
 
@@ -25,9 +34,11 @@ ${LIB}:	${OBJS}
 
 all: 	${LIB}
 
+bonus:	${BONUSOBJS}
+		ar -rsc ${LIB} ${BONUSOBJS}
 
 clean:	
-		rm -f ${OBJS}
+		rm -f ${BONUSOBJS}
 
 fclean:	clean;
 		rm -f ${LIB}

@@ -1,39 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 14:39:00 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/17 17:56:37 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/17 15:46:42 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/17 17:43:29 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	j;
-	size_t	dest_len;
-	size_t	src_len;
+	t_list	*new;
+	t_list	*adretour;
 
-	src_len = ft_strlen((char *)src);
-	dest_len = ft_strlen((char *)dst);
-	j = dest_len;
-	i = 0;
-	if (dest_len < size - 1 && size > 0)
+	if (!lst || !(*f) || !(*del))
+		return (NULL);
+	new = ft_lstnew((*f)(lst->content));
+	adretour = new;
+	while (lst->next != NULL && lst)
 	{
-		while (src[i] && (dest_len + i < size - 1))
-		{
-			dst[j] = src[i];
-			j++;
-			i++;
-		}
-		dst[j] = 0;
+		if (!new)
+			return (NULL);
+		new->next = ft_lstnew((*f)(lst->next->content));
+		new = new->next;
+		lst = lst->next;
 	}
-	if (dest_len >= size)
-		dest_len = size;
-	return (dest_len + src_len);
+	return (adretour);
 }

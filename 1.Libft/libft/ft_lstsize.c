@@ -1,39 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 14:39:00 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/17 17:56:37 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/17 17:44:26 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/17 17:44:47 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+int	ft_lstsize(t_list *lst)
 {
-	size_t	i;
-	size_t	j;
-	size_t	dest_len;
-	size_t	src_len;
+	int		i;
+	t_list	*adresse;
 
-	src_len = ft_strlen((char *)src);
-	dest_len = ft_strlen((char *)dst);
-	j = dest_len;
-	i = 0;
-	if (dest_len < size - 1 && size > 0)
+	i = 1;
+	adresse = lst;
+	if (lst == 0)
+		return (0);
+	while (adresse->next != 0)
 	{
-		while (src[i] && (dest_len + i < size - 1))
-		{
-			dst[j] = src[i];
-			j++;
-			i++;
-		}
-		dst[j] = 0;
+		adresse = adresse->next;
+		i++;
 	}
-	if (dest_len >= size)
-		dest_len = size;
-	return (dest_len + src_len);
+	return (i);
 }
