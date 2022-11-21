@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:40:30 by nicolasgriv       #+#    #+#             */
-/*   Updated: 2022/11/21 12:15:09 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/21 14:26:16 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ void	ft_putchar_pc_idu(char c);
 
 int		ft_pc_p(unsigned long nbr, int nbrch);
 int		ft_print_pc_p_base(unsigned long nbr, int nbrch);
+int     ft_len_nbr_pc_p(unsigned long nbr, int nbrch);
 
 int		ft_pc_u(unsigned int nbr, int nbrch);
 void	ft_putnbr_pc_u(unsigned int nb);
 
-int		ft_pc_x(long nbr, char *base, int nbrch);
-int		ft_len_nbr_pc_x(unsigned long nbr, int nbrch);
-void	ft_print_base_pc_x(unsigned long nbr, char *base);
+int     ft_pc_x(long nbr, char *base, int nbrch);
+int     ft_len_nbr_pc_x(unsigned int nbr, int nbrch);
+void	ft_print_base_pc_x(unsigned int nbr, char *base);
 #endif

@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:46:43 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/21 11:51:43 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/21 13:54:55 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,13 @@ void	ft_putnbr_pc_id(int nb)
 int	ft_pc_id(int nbr, int nbrch)
 {
 	ft_putnbr_pc_id(nbr);
+	if (nbr < -2147483647)
+		return (nbrch + 11);
 	if (nbr <= 0)
+	{
 		nbrch++;
+		nbr = -nbr;
+	}
 	while (0 < nbr)
 	{
 		nbr = nbr / 10;
