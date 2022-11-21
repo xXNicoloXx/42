@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:37:48 by nicolasgriv       #+#    #+#             */
-/*   Updated: 2022/11/18 20:18:32 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/11/20 17:03:13 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int ft_print_pourcent(const char *str, int nbrch, va_list list, int mot)
 		nbrch = ft_pourcentP(va_arg(list, unsigned long), nbrch);
 	if (str[1] == 'd')
 		nbrch = ft_pourcent_i(va_arg(list, int), nbrch);
-
 	if (str[1] == 'i')
 
 	if (str[1] == 'u')
@@ -55,7 +54,7 @@ int ft_print_pourcent(const char *str, int nbrch, va_list list, int mot)
 	if (str[1] == 'x')
 
 	if (str[1] == 'X')
-	printf("\tnbr = %d\n",nbrch);
+	
 	return (nbrch);
 }
 
