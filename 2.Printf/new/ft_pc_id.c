@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ipourcent.c                                     :+:      :+:    :+:   */
+/*   ft_pc_id.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:46:43 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/18 20:09:07 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/11/21 11:51:43 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void 	ft_putchar(char c)
+void	ft_putchar_pc_idu(char c)
 {
 	c = c + 48;
 	write(1, &c, 1);
 }
 
-void	ft_putnbr(int nb)
+void	ft_putnbr_pc_id(int nb)
 {
 	if (nb < -2147483647)
 	{
@@ -32,17 +32,17 @@ void	ft_putnbr(int nb)
 		nb = -nb;
 	}	
 	if (nb < 10)
-		ft_putchar(nb);
+		ft_putchar_pc_idu(nb);
 	else
 	{
-		ft_putnbr(nb / 10);
-		ft_putnbr(nb % 10);
+		ft_putnbr_pc_id(nb / 10);
+		ft_putnbr_pc_id(nb % 10);
 	}
 }
 
-int ft_pourcent_i(int nbr, int nbrch)
+int	ft_pc_id(int nbr, int nbrch)
 {
-	ft_putnbr(nbr);
+	ft_putnbr_pc_id(nbr);
 	if (nbr <= 0)
 		nbrch++;
 	while (0 < nbr)
@@ -51,5 +51,4 @@ int ft_pourcent_i(int nbr, int nbrch)
 		nbrch++;
 	}
 	return (nbrch);
-	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 20:40:30 by nicolasgriv       #+#    #+#             */
-/*   Updated: 2022/11/18 20:06:46 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/11/21 12:15:09 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,22 @@
 # include <fcntl.h>
 # include <stdarg.h>
 
-int    ft_printf(const char *str, ...);
-int ft_pourcentP(unsigned long nbr, int nbrch);
-int	ft_print_pourcent_base(unsigned long nbr, int nbrch);
-int ft_writechar(char ch, int nbrch);
-int ft_writestr(char *str, int nbrch);
-int ft_print_pourcent(const char *str, int nbrch, va_list list, int mot);
-int ft_pourcent_i(int nbr, int nbrch);
+int		ft_writechar(char ch, int nbrch);
+int		ft_writestr(char *str, int nbrch);
+int     ft_print_pourcent(const char *str, int nbrch, va_list *list);
+int		ft_printf(const char *str, ...);
 
+int		ft_pc_id(int nbr, int nbrch);
+void	ft_putnbr_pc_id(int nb);
+void	ft_putchar_pc_idu(char c);
+
+int		ft_pc_p(unsigned long nbr, int nbrch);
+int		ft_print_pc_p_base(unsigned long nbr, int nbrch);
+
+int		ft_pc_u(unsigned int nbr, int nbrch);
+void	ft_putnbr_pc_u(unsigned int nb);
+
+int		ft_pc_x(long nbr, char *base, int nbrch);
+int		ft_len_nbr_pc_x(unsigned long nbr, int nbrch);
+void	ft_print_base_pc_x(unsigned long nbr, char *base);
 #endif
