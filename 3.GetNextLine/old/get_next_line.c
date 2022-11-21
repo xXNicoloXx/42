@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 13:41:01 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/15 15:36:39 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/21 17:52:13 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,14 @@ char *ft_my_malloc(char *ligne, char lettre)
         i++;
     }
 	tempon[i] = lettre;
+	free(ligne);
 	//printf("\nstrlen = %d tempon = %s", len, tempon);
 	return(tempon);
 }
 
 char *get_next_line(int fd)
 {
-	int size = 5;
+	int size = 20;
 	int i = 0;
 	int ok;
     char *ligne;
@@ -55,10 +56,9 @@ char *get_next_line(int fd)
 	if (str == (NULL))
 		str = malloc(sizeof(char) * (size + 1));
 	str[size] = '\0';
-	//printf("str = %s\n", str);
 	ligne = malloc(sizeof(char));
 	ligne[0] = '\0';
-	while (str[i] == 'V')
+	while (str[i] == 127)
 		i++;
 	//printf("i = %d", i);  ////////
 	ok = 1;
@@ -77,7 +77,7 @@ char *get_next_line(int fd)
 		else
 		{
 			ligne = ft_my_malloc(ligne, str[i]);
-			str[i] = 'V';
+			str[i] = 127;
 			i++;
 			ok = 0;
 		}
@@ -87,29 +87,23 @@ char *get_next_line(int fd)
 			return(NULL);
 		}
 	}
-	str[i] = 'V';
+	str[i] = 127;
 	printf("\n\t\toutro str = %s\n",str);   //////////////
 	//free(str);  
 	return(ligne);
 }
 
-// int main ()	
-// {
-// 	int fd = open("myfile.txt", O_RDONLY, 0);
-// 	//int fd = 0;
-
-// 	printf("%s",ft(fd));
-// 	printf("\n========\n");
-// 	printf("%s",ft(fd));
-// 	printf("\n========\n");
-// 	printf("%s",ft(fd));
-// 	printf("\n========\n");
-// 	printf("%s",ft(fd));
-// 	printf("\n========\n");
-// 	printf("%s",ft(fd));
-// 	printf("\n========\n");
-// 	printf("%s",ft(fd));
-// 	printf("\n========\n");
-// 	printf("%s",ft(fd));
-// 	close(fd);
-// }
+int main ()	
+{
+	char *read;
+	int fd = open("myfile.txt", O_RDONLY, 0);
+	//int fd = 0;
+	while (1)
+	{
+		read = get_next_line(fd);
+		if (read == NULL)
+			break;
+		else
+			free(read);
+	}
+}

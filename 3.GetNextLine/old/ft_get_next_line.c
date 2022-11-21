@@ -70,7 +70,7 @@ char *get_next_line(int fd);
 		//printf("str[%d] = %c (size = %d)\n", i, str[i], size);    ////////
 		if (i >= size)
 		{
-			test = read(fd1, str, size);
+			test = read(fd1, str, BUFFER_SIZE);
 			//printf("%d\n",test);
 			//printf("\n\t\tREAD %d str = %s\n", readnbr, str);   ///////
 			readnbr++;
