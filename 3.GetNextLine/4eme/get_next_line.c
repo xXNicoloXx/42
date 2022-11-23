@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:56:26 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/23 17:02:46 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/23 19:00:54 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-int	ft_len_malloc(char *buffer, int check)
+int	ft_len_malloc(char *buffer)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (buffer[i] != '\n' && buffer[i] != '\0')
 		i++;
 	if (buffer[i] == '\n')
@@ -37,7 +35,7 @@ int	ft_len_malloc(char *buffer, int check)
 		return (i);
 }
 
-char	*ft_my_malloc(char *buffer, char *ligne, int check)
+char	*ft_my_malloc(char *buffer, char *ligne)
 {
 	int		i;
 	int		j;
@@ -48,7 +46,7 @@ char	*ft_my_malloc(char *buffer, char *ligne, int check)
 	j = 0;
 	while (buffer[i] == -42)
 		i++;
-	len = ft_len_malloc(&buffer[i], check) + ft_strlen(ligne);
+	len = ft_len_malloc(&buffer[i]) + ft_strlen(ligne);
 	upligne = malloc(sizeof(char) * (len + 1));
 	upligne[len] = '\0';
 	while (ligne[j] != '\0')
@@ -56,7 +54,7 @@ char	*ft_my_malloc(char *buffer, char *ligne, int check)
 		upligne[j] = ligne[j];
 		j++;
 	}
-	len = ft_len_malloc(&buffer[i], check);
+	len = ft_len_malloc(&buffer[i]);
 	while (len-- > 0)
 	{
 		upligne[j++] = buffer[i];
@@ -74,9 +72,12 @@ char	*ft_new_line(int i, int fd, char *buffer, char *ligne)
 	check = 42;
 	if (i == -42)
 			check = read(fd, buffer, BUFFER_SIZE);
-	while (check != 0)
+	if (check == -1 || check == 0)
+		return (ft_free_all(buffer, ligne, 3));
+	while (check != 0 || i !=  -100)
 	{	
-		ligne = ft_my_malloc(buffer, ligne, check);
+		i = -100;
+		ligne = ft_my_malloc(buffer, ligne);
 		len = ft_strlen(ligne);
 		if (ligne[len - 1] == '\n')
 			break ;
@@ -92,27 +93,41 @@ char	*get_next_line(int fd)
 	char		*ligne;
 	static char	*buffer;
 
-	i = 0;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	i = -1;
+	if (BUFFER_SIZE <= 0)
 		return (NULL);
 	ligne = malloc(sizeof(char) * 1);
 	ligne[0] = '\0';
 	if (buffer == NULL)
 	{
+		i = 0;
 		buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
 		buffer[BUFFER_SIZE] = '\0';
+		printf("buffer[0] = %d\n", buffer[0]);
+		while (buffer[i] != '\0')
+		{
+			buffer[i] = 'B';
+			i++;
+			printf("print\n");
+		}
 		i = -42;
 	}
+	printf("|%s|",buffer);
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (ft_free_all(buffer, ligne, 1));
 	return (ft_new_line(i, fd, buffer, ligne));
 }
 
 int main (void)
 {
-	int i = 5000;
+	int i = 2;
+	char *test;
+	char	*buffer[1];
 	int fd = open("livre.txt", O_RDONLY);
-	while (i != 0)
-	{
-		printf("%s", get_next_line(fd));
-		i--;
-	}
+	printf("%ld\n\n",read(fd, NULL, 0));
+	read(fd, test, 2);
+	printf("%s", test);
+	//printf(" %s\n\n", get_next_line(fd)); 
+
+	//printf(" %s\n\n", get_next_line(fd));
 }
