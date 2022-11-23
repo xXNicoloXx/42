@@ -1,1 +1,4 @@
-TestN123456789N.NBonjour les amis !NFin
+Test
+123456789
+Bonjour les amis !
+Fin

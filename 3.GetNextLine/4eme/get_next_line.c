@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:56:26 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/22 23:28:52 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:02:46 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int	ft_len_malloc(char *buffer, int check)
 	j = 0;
 	while (buffer[i] != '\n' && buffer[i] != '\0')
 		i++;
-	return (i + 1);
+	if (buffer[i] == '\n')
+		return (i + 1);
+	else
+		return (i);
 }
 
 char	*ft_my_malloc(char *buffer, char *ligne, int check)
@@ -43,22 +46,21 @@ char	*ft_my_malloc(char *buffer, char *ligne, int check)
 
 	i = 0;
 	j = 0;
-	while (buffer[i] == 127)
+	while (buffer[i] == -42)
 		i++;
 	len = ft_len_malloc(&buffer[i], check) + ft_strlen(ligne);
 	upligne = malloc(sizeof(char) * (len + 1));
-	upligne[len - 1] = '\0';
+	upligne[len] = '\0';
 	while (ligne[j] != '\0')
 	{
 		upligne[j] = ligne[j];
 		j++;
 	}
 	len = ft_len_malloc(&buffer[i], check);
-	while (len > 0)
+	while (len-- > 0)
 	{
 		upligne[j++] = buffer[i];
-		buffer[i++] = 127;
-		len--;
+		buffer[i++] = -42;
 	}
 	free(ligne);
 	return (upligne);
@@ -77,10 +79,7 @@ char	*ft_new_line(int i, int fd, char *buffer, char *ligne)
 		ligne = ft_my_malloc(buffer, ligne, check);
 		len = ft_strlen(ligne);
 		if (ligne[len - 1] == '\n')
-		{
-			ligne[len - 1] = '\0';
 			break ;
-		}
 		check = read(fd, buffer, BUFFER_SIZE);
 		buffer[check] = '\0';
 	}
@@ -94,7 +93,7 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 
 	i = 0;
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	ligne = malloc(sizeof(char) * 1);
 	ligne[0] = '\0';
@@ -109,11 +108,11 @@ char	*get_next_line(int fd)
 
 int main (void)
 {
-	int i = 5057;
+	int i = 5000;
 	int fd = open("livre.txt", O_RDONLY);
 	while (i != 0)
 	{
-		printf("%s\n", get_next_line(fd));
+		printf("%s", get_next_line(fd));
 		i--;
 	}
 }
