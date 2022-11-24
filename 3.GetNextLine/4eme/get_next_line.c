@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:56:26 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/23 19:00:54 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/24 14:20:07 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,28 +91,24 @@ char	*get_next_line(int fd)
 {
 	int			i;
 	char		*ligne;
-	static char	*buffer;
+	static char	buffer[BUFFER_SIZE + 1];
 
 	i = -1;
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
 	ligne = malloc(sizeof(char) * 1);
 	ligne[0] = '\0';
-	if (buffer == NULL)
+	buffer[BUFFER_SIZE] = '\0';
+	//printf("buffer[0] = %d\n", buffer[0]);
+	while (buffer[i] != '\0')
 	{
-		i = 0;
-		buffer = malloc(sizeof(char) * BUFFER_SIZE + 1);
-		buffer[BUFFER_SIZE] = '\0';
-		printf("buffer[0] = %d\n", buffer[0]);
-		while (buffer[i] != '\0')
-		{
-			buffer[i] = 'B';
-			i++;
-			printf("print\n");
-		}
-		i = -42;
+		buffer[i] = 'B';
+		i++;
+		printf("print\n");
 	}
-	printf("|%s|",buffer);
+	i = -42;
+	}
+	//printf("|%s|",buffer);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (ft_free_all(buffer, ligne, 1));
 	return (ft_new_line(i, fd, buffer, ligne));
@@ -120,13 +116,14 @@ char	*get_next_line(int fd)
 
 int main (void)
 {
-	int i = 2;
-	char *test;
-	char	*buffer[1];
+	int i = 5051;
+
 	int fd = open("livre.txt", O_RDONLY);
-	printf("%ld\n\n",read(fd, NULL, 0));
-	read(fd, test, 2);
-	printf("%s", test);
+	while (i)
+	{
+		printf("%s",get_next_line(fd));
+		i--;
+	}
 	//printf(" %s\n\n", get_next_line(fd)); 
 
 	//printf(" %s\n\n", get_next_line(fd));
