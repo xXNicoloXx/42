@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:56:26 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/25 12:27:47 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/11/25 15:09:09 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*ft_my_malloc(char *buffer, char *ligne, int size)
 	while (buffer[i] == -42)
 		i++;
 	upligne = malloc(sizeof(char) * (ft_s(ligne, 1) + ft_s(&buffer[i], 1) + 2));
+	if (upligne == NULL)
+		return (free(ligne), NULL);
 	upligne[ft_s(ligne, 1) + ft_s(&buffer[i], 1)] = '\0';
 	size = ft_s(ligne, 1);
 	while (--size + 1)
@@ -54,6 +56,8 @@ char	*ft_new_line(char *buffer, int size, int fd)
 	char	*ligne;
 
 	ligne = malloc(sizeof(char));
+	if (ligne == NULL)
+		return (NULL);
 	ligne[0] = '\0';
 	while (size != 0)
 	{
@@ -88,16 +92,11 @@ char	*get_next_line(int fd)
 // {
 // 	int i = 1;
 // 	char *test;
-// 	int fd = open("test.txt", O_RDONLY);
+// 	int fd = open("big_line_no_nl", O_RDONLY);
 // 	while (i)
 // 	{
 // 		test = get_next_line(fd);
-// 		printf(" %s", test);
+// 		free(test);
 // 		i--;
-// 	}
-// 	while (i < 12)
-// 	{
-// 		printf(" ligne[%d] = %c (%d)\n", i, test[i], test[i]);
-// 		i++;
 // 	}
 // }
