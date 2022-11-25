@@ -1,4 +1,3 @@
-
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
@@ -6,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/10 17:32:42 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/24 16:14:03 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/11/25 12:33:19 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/11/25 12:33:21 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 10
 # endif
 
 # include<stdio.h>
@@ -23,7 +22,10 @@
 # include <unistd.h>
 # include <stdlib.h>
 
+int		ft_s(char *str, int verif);
+char	*ft_my_malloc(char *buffer, char *ligne, int size);
+char	*ft_new_line(char *buffer, int size, int fd);
 char	*get_next_line(int fd);
-int	ft_strlen(char *str, int verif);
+char	*ft_dup_upligne(char *upligne, char *buffer, int i, int j);
 
 #endif
