@@ -1,0 +1,12 @@
+Par feu: 		UFW
+Par feu on:		UFW enable
+Par feu off:		UFW disable
+Par feu new port:	UFW allow [port]
+Par feu supp port:	UFW dey [port]	
+
+New user: 		useradd [nom]
+New groupe: 		groupadd [nom]
+User to groupe		addgroup [user] [group]
+
+Change port ssh		vi /etc/ssh/sshd_config // changer port // sup '#' au debutdela ligne
+ 
