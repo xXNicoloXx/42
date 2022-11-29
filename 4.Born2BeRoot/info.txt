@@ -7,6 +7,16 @@ Par feu supp port:	UFW dey [port]
 New user: 		useradd [nom]
 New groupe: 		groupadd [nom]
 User to groupe		addgroup [user] [group]
+Changer hostname	vi /etc/hostname // vi /etc/hosts // invoke-rc.d hostname.sh start //// 
+			https://www.cyberciti.biz/faq/debian-change-hostname-permanently/
+
 
 Change port ssh		vi /etc/ssh/sshd_config // changer port // sup '#' au debut de la ligne
- 
+Address ip fix 		https://www.it-connect.fr/comment-configurer-une-adresse-ip-fixe-sur-debian-11/
+
+
+
+
+
+Diff entre les os	https://waytolearnx.com/2019/04/difference-entre-centos-et-debian.html
+Video pour les bonus 	https://www.youtube.com/watch?v=OQEdjt38ZJA
