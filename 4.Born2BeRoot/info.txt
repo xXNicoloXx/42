@@ -8,5 +8,5 @@ New user: 		useradd [nom]
 New groupe: 		groupadd [nom]
 User to groupe		addgroup [user] [group]
 
-Change port ssh		vi /etc/ssh/sshd_config // changer port // sup '#' au debutdela ligne
+Change port ssh		vi /etc/ssh/sshd_config // changer port // sup '#' au debut de la ligne
  
