@@ -7,9 +7,11 @@ ram=$(free -m | grep "Mem" | awk '{print $3}' | tr -d \\n \
 	&& echo -n / \
 	&& free -m | grep "Mem" | awk '{print $2}' | tr -d \\n \
 	&& echo -n "MB(" \
-	&& printf %.0f $(free -m | grep "Mem" | awk '{print $3/$2 * 100}' | tr -d \\n) \
+	&& printf %.2f $(free -m | grep "Mem" | awk '{print $3/$2 * 100}' | tr -d \\n) \
 	&& echo -n "%)")
-	disc=$(printf %d $(df -m /|grep "dev"|awk '{print $4}' | tr -d \\n) && echo -n / && printf %s $(df -h /|grep "dev"|awk '{print $2}' | tr -d \\n | rev |cut -c 1- |rev) && echo -n "b(" && printf %.0f $(df -m /|grep "dev"|awk '{print $4/$2*100}' | tr -d \\n) && echo -n "%)")
+	disc=$(df -t ext4 --total -BM | grep total | awk '{print $3}' | tr -d \\n | sed 's/.$//' \
+&& echo -n "/" \
+&& df -t ext4 --total -BG | grep total | awk '{print $2}' | tr -d \\n && echo -n "b(" && printf %.0f $(df -m /|grep "dev"|awk '{print $4/$2*100}' | tr -d \\n) && echo -n "%)" )
 	cpuu=$(printf %s $(mpstat |grep "all"|awk '{print 100 - $13}') && echo -n "%")
 	lastboot=$(who -b | awk '{print $3}' | tr -d \\n && echo -n " " &&  who -b | awk '{print $4}' | tr -d \\m)
 if grep -q "/dev/mapper" /etc/fstab
