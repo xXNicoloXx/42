@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 11:21:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/05 18:16:54 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/05 18:31:30 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int ft_y_map(int fd, int *xmax)
     while (ligne = get_next_line(fd))
     {
 		*xmax = ft_x_map(ligne, *xmax);
-		printf("xmax = %d\n",*xmax);
+		//printf("xmax = %d\n",*xmax);
 		free(ligne);    
         y++;
 	}
@@ -70,12 +70,13 @@ void ft_fill_map(int xmax, int fd, int **map)
     	map[y] = ft_calloc(sizeof(int *),(xmax + 1));
 		while (ligne[i] != '\n' && ligne[i] != '\0')
 		{
-			if (ft_isdigit(ligne[i]))
+			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
 			{
+				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				map[y][x] = ft_atoi(ligne + i);
-				// printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
+				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
-				while (ft_isdigit(ligne[i]))
+				while (ft_isdigit(ligne[i]) || ligne[i] == '-')
 					i++;
 			}
 			else
@@ -93,10 +94,8 @@ void	ft_map(t_map *map)
 
     fd = open("../test_maps/42.fdf", O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
-	printf("y = %d\t\tx = %d\n", map->y, map->x);
     map->map = malloc(sizeof(int *) * (map->y + 1));    
     fd = open("../test_maps/42.fdf", O_RDONLY);
-	printf("x = %d \t y = %d", map->x , map->y);
     ft_fill_map(map->x, fd, map->map);
 }
 
@@ -109,8 +108,7 @@ int main (void)
 	map.y = 0;
 	map.x = 0;
     ft_map(&map);
-	printf("map= %d\n", map.map[3][3]);
-	printf("map->x = %d, map->y %d\n\n", map.x, map.y);
+	printf("------  x = %d, y = %d  ------  \n\n", map.x, map.y);
 	while (y < map.y)
 	{
 		while (x < map.x)
