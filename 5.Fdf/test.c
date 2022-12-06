@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/06 16:51:06 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:51:39 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,5 +160,5 @@ int main (void)
 		y++;
 		x = 0;
 	}
-	mlx_loop(m.mlx);ssssssss
+	mlx_loop(m.mlx);
 }
