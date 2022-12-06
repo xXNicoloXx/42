@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/06 17:07:41 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/06 18:57:28 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,27 +133,23 @@ int main (void)
 	
 	m.y = 0;
 	m.x = 0;
-	m.zoom = 100;
+	m.zoom = 50;
     ft_map(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
 	m.mlx = mlx_init();
-	m.mlx_win = mlx_new_window(m.mlx, m.x * m.zoom, m.y * m.zoom, ".");
+	m.mlx_win = mlx_new_window(m.mlx, 1000, 700, "");
 	while (y < m.y)
 	{
 		while (x < m.x)
 		{
 			color = (m.map[y][x] + 1) *5500;
-			//printf("1 + %d \t 2 = %d\n",m.m[y][x], m.m[y][x+1]);
 			if (m.map[y][x] != m.map[y][x+1])
 				color = 4 * 5500;
-			ft_ligne(x * m.zoom, y* m.zoom, x* m.zoom + m.zoom, (y)* m.zoom,color,m.mlx_win, m.mlx);
+			ft_ligne(x*m.zoom, y*m.zoom, x*m.zoom+m.zoom, y*m.zoom, color, m.mlx_win, m.mlx);
 			color = (m.map[y][x] + 1) *5500;
 			if (y < m.y-1 && (m.map[y][x] != m.map[y + 1][x]))
-			{
-				printf("d");
 				color = 4 * 5500;
-			}
-			ft_ligne(x * m.zoom, y* m.zoom, (x) * m.zoom, y*m.zoom+m.zoom,color,m.mlx_win, m.mlx);
+			ft_ligne(x*m.zoom, y*m.zoom, x*m.zoom, y*m.zoom+m.zoom, color, m.mlx_win, m.mlx);
 			
 			x++;
 		}
@@ -161,4 +157,6 @@ int main (void)
 		x = 0;
 	}
 	mlx_loop(m.mlx);
-}xdffsss
+}
+
+//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out

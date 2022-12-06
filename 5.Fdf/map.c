@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 11:21:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/05 19:46:58 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/12/06 17:22:58 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include <mlx.h>
 
 #include "fdf.h"
 
@@ -92,34 +94,70 @@ void	ft_map(t_map *map)
 {
     int fd;
 
-    fd = open("../test_maps/elem2.fdf", O_RDONLY);
+    fd = open("./test_maps/42.fdf", O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
     map->map = malloc(sizeof(int *) * (map->y + 1));    
-    fd = open("../test_maps/elem2.fdf", O_RDONLY);
+    fd = open("./test_maps/42.fdf", O_RDONLY);
     ft_fill_map(map->x, fd, map->map);
 }
 
+void ft_pu_pix(void *mlx, void *mlx_win, int x, int y, t_map map)
+{
+	int size = 50;
+	int i = 0;
+	int j = 0;
+	int color;
+	// if (map.map[y][x] == 0)
+	// 	color = 0xf00000;
+	// else
+	// 	color = 0xff990f;
+	while (i < size)
+	{
+		while(j < size)
+		{
+			mlx_pixel_put(mlx, mlx_win, x*size + j, y*size + i, map.map[y][x]*10000);
+			j++;
+		}
+		j = 0;
+		i++;
+		
+	}
+}
 int main (void)
 {
 	int x = 0;
 	int y = 0;
-	t_map map;
+	int color;
+
+	t_map m;
 	
-	map.y = 0;
-	map.x = 0;
-    ft_map(&map);
-	printf("------  x = %d, y = %d  ------  \n\n", map.x, map.y);
-	while (y < map.y)
+	m.y = 0;
+	m.x = 0;
+	m.zoom = 100;
+    ft_map(&m);
+	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
+	m.mlx = mlx_init();
+	m.mlx_win = mlx_new_window(m.mlx, m.x * m.zoom, m.y * m.zoom, ".");
+	while (y < m.y)
 	{
-		while (x < map.x)
+		while (x < m.x)
 		{
-			printf("% 3d", map.map[y][x]);
+			color = (m.map[y][x] + 1) *5500;
+			//printf("1 + %d \t 2 = %d\n",m.m[y][x], m.m[y][x+1]);
+			if (m.map[y][x] != m.map[y][x+1])
+				color = 4 * 5500;
+			ft_ligne(x * m.zoom, y* m.zoom, x* m.zoom + m.zoom, (y)* m.zoom,color,m.mlx_win, m.mlx);
+			color = (m.map[y][x] + 1) *5500;
+			if (y < m.y-1 && (m.map[y][x] != m.map[y + 1][x]))
+				color = 4 * 5500;
+			ft_ligne(x * m.zoom, y* m.zoom, (x) * m.zoom, y*m.zoom+m.zoom,color,m.mlx_win, m.mlx);
+			
 			x++;
 		}
 		y++;
 		x = 0;
-		printf("\n");
 	}
+	mlx_loop(m.mlx);
 }
 
-
+//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
