@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/06 15:42:09 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:40:38 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,10 +94,10 @@ void	ft_map(t_map *map)
 {
     int fd;
 
-    fd = open("./test_maps/worldmap.fdf", O_RDONLY);
+    fd = open("./test_maps/42.fdf", O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
     map->map = malloc(sizeof(int *) * (map->y + 1));    
-    fd = open("./test_maps/worldmap.fdf", O_RDONLY);
+    fd = open("./test_maps/42.fdf", O_RDONLY);
     ft_fill_map(map->x, fd, map->map);
 }
 
@@ -128,29 +128,37 @@ int main (void)
 	int x = 0;
 	int y = 0;
 	int color;
-	int zoom = 2;
-	t_map map;
-	
-	map.y = 0;
-	map.x = 0;
-    ft_map(&map);
-	printf("------  x = %d, y = %d  ------  \n\n", map.x, map.y);
-	map.mlx = mlx_init();
-	map.mlx_win = mlx_new_window(map.mlx, 1920, 1080, ".");
-	ft_ligne(0, 0, 360, 495,0xffffff,map.mlx_win, map.mlx);
 
-	while (y < map.y)
+	t_map m;
+	
+	m.y = 0;
+	m.x = 0;
+	m.zoom = 100;
+    ft_map(&m);
+	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
+	m.mlx = mlx_init();
+	m.mlx_win = mlx_new_window(m.mlx, m.x * m.zoom, m.y * m.zoom, ".");
+	while (y < m.y)
 	{
-		while (x < map.x)
+		while (x < m.x)
 		{
-			ft_ligne(x * zoom, y* zoom, x* zoom + zoom, (y)* zoom,(map.map[y][x] + 1) *0x000fff,map.mlx_win, map.mlx);
-			ft_ligne(x * zoom, y* zoom, (x) * zoom, y*zoom+zoom,(map.map[y][x] + 1) *0x000fff,map.mlx_win, map.mlx);
+			color = (m.map[y][x] + 1) *5500;
+			//printf("1 + %d \t 2 = %d\n",m.m[y][x], m.m[y][x+1]);
+			if (m.map[y][x] != m.map[y][x+1])
+				color = 4 * 5500;
+			ft_ligne(x * m.zoom, y* m.zoom, x* m.zoom + m.zoom, (y)* m.zoom,color,m.mlx_win, m.mlx);
+			color = (m.map[y][x] + 1) *5500;
+			if (y < m.y-1 && (m.map[y][x] != m.map[y + 1][x]))
+			{
+				printf("d");
+				color = 4 * 5500;
+			}
+			ft_ligne(x * m.zoom, y* m.zoom, (x) * m.zoom, y*m.zoom+m.zoom,color,m.mlx_win, m.mlx);
 			
 			x++;
 		}
 		y++;
 		x = 0;
-		printf("\n");
 	}
-	mlx_loop(map.mlx);
+	mlx_loop(m.mlx);
 }
