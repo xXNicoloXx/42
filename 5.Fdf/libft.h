@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:32:42 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/05 19:21:23 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/06 14:57:50 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <fcntl.h>
 # include <bsd/string.h>
 # include "get_next_line.h"
+# include <math.h>
 
 typedef struct s_list
 {
@@ -75,4 +76,5 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, void *mlx);
 #endif
