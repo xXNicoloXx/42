@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/07 16:32:56 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/07 16:49:55 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,8 @@ int main (void)
 	m.y = 0;
 	m.x = 0;
 	m.z = 40;
-	m.r = 1.57079632679;
-	m.d = 500;
+	m.r = 0.001;
+	m.d = 400;
     ft_map(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
 	m.mlx = mlx_init();
@@ -147,21 +147,20 @@ int main (void)
 			color = (m.map[y][x] + 1) *5000;
 			if (m.map[y][x] != m.map[y][x+1])
 				color = 4 * 5500;
-			mlx_pixel_put(m.mlx, m.mlx_win, m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r), 0xff0000);
+			mlx_pixel_put(m.mlx, m.mlx_win, m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r), color);
 			printf("cos = %f, sin = %f\n",  cos(m.r), -sin(m.r));
 			printf("woydgwiuydviwuyvdiuwyvdiwu = %f\n", m.z*tan(m.r));
-			ft_ligne(m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r),m.d+x*m.z + y*m.z*sin(m.r) + m.z, m.d+y*m.z+x*m.z*-sin(m.r) - m.z*sin(m.r), 0xffffff, m.mlx_win, m.mlx);
+			ft_ligne(m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r),m.d+x*m.z + y*m.z*sin(m.r) + m.z, m.d+y*m.z+x*m.z*-sin(m.r) - m.z*sin(m.r), color, m.mlx_win, m.mlx);
 			color = (m.map[y][x] + 1) *5000;
 			if (y < m.y-1 && (m.map[y][x] != m.map[y + 1][x]))
 				color = 4 * 5500;
-			//ft_ligne(x*m.z, y*m.z, x*m.z+sin(m.r)*m.z, y*m.z+cos(m.r)*m.z, color, m.mlx_win, m.mlx);
+			ft_ligne(m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r),m.d+x*m.z + y*m.z*sin(m.r) + m.z, m.d+y*m.z+x*m.z*-sin(m.r) + m.z/sin(m.r), color, m.mlx_win, m.mlx);
 			
 			x++;
 		}
 		y++;
 		x = 0;
 	}
-	ft_ligne(0, 980, 980, 0, 0xffffff, m.mlx_win, m.mlx);
 
 	mlx_loop(m.mlx);
 }
