@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/07 16:49:55 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:33:33 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,86 +134,22 @@ int main (void)
 	m.y = 0;
 	m.x = 0;
 	m.z = 40;
-	m.r = 0.001;
-	m.d = 400;
     ft_map(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
 	m.mlx = mlx_init();
-	m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "FDF");
-	while (y < m.y)
+	m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "");
+	while (y < m.y * m.z)
 	{
-		while (x < m.x)
+		while (x < m.x * m.z)
 		{
-			color = (m.map[y][x] + 1) *5000;
-			if (m.map[y][x] != m.map[y][x+1])
-				color = 4 * 5500;
-			mlx_pixel_put(m.mlx, m.mlx_win, m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r), color);
-			printf("cos = %f, sin = %f\n",  cos(m.r), -sin(m.r));
-			printf("woydgwiuydviwuyvdiuwyvdiwu = %f\n", m.z*tan(m.r));
-			ft_ligne(m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r),m.d+x*m.z + y*m.z*sin(m.r) + m.z, m.d+y*m.z+x*m.z*-sin(m.r) - m.z*sin(m.r), color, m.mlx_win, m.mlx);
-			color = (m.map[y][x] + 1) *5000;
-			if (y < m.y-1 && (m.map[y][x] != m.map[y + 1][x]))
-				color = 4 * 5500;
-			ft_ligne(m.d+x*m.z + y*m.z*sin(m.r), m.d+y*m.z+x*m.z*-sin(m.r),m.d+x*m.z + y*m.z*sin(m.r) + m.z, m.d+y*m.z+x*m.z*-sin(m.r) + m.z/sin(m.r), color, m.mlx_win, m.mlx);
+			ft_ligne(x, y, x+m.z, y, 0xffffff, m.mlx_win, m.mlx);
+			ft_ligne(x, y, x, y+m.z, 0xff00ff, m.mlx_win, m.mlx);
 			
-			x++;
+			x = x + m.z;
 		}
-		y++;
+		y = y + m.z;
 		x = 0;
 	}
-
 	mlx_loop(m.mlx);
 }
-//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// int main (void)
-// {
-// 	int x = 0;
-// 	int y = 0;
-// 	int color;
-
-// 	t_map m;
-	
-// 	m.y = 0;
-// 	m.x = 0;
-// 	m.z = 50;
-// 	m.r = 0;
-//     ft_map(&m);
-// 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
-// 	m.mlx = mlx_init();
-// 	m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "FDF");
-// 	while (y < m.y)
-// 	{
-// 		while (x < m.x)
-// 		{
-// 			color = (m.map[y][x] + 1) *5000;
-// 			if (m.map[y][x] != m.map[y][x+1])
-// 				color = 4 * 5500;
-// 			printf("cos = %f, sin = %f\n", cos(m.r)*m.z, -sin(m.r) *m.z);
-// 			ft_ligne(x*m.z, y*m.z, x*m.z+(cos(m.r)*m.z), y*m.z-sin(m.r)*m.z, color, m.mlx_win, m.mlx);
-// 			color = (m.map[y][x] + 1) *5000;
-// 			if (y < m.y-1 && (m.map[y][x] != m.map[y + 1][x]))
-// 				color = 4 * 5500;
-// 			ft_ligne(x*m.z, y*m.z, x*m.z+sin(m.r)*m.z, y*m.z+cos(m.r)*m.z, color, m.mlx_win, m.mlx);
-			
-// 			x++;
-// 		}
-// 		y++;
-// 		x = 0;
-// 	}
-// 	mlx_loop(m.mlx);
-// }
-// //c
+//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
