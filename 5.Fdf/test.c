@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/06 18:57:46 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:13:39 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,5 +158,4 @@ int main (void)
 	}
 	mlx_loop(m.mlx);
 }
-s
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out

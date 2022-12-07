@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/07 14:07:56 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/07 14:15:05 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 	float unity;
 	float i;
 	float tmp;
-	printf("\n\nax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
+	// printf("\n\nax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
 	if (bx < ax)
 	{
 		tmp = bx;
@@ -33,16 +33,16 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 	}
 	
 	
-	printf("ax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
+	// printf("ax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
 	dx = (float)bx - (float)ax;
 	dy = (float)by - (float)ay;
-	printf("dx = %.0f\tdy = %.0f\n", (float)dx, (float)dy);
+	// printf("dx = %.0f\tdy = %.0f\n", (float)dx, (float)dy);
 	unity = dy / dx;
-	printf("unity = %.3f\n", unity);
+	// printf("unity = %.3f\n", unity);
 	i = 0;
 	if (dy == 0)
 	{
-		printf("0\n");
+		// printf("0\n");
 		while (i++ < dx)
 		{
 			// if (98 < (ytmp - (int)ytmp))
@@ -55,7 +55,7 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 	}
 	else if ((0 < unity && unity < 1))
 	{
-		printf("1\n");
+		// printf("1\n");
 		while (i++ < dx)
 		{
 			// if (98 < (ytmp - (int)ytmp))
@@ -68,7 +68,7 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 	}
 	else if (-1 <= unity && unity < 0)
 	{
-		printf("2\n", dx, i);
+		// printf("2\n", dx, i);
 		while (i++ < dx)
 		{
 			//printf("test");
@@ -83,7 +83,7 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 	}
 	else if (1 <= unity)
 	{
-		printf("3\n", dy, i);
+		// printf("3\n", dy, i);
 		while (i < dy)
 		{
 			// if (2 < (ax - (int)ax)*100)
@@ -97,7 +97,7 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 	}
 	else
 	{
-	printf("4\n");
+	// printf("4\n");
 		while (i> dy)
 		{
 			// if (2 < (ax - (int)ax)*100)
