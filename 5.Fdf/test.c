@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/07 18:43:02 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:47:45 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,7 @@ int main (void)
 	m.y = 0;
 	m.x = 0;
 	m.z = 40;
+	m.r = PI/2;
     ft_map(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
 	m.mlx = mlx_init();
@@ -144,7 +145,6 @@ int main (void)
 		{
 			ft_ligne(x, y, x+m.z, y, 0xfffffe, m.mlx_win, m.mlx);
 			ft_ligne(x, y, x, y+m.z, 0xff00ff, m.mlx_win, m.mlx);
-			
 			x = x + m.z;
 		}
 		y = y + m.z;

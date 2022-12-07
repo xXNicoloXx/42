@@ -1,6 +1,9 @@
 #include "libft.h"
 #include "get_next_line.h"
 
+# ifndef PI
+#  define PI 3.14159265359
+# endif
 
 typedef struct s_map
 {
