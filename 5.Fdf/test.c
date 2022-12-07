@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/07 18:33:33 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/07 18:43:02 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ int main (void)
 	{
 		while (x < m.x * m.z)
 		{
-			ft_ligne(x, y, x+m.z, y, 0xffffff, m.mlx_win, m.mlx);
+			ft_ligne(x, y, x+m.z, y, 0xfffffe, m.mlx_win, m.mlx);
 			ft_ligne(x, y, x, y+m.z, 0xff00ff, m.mlx_win, m.mlx);
 			
 			x = x + m.z;
