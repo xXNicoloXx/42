@@ -6,7 +6,9 @@ typedef struct s_map
 {
     int     x;
     int     y;
-    int     zoom;
+    int     z;
+    float     r;
+    int     d;
     int     inc;
     int     **map;
     void	*mlx;
