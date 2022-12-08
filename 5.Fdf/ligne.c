@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/07 14:15:05 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:46:34 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,5 +171,4 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 	
 
 // 	//ft_ligne(10, 10,200, 20, 0xffffff, mlx_win, mlx);
-// 	mlx_loop(mlx);
 // }
