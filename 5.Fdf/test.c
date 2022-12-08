@@ -75,9 +75,9 @@ void ft_fill_map(t_map *m, int fd)
 			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
 			{
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
-				m->m[y][x].y = y * m->z + m->d;
-				m->m[y][x].x = x * m->z + m->d;
-				m->m[y][x].z = ft_atoi(ligne + i);
+				m->m[y][x].y = y * m->z;
+				m->m[y][x].x = x * m->z;
+				m->m[y][x].z = ft_atoi(ligne + i) + 10;
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -105,6 +105,45 @@ void	ft_map(t_map *map)
     ft_fill_map(map, fd);
 }
 
+void ft_angles(t_map *m)
+{
+	float tmpx;
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < m->y)
+	{
+		while (x < m->x)
+		{
+			printf("m = %f\t%f\n", m->m[y][x].x * cos(m->r), m->m[y][x].y * sin(m->r));
+			tmpx = m->m[y][x].x;
+			m->m[y][x].x = m->m[y][x].x * cos(m->r) + m->m[y][x].y * -sin(m->r);
+			m->m[y][x].y = tmpx * sin(m->r) + m->m[y][x].y * cos(m->r);
+			x++;
+		}
+		y++;
+		x = 0;
+	}
+
+}
+
+void ft_centre(t_map *m)
+{
+	int 
+	while (y < m.y-1)
+	{
+		while (x < m.x-1)
+		{
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x+1].x, m.m[y][x+1].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y+1][x].x, m.m[y+1][x].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
+			x++;
+		}
+		y++;
+		x = 0;
+	}
+}
 int main (void)
 {
 	int x = 0;
@@ -116,20 +155,22 @@ int main (void)
 	m.y = 0;  
 	m.x = 0;
 	m.z = 40;
-	m.r = PI/2;
-	m.d = 30;
+	m.r = PI*2;
+	m.d = 0;
     ft_map(&m);
 	//ft_pos_pixel(&m);
+	ft_centre(&m);
+	//ft_angles(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
 	printf("test = %f", m.m[y][x].x);
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "");
-	while (y < m.y)
+	while (y < m.y-1)
 	{
-		while (x < m.x)
+		while (x < m.x-1)
 		{
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x+m.z, m.m[y][x].y, 0xff, m.mlx_win, m.mlx);
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x, m.m[y][x].y+m.z, 0x00ffff, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x+1].x, m.m[y][x+1].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y+1][x].x, m.m[y+1][x].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
 			x++;
 		}
 		y++;
