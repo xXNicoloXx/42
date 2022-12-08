@@ -140,11 +140,10 @@ void ft_centre(t_map *m)
 	{
 		while (x < m->x)
 		{
-			printf("x = %f\t y = %f\n", m->m[y][x].x, m->m[y][x].y);
 			m->m[y][x].x = m->m[y][x].x - m->x*m->z/2;
 			m->m[y][x].y = m->m[y][x].y - m->y*m->z/2;
+
 			x++;
-			printf("x = %f\t y = %f\n\n\n", m->m[y][x].x, m->m[y][x].y);
 		}
 		y++;
 		x = 0;
@@ -163,11 +162,9 @@ void ft_move(t_map *m)
 	{
 		while (x < m->x)
 		{
-			printf("x = %f\t y = %f\n", m->m[y][x].x, m->m[y][x].y);
-			m->m[y][x].x = m->m[y][x].x + m->d;
-			m->m[y][x].y = m->m[y][x].y + m->d;
+			m->m[y][x].x = m->m[y][x].x + m->winx/2;
+			m->m[y][x].y = m->m[y][x].y + m->winy/2;
 			x++;
-			printf("x = %f\t y = %f\n\n\n", m->m[y][x].x, m->m[y][x].y);
 		}
 		y++;
 		x = 0;
@@ -179,13 +176,17 @@ int main (void)
 	int x = 0;
 	int y = 0;
 	int color;
-
 	t_map m;
+
+	m.winx = 1920;
+	m.winy = 1080;
+	m.mlx = mlx_init();
+	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
 	
 	m.y = 0;  
 	m.x = 0;
-	m.z = 40;
-	m.r = PI*2;
+	m.z = 50;
+	m.r = PI/6;
 	m.d = 500;
     ft_map(&m);
 	//ft_pos_pixel(&m);
@@ -194,14 +195,13 @@ int main (void)
 	ft_move(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
 	printf("test = %f", m.m[y][x].x);
-	m.mlx = mlx_init();
-	m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "");
+
 	while (y < m.y-1)
 	{
 		while (x < m.x-1)
 		{
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x+1].x, m.m[y][x+1].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y+1][x].x, m.m[y+1][x].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x+1].x, m.m[y][x+1].y, m.m[y][x].z * 6000, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y+1][x].x, m.m[y+1][x].y, m.m[y][x].z * 6000, m.mlx_win, m.mlx);
 			x++;
 		}
 		y++;

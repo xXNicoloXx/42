@@ -21,6 +21,8 @@ typedef struct s_map
 	t_pixel	**m;
 	void	*mlx;
 	void	*mlx_win;
+	int		winx;
+	int		winy;
 }					t_map;
 
 void ft_pos_pixel(t_map *m);
