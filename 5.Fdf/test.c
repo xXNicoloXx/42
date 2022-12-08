@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/07 18:47:45 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 10:44:45 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void ft_fill_map(int xmax, int fd, int **map)
 		i = 0;
 		x = 0;
 		y++;
-	}
+	} 
+	
 }
 
 void	ft_map(t_map *map)
@@ -103,7 +104,7 @@ void	ft_map(t_map *map)
 
 void ft_pu_pix(void *mlx, void *mlx_win, int x, int y, t_map map)
 {
-	int size = 50;
+	int size = 50; 
 	int i = 0;
 	int j = 0;
 	int color;
@@ -131,25 +132,26 @@ int main (void)
 
 	t_map m;
 	
-	m.y = 0;
+	m.y = 0;  
 	m.x = 0;
 	m.z = 40;
 	m.r = PI/2;
     ft_map(&m);
+	ft_pos_pixel(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
-	m.mlx = mlx_init();
-	m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "");
-	while (y < m.y * m.z)
-	{
-		while (x < m.x * m.z)
-		{
-			ft_ligne(x, y, x+m.z, y, 0xfffffe, m.mlx_win, m.mlx);
-			ft_ligne(x, y, x, y+m.z, 0xff00ff, m.mlx_win, m.mlx);
-			x = x + m.z;
-		}
-		y = y + m.z;
-		x = 0;
-	}
-	mlx_loop(m.mlx);
+	// m.mlx = mlx_init();
+	// m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "");
+	// while (y < m.y * m.z)
+	// {
+	// 	while (x < m.x * m.z)
+	// 	{
+	// 		ft_ligne(x, y, x+m.z, y, 0xfffffe, m.mlx_win, m.mlx);
+	// 		ft_ligne(x, y, x, y+m.z, 0xff00ff, m.mlx_win, m.mlx);
+	// 		x = x + m.z;
+	// 	}
+	// 	y = y + m.z;
+	// 	x = 0;
+	// }
+	// mlx_loop(m.mlx); 
 }
-//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
+//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
