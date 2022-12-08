@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 18:25:46 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 18:29:47 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,7 @@ int	ft_zoom(int keycode, t_map *m)
 	fprintf(stderr, "code %d\n", keycode);
 	fprintf(stderr, "Touche %c\n", keycode);
 	write(1, "coucou\n", 7);
-	m->i = m->i + 10;
+	m->r = m->r + 10;
 	ft_clean(m);
 	suite(m);
 
