@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 18:29:47 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 20:03:01 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx.h"
 #include "fdf.h"
 #include <X11/X.h>
 
@@ -220,7 +220,6 @@ void ft_clean(t_map *m)
 		ft_ligne(0, y, m->winx , y , 0, m->mlx_win, m->mlx);
 		y++;
 	}
-	return 0;
 }
 
 int suite(t_map *m);
@@ -278,12 +277,12 @@ int suite(t_map *m)
 
 
 
-int main(void * mlxptr, void* mlxwinptr)
+int main(void)
 {
 	int color;
 	t_map m;
 
-	m.winx = 1920;
+	m.winx = 1700;
 	m.winy = 1080;
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
@@ -300,7 +299,7 @@ int main(void * mlxptr, void* mlxwinptr)
 	
 	suite(&m);
 	printf("fin\n");
-	mlx_key_hook(m.mlx_win, ft_zoom, &m);
+	//mlx_key_hook(m.mlx_win, ft_zoom, &m);
 	mlx_loop(m.mlx);
 	printf("test");
 }
@@ -309,3 +308,4 @@ int main(void * mlxptr, void* mlxwinptr)
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
 //gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -I./ -L./ -lmlx -lm -lXext -lX11
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && valgrind --leak-check=full --show-leak-kinds=all  ./a.out
+// APPLE gcc  *.c -I ./ -L ./ -lmlx -framework OpenGL -framework AppKit && ./a.out || grep "error"
