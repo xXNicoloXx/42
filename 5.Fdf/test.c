@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/05 18:36:35 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 10:44:45 by ngriveau         ###   ########.fr       */
+/*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
+/*   Updated: 2022/12/08 14:51:50 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 
 int ft_x_map(char *ligne, int xmax)
 {
-    int i;
-    int x;
+	int i;
+	int x;
 	
 	i = 0;
 	x = 0;
@@ -40,36 +40,36 @@ int ft_x_map(char *ligne, int xmax)
 
 int ft_y_map(int fd, int *xmax)
 {
-    int y;
-    char *ligne;
-    
-    y = 0;
-    while (ligne = get_next_line(fd))
-    {
+	int y;
+	char *ligne;
+		
+	y = 0;
+	while (ligne = get_next_line(fd))
+	{
 		*xmax = ft_x_map(ligne, *xmax);
 		//printf("xmax = %d\n",*xmax);
-		free(ligne);    
-        y++;
+		free(ligne);	
+		y++;
 	}
 	close(fd);
-    return (y);
+	return (y);
 }
 
 
 void ft_fill_map(t_map *m, int fd)
 {
-    int i;
+	int i;
 	int y;
 	int x;
 	char *ligne;
 	
 	y = 0;
-    i = 0;
-    x = 0;
+	i = 0;
+	x = 0;
 	while (ligne = get_next_line(fd))
 	{
 		// printf("\t%s", ligne);
-    	m->m[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
+		m->m[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
 		while (ligne[i] != '\n' && ligne[i] != '\0')
 		{
 			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
@@ -96,13 +96,13 @@ void ft_fill_map(t_map *m, int fd)
 
 void	ft_map(t_map *map)
 {
-    int fd;
+	int fd;
 
-    fd = open("./test_maps/42.fdf", O_RDONLY);
+	fd = open("./test_maps/42.fdf", O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
-    map->m = malloc(sizeof(t_pixel *) * (map->y + 1));    
-    fd = open("./test_maps/42.fdf", O_RDONLY);
-    ft_fill_map(map, fd);
+	map->m = malloc(sizeof(t_pixel *) * (map->y + 1));	
+	fd = open("./test_maps/42.fdf", O_RDONLY);
+	ft_fill_map(map, fd);
 }
 
 void ft_angles(t_map *m)
@@ -188,7 +188,7 @@ int main (void)
 	m.z = 50;
 	m.r = PI/6;
 	m.d = 500;
-    ft_map(&m);
+	ft_map(&m);
 	//ft_pos_pixel(&m);
 	ft_centre(&m);
 	ft_angles(&m);
@@ -209,4 +209,5 @@ int main (void)
 	}
 	mlx_loop(m.mlx); 
 }
+//push
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
