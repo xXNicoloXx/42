@@ -131,17 +131,48 @@ void ft_angles(t_map *m)
 
 void ft_centre(t_map *m)
 {
-	while (y < m.y-1)
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < m->y)
 	{
-		while (x < m.x-1)
+		while (x < m->x)
 		{
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x+1].x, m.m[y][x+1].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y+1][x].x, m.m[y+1][x].y, m.m[y][x].z * 30000, m.mlx_win, m.mlx);
+			printf("x = %f\t y = %f\n", m->m[y][x].x, m->m[y][x].y);
+			m->m[y][x].x = m->m[y][x].x - m->x*m->z/2;
+			m->m[y][x].y = m->m[y][x].y - m->y*m->z/2;
 			x++;
+			printf("x = %f\t y = %f\n\n\n", m->m[y][x].x, m->m[y][x].y);
 		}
 		y++;
 		x = 0;
 	}
+
+}
+
+void ft_move(t_map *m)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < m->y)
+	{
+		while (x < m->x)
+		{
+			printf("x = %f\t y = %f\n", m->m[y][x].x, m->m[y][x].y);
+			m->m[y][x].x = m->m[y][x].x + m->d;
+			m->m[y][x].y = m->m[y][x].y + m->d;
+			x++;
+			printf("x = %f\t y = %f\n\n\n", m->m[y][x].x, m->m[y][x].y);
+		}
+		y++;
+		x = 0;
+	}
+
 }
 int main (void)
 {
@@ -155,11 +186,12 @@ int main (void)
 	m.x = 0;
 	m.z = 40;
 	m.r = PI*2;
-	m.d = 0;
+	m.d = 500;
     ft_map(&m);
 	//ft_pos_pixel(&m);
 	ft_centre(&m);
-	//ft_angles(&m);
+	ft_angles(&m);
+	ft_move(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
 	printf("test = %f", m.m[y][x].x);
 	m.mlx = mlx_init();
