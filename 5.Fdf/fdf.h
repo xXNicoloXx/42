@@ -10,13 +10,14 @@ typedef struct s_pixel
 	float		x;
 	float		y;
 	float		z;
-	float		h
-}					t_pixel;
+	float		h;
+}				t_pixel;
+
 typedef struct s_map
 {
 	int		x;
 	int		y;
-	int		z;
+	float	z;
 
 	float	r;
 	float	i;

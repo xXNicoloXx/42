@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 15:46:36 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:24:05 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ void	ft_map(t_map *map)
 {
 	int fd;
 
-	fd = open("./test_maps/42.fdf", O_RDONLY);
+	fd = open("./test_maps/worldmap.fdf", O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
 	map->m = malloc(sizeof(t_pixel *) * (map->y + 1));	
-	fd = open("./test_maps/42.fdf", O_RDONLY);
+	fd = open("./test_maps/worldmap.fdf", O_RDONLY);
 	ft_fill_map(map, fd);
 }
 void ft_hauteur(t_map *m)
@@ -223,22 +223,27 @@ int main (void)
 	
 	m.y = 0;  
 	m.x = 0;
-	m.z = 60;
-	m.r = 20;
-	m.i = 60;
-	m.d = 500;
+	m.z = 2;
+	m.r = 0;
+	m.i = 89;
 	color = 0xffffff;
+	printf("Map\n");
 	ft_map(&m);
+	printf("Map OK\nHauteur\n");
 	ft_hauteur(&m);
-	//ft_pos_pixel(&m);
+	printf("Hauteur OK\n Centre\n");
 	ft_centre(&m);
-	ft_incl(&m);
+	printf("Centre OK\n Rota\n");
 	ft_rota(&m);
-
+	printf("Rota OK\n Incl\n");
+	ft_incl(&m);
+	printf("Incl OK\n Move\n");
 	ft_move(&m);
+	printf("Move ok\n Affichage\n");
+
 	
-	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
-	printf("test = %f", m.m[y][x].x);
+	printf("x = 0 -> %d \t y = 0 -> %d    \n\n", m.x, m.y);
+	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n", m.i, m.r, m.z);
 
 	while (y < m.y-1)
 	{
