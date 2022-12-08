@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 20:03:01 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/08 22:56:51 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void ft_fill_map(t_map *m, int fd)
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->m[y][x].y = y * m->z;
 				m->m[y][x].x = x * m->z;
-				m->m[y][x].z = ft_atoi(ligne + i) + 10;
+				m->m[y][x].z = ft_atoi(ligne + i) * 10;
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -213,23 +213,47 @@ void ft_move(t_map *m)
 void ft_clean(t_map *m)
 {
 	int y;
+	int x;
 
 	y = 0;
-	while (y < m->winy)
+	x = 0;
+	write(1, "Clean start\n", 13);
+	while (y < m->y-1)
 	{
-		ft_ligne(0, y, m->winx , y , 0, m->mlx_win, m->mlx);
+		while (x < m->x-1)
+		{
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, 0, m->mlx_win, m->mlx);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, 0, m->mlx_win, m->mlx);
+			x++;
+		}
 		y++;
+		x = 0;
 	}
+	write(1, "Clean end\n", 11);
+
 }
 
 int suite(t_map *m);
 
 int	ft_zoom(int keycode, t_map *m)
 {
+	
+	if (keycode == 126)
+			m->i = m->i + 1;
+	else if (keycode == 125)
+			m->i = m->i - 1;
+	else if (keycode == 123)
+			m->r = m->r - 1;
+	else if (keycode == 124)
+			m->r = m->r + 1;
+	else if (keycode == 1)
+			m->z = m->z - 1;
+	else if (keycode == 13)
+			m->z = m->z + 1;
+			
 	fprintf(stderr, "code %d\n", keycode);
-	fprintf(stderr, "Touche %c\n", keycode);
 	write(1, "coucou\n", 7);
-	m->r = m->r + 10;
+
 	ft_clean(m);
 	suite(m);
 
@@ -255,22 +279,22 @@ int suite(t_map *m)
 	// printf("Incl OK\nMove\n");
 	ft_move(m);
 	// printf("Move ok\n Affichage\n");
-	// printf("x = 0 -> %d \t y = 0 -> %d    \n\n", m->x, m->y);
-	// printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n", m->i, m->r, m->z);
+
 	while (y < m->y-1)
 	{
 		while (x < m->x-1)
 		{
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 5000, m->mlx_win, m->mlx);
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 5000, m->mlx_win, m->mlx);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
 			x++;
 		}
 		y++;
 		x = 0;
 	}
-	printf("\n1\n");
+	printf("Affichage ok\n");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
-	printf("2\n");
+	printf("x = 0 -> %d \t y = 0 -> %d    \n\n", m->x, m->y);
+	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n", m->i, m->r, m->z);
 	return 0;
 
 }
@@ -282,26 +306,26 @@ int main(void)
 	int color;
 	t_map m;
 
-	m.winx = 1700;
-	m.winy = 1080;
+	m.winx = 1400;
+	m.winy = 780;
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
 	
 	m.y = 0;  
 	m.x = 0;
-	m.z = 20;
-	m.r = 50;
-	m.i = 50;
+	m.z = 5;
+	m.r = 0;
+	m.i = 90;
 	color = 0xffffff;
 
 	
 
 	
 	suite(&m);
-	printf("fin\n");
-	//mlx_key_hook(m.mlx_win, ft_zoom, &m);
+	printf("HOOK\n");
+	mlx_key_hook(m.mlx_win, ft_zoom, &m);
+	printf("HOOK ok\n");
 	mlx_loop(m.mlx);
-	printf("test");
 }
 
 //push
