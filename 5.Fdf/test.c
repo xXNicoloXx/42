@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 16:24:05 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:49:52 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,10 @@ void	ft_map(t_map *map)
 {
 	int fd;
 
-	fd = open("./test_maps/worldmap.fdf", O_RDONLY);
+	fd = open(MAP, O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
 	map->m = malloc(sizeof(t_pixel *) * (map->y + 1));	
-	fd = open("./test_maps/worldmap.fdf", O_RDONLY);
+	fd = open(MAP, O_RDONLY);
 	ft_fill_map(map, fd);
 }
 void ft_hauteur(t_map *m)
@@ -223,21 +223,21 @@ int main (void)
 	
 	m.y = 0;  
 	m.x = 0;
-	m.z = 2;
+	m.z = 20;
 	m.r = 0;
-	m.i = 89;
+	m.i = 0;
 	color = 0xffffff;
 	printf("Map\n");
 	ft_map(&m);
 	printf("Map OK\nHauteur\n");
 	ft_hauteur(&m);
-	printf("Hauteur OK\n Centre\n");
+	printf("Hauteur OK\nCentre\n");
 	ft_centre(&m);
-	printf("Centre OK\n Rota\n");
+	printf("Centre OK\nRota\n");
 	ft_rota(&m);
-	printf("Rota OK\n Incl\n");
+	printf("Rota OK\nIncl\n");
 	ft_incl(&m);
-	printf("Incl OK\n Move\n");
+	printf("Incl OK\nMove\n");
 	ft_move(&m);
 	printf("Move ok\n Affichage\n");
 

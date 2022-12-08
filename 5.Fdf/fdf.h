@@ -1,9 +1,10 @@
 #include "libft.h"
 #include "get_next_line.h"
 
-# ifndef PI
-#  define PI 3.14159265359
+# ifndef MAP
+#  define MAP "./test_maps/42.fdf"
 # endif
+
 
 typedef struct s_pixel
 {

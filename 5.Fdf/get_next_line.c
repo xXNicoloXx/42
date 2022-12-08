@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:56:26 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/11/29 10:30:28 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 16:28:51 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,11 +94,11 @@ char	*get_next_line(int fd)
 // {
 // 	int i = 1;
 // 	char *test;
-// 	int fd = open("big_line_no_nl", O_RDONLY);
-// 	while (i)
+// 	int fd = open("worldmap.fdf", O_RDONLY);
+// 	printf("fd = %d",fd);
+// 	while (test = get_next_line(fd))
 // 	{
-// 		test = get_next_line(fd);
 // 		free(test);
-// 		i--;
+// 		test = get_next_line(fd);
 // 	}
 // }
