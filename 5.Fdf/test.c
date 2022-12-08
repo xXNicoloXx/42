@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 16:49:52 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/08 17:10:13 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,14 @@ void ft_move(t_map *m)
 	}
 
 }
-int main (void)
+
+int	ft_zoom(int keycode, t_map *m)
+{
+	m->z+10;
+	main();
+}
+
+int main2 (void * mlxptr, void* mlxwinptr)
 {
 	int x = 0;
 	int y = 0;
@@ -256,7 +263,17 @@ int main (void)
 		y++;
 		x = 0;
 	}
+	mlx_hook(m.mlx_win, 2, 1L<<0, ft_zoom, &m);
 	mlx_loop(m.mlx); 
+}
+
+int main(void)
+{
+	void *oui;
+	void *non;
+	oui = mlx_init();
+	non = mlx_new_window(oui, 1920, 1080, "FDF");
+	main2(oui, non);
 }
 //push
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
