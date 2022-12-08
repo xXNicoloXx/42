@@ -128,8 +128,8 @@ int main (void)
 	{
 		while (x < m.x)
 		{
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x+m.z, m.m[y][x].y, 0xfffffe, m.mlx_win, m.mlx);
-			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x, m.m[y][x].y+m.z, 0xff00ff, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x+m.z, m.m[y][x].y, 0xff, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x, m.m[y][x].y+m.z, 0x00ffff, m.mlx_win, m.mlx);
 			x++;
 		}
 		y++;
