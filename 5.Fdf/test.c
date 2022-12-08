@@ -56,7 +56,7 @@ int ft_y_map(int fd, int *xmax)
 }
 
 
-void ft_fill_map(int xmax, int fd, int **map)
+void ft_fill_map(t_map *m, int fd)
 {
     int i;
 	int y;
@@ -69,13 +69,16 @@ void ft_fill_map(int xmax, int fd, int **map)
 	while (ligne = get_next_line(fd))
 	{
 		// printf("\t%s", ligne);
-    	map[y] = ft_calloc(sizeof(int *),(xmax + 1));
+    	m->m[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
 		while (ligne[i] != '\n' && ligne[i] != '\0')
 		{
 			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
 			{
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
-				map[y][x] = ft_atoi(ligne + i);
+				m->m[y][x].y = y * m->z + m->d;
+				m->m[y][x].x = x * m->z + m->d;
+				m->m[y][x].z = ft_atoi(ligne + i);
+
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
 				while (ft_isdigit(ligne[i]) || ligne[i] == '-')
@@ -97,33 +100,11 @@ void	ft_map(t_map *map)
 
     fd = open("./test_maps/42.fdf", O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
-    map->map = malloc(sizeof(int *) * (map->y + 1));    
+    map->m = malloc(sizeof(t_pixel *) * (map->y + 1));    
     fd = open("./test_maps/42.fdf", O_RDONLY);
-    ft_fill_map(map->x, fd, map->map);
+    ft_fill_map(map, fd);
 }
 
-void ft_pu_pix(void *mlx, void *mlx_win, int x, int y, t_map map)
-{
-	int size = 50; 
-	int i = 0;
-	int j = 0;
-	int color;
-	// if (map.map[y][x] == 0)
-	// 	color = 0xf00000;
-	// else
-	// 	color = 0xff990f;
-	while (i < size)
-	{
-		while(j < size)
-		{
-			mlx_pixel_put(mlx, mlx_win, x*size + j, y*size + i, map.map[y][x]*10000);
-			j++;
-		}
-		j = 0;
-		i++;
-		
-	}
-}
 int main (void)
 {
 	int x = 0;
@@ -136,22 +117,24 @@ int main (void)
 	m.x = 0;
 	m.z = 40;
 	m.r = PI/2;
+	m.d = 30;
     ft_map(&m);
-	ft_pos_pixel(&m);
+	//ft_pos_pixel(&m);
 	printf("------  x = %d, y = %d  ------  \n\n", m.x, m.y);
-	// m.mlx = mlx_init();
-	// m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "");
-	// while (y < m.y * m.z)
-	// {
-	// 	while (x < m.x * m.z)
-	// 	{
-	// 		ft_ligne(x, y, x+m.z, y, 0xfffffe, m.mlx_win, m.mlx);
-	// 		ft_ligne(x, y, x, y+m.z, 0xff00ff, m.mlx_win, m.mlx);
-	// 		x = x + m.z;
-	// 	}
-	// 	y = y + m.z;
-	// 	x = 0;
-	// }
-	// mlx_loop(m.mlx); 
+	printf("test = %f", m.m[y][x].x);
+	m.mlx = mlx_init();
+	m.mlx_win = mlx_new_window(m.mlx, 1920, 1080, "");
+	while (y < m.y)
+	{
+		while (x < m.x)
+		{
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x+m.z, m.m[y][x].y, 0xfffffe, m.mlx_win, m.mlx);
+			ft_ligne(m.m[y][x].x, m.m[y][x].y, m.m[y][x].x, m.m[y][x].y+m.z, 0xff00ff, m.mlx_win, m.mlx);
+			x++;
+		}
+		y++;
+		x = 0;
+	}
+	mlx_loop(m.mlx); 
 }
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
