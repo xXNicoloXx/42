@@ -131,7 +131,6 @@ void ft_angles(t_map *m)
 
 void ft_centre(t_map *m)
 {
-	int 
 	while (y < m.y-1)
 	{
 		while (x < m.x-1)
