@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 22:56:51 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/11 18:32:40 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ void ft_hauteur(t_map *m)
 	{
 		while (x < m->x)
 		{
-			m->m[y][x].h = m->m[y][x].z;
+			m->m[y][x].h = m->m[y][x].z + 1;
 			x++;
 		}
 		y++;
@@ -237,24 +237,24 @@ int suite(t_map *m);
 
 int	ft_zoom(int keycode, t_map *m)
 {
-	
+	ft_clean(m);
 	if (keycode == 126)
-			m->i = m->i + 1;
+			m->i = m->i + 5;
 	else if (keycode == 125)
-			m->i = m->i - 1;
+			m->i = m->i - 5;
 	else if (keycode == 123)
-			m->r = m->r - 1;
+			m->r = m->r - 5;
 	else if (keycode == 124)
-			m->r = m->r + 1;
+			m->r = m->r + 5;
 	else if (keycode == 1)
-			m->z = m->z - 1;
+			m->z = m->z - 5;
 	else if (keycode == 13)
-			m->z = m->z + 1;
+			m->z = m->z + 5;
 			
 	fprintf(stderr, "code %d\n", keycode);
 	write(1, "coucou\n", 7);
 
-	ft_clean(m);
+
 	suite(m);
 
 	// mlx_destroy_window(m->mlx, m->mlx_win);
@@ -313,7 +313,7 @@ int main(void)
 	
 	m.y = 0;  
 	m.x = 0;
-	m.z = 5;
+	m.z = 40;
 	m.r = 0;
 	m.i = 90;
 	color = 0xffffff;
