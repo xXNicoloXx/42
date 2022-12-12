@@ -6,11 +6,12 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:56:24 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 16:45:20 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 18:59:25 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+#include "mlx.h"
 
 void ft_color(int nbr, t_map *m)
 {
@@ -60,6 +61,82 @@ void ft_draw(t_map *m, float x, float y, int color)
     }
 }
 
+void ft_tab_deg(t_map *m, int start, int end)
+{
+	int i;
+	float pc;
+	float diff;
+	t_map c;
+	
+	ft_color(m->color[start], m);
+	ft_color(m->color[end], &c);
+	diff = end - start - 1;
+	i = 0 ;
+	while (i <= diff)
+	{
+		pc = ((i)/diff);
+		m->color[start + i] = roundf((m->img.r*(1-pc)) + (c.img.r*pc))* 65536 + roundf((m->img.g*(1-pc)) + (c.img.g*pc)) * 256 + roundf((m->img.b*(1-pc)) + (c.img.b*pc));
+		printf("i = %d\t = %d\n\n", start + i, m->color[start + i]);
+
+		i++;
+	}
+	printf("\n\n\n");
+}
+
+void ft_tab_color(t_map *m)
+{
+	int i;
+	int j;
+	
+	i = 0;
+	while (i < 100)
+	{
+		if (m->color[i] != 0)
+		{
+			j = i;
+			i++;		
+			while (m->color[i] == 0 && i < 100)
+				i++;
+			ft_tab_deg(m, j, i);				
+		}
+		else
+			i++;
+	}
+	i = 0;
+	while (i < 100)
+	{
+		mlx_pixel_put(m->mlx, m->mlx_win, i, 49, m->color[i]);
+		mlx_pixel_put(m->mlx, m->mlx_win, i, 50, m->color[i]);
+		mlx_pixel_put(m->mlx, m->mlx_win, i, 51, m->color[i]);
+		printf("color[%d] = %x(%d)\n",i, m->color[i], m->color[i]);
+		i++;
+	} 
+}
+
+
+void ft_init_color(t_map *m)
+{
+	int i;
+
+	i = 0;
+	while(i < 100)
+	{
+		m->color[i] = 0;
+		i++;
+	}
+	m->color[0] = 0x0000ff;
+	m->color[5] = 0x0000ff;
+	m->color[10] = 0x0000ff;
+	m->color[20] = 0xffd34f;
+	m->color[25] = 0xffd34f;
+	m->color[35] = 0x63cf35;
+	m->color[55] = 0x63cf35;
+	m->color[55] = 0x63cf35;
+	m->color[70] = 0x4f3000;
+	m->color[85] = 0x4f3000;
+	m->color[90] = 0xffffff;
+	m->color[99] = 0xffffff;
+}
 // int main(void)
 // {
 //     t_map m;

@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 17:01:24 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:12:36 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void ft_fill_map(t_map *m, int fd)
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->m[y][x].y = y * m->z;
 				m->m[y][x].x = x * m->z;
-				m->m[y][x].z = ft_atoi(ligne + i) * 2;
+				m->m[y][x].z = ft_atoi(ligne + i);
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -116,7 +116,12 @@ void ft_hauteur(t_map *m)
 	{
 		while (x < m->x)
 		{
-			m->m[y][x].h = m->m[y][x].z + 1;
+			m->m[y][x].h = m->m[y][x].z;
+			if (m->m[y][x].h < m->minh)
+				m->minh = m->m[y][x].h;
+
+			if (m->maxh < m->m[y][x].h)
+				m->maxh = m->m[y][x].h;
 			x++;
 		}
 		y++;
@@ -215,7 +220,7 @@ void ft_clean(t_map *m)
 
 	y = 0;
 	x = 0;
-	write(1, "Clean start\n", 13);
+	write(1, "Clean\n", 7);
 	while (y < m->y-1)
 	{
 		while (x < m->x-1)
@@ -228,7 +233,6 @@ void ft_clean(t_map *m)
 		x = 0;
 	}
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
-	write(1, "Clean end\n", 11);
 
 }
 
@@ -259,6 +263,7 @@ int suite(t_map *m);
 
 int	ft_zoom(int keycode, t_map *m) //linux
 {
+	// fprintf(stderr, "code %d\n", keycode);
 	ft_clean(m);
 	if (keycode == 65362)
 			m->i = m->i + 5;
@@ -273,8 +278,6 @@ int	ft_zoom(int keycode, t_map *m) //linux
 	else if (keycode == 119)
 			m->z = m->z + 1;
 			
-	fprintf(stderr, "code %d\n", keycode);
-	write(1, "coucou\n", 7);
 	suite(m);
 	// mlx_destroy_window(m->mlx, m->mlx_win);
 	return 0;
@@ -286,18 +289,17 @@ int suite(t_map *m)
 	int y = 0;
 	printf("Map\n");
 	ft_map(m);
-	printf("Map OK\nHauteur\n");
+	printf("\nHauteur\n");
 	ft_hauteur(m);
-	printf("Hauteur OK\nCentre\n");
+	printf("Centre\n");
 	ft_centre(m);
-	printf("Centre OK\nRota\n");
+	printf("Rota\n");
 	ft_rota(m);
-	printf("Rota OK\nIncl\n");
+	printf("Incl\n");
 	ft_incl(m);
-	printf("Incl OK\nMove\n");
+	printf("Move\n");
 	ft_move(m);
-	printf("Move ok\n Affichage\n");
-
+	printf("Draw\n");
 	while (y < m->y -1)
 	{
 		while (x < m->x - 1)
@@ -312,9 +314,8 @@ int suite(t_map *m)
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
-	printf("x = 0 -> %d \t y = 0 -> %d    \n\n", m->x, m->y);
-	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n", m->i, m->r, m->z);
-	printf(" 0 0 = %f|%f\n",m->m[0][0].x, m->m[0][0].y);
+	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
+	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n\n\n\n\n\n\n\n", m->i, m->r, m->z);
 	return 0;
 
 }
@@ -333,13 +334,21 @@ int main(void)
 	
 	m.y = 0;  
 	m.x = 0;
+	m.minh = 0;
+	m.maxh = 0;
 	m.z = 6;
 	m.r = 0;
 	m.i = 90;
+	ft_init_color(&m);
+	
+
+
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i , &m.img.p, &m.img.size, &m.img.e);	
 	suite(&m);
+	ft_tab_color(&m);
 	mlx_key_hook(m.mlx_win, ft_zoom, &m);
+	// mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
 	mlx_loop(m.mlx);
 }

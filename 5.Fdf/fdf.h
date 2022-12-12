@@ -28,19 +28,25 @@ typedef struct s_img
 
 typedef struct s_map
 {
+	t_pixel	**m;
 	int		x;
 	int		y;
+	float		minh;
+	float		maxh;
+	int		winx;
+	int		winy;
 
 	float	z;
 	float	r;
 	float	i;
 	int		d;
+	unsigned long		color[100];
 	
-	t_pixel	**m;
+
+
 	void	*mlx;
 	void	*mlx_win;
-	int		winx;
-	int		winy;
+
 	t_img	img;
 
 
@@ -49,3 +55,5 @@ typedef struct s_map
 void ft_pos_pixel(t_map *m);
 void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m);
 void ft_draw(t_map *m, float x, float y, int color);
+void ft_tab_color(t_map *m);
+void ft_init_color(t_map *m);
