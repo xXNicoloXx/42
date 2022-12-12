@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ligne.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 19:39:58 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/12 15:42:07 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <math.h>
 #include "fdf.h"
 
-void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, void *mlx)
+void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 {
 	float dx;
 	float dy;
@@ -46,8 +46,8 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 		while (i++ < dx)
 		{
 			// if (98 < (ytmp - (int)ytmp))
-			//  	mlx_pixel_put(mlx, mlx_win, ax, ytmp+1, color);
-			mlx_pixel_put(mlx, mlx_win, ax, ay, color);
+			//  	ft_draw(m, ax, ytmp+1, color);
+			ft_draw(m, ax, ay, color);
 			ay = ay + unity;
 			ax++;
 		}
@@ -59,8 +59,8 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 		while (i++ < dx)
 		{
 			// if (98 < (ytmp - (int)ytmp))
-			//  	mlx_pixel_put(mlx, mlx_win, ax, ytmp+1, color);
-			mlx_pixel_put(mlx, mlx_win, ax, ay, color);
+			//  	ft_draw(m, ax, ytmp+1, color);
+			ft_draw(m, ax, ay, color);
 			ay = ay + unity;
 			ax++;
 		}
@@ -74,8 +74,8 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 			//printf("test");
 
 			// if (98 < (ytmp - (int)ytmp))
-			//  	mlx_pixel_put(mlx, mlx_win, ax, ytmp+1, color);
-			mlx_pixel_put(mlx, mlx_win, ax, ay, color);
+			//  	ft_draw(m, ax, ytmp+1, color);
+			ft_draw(m, ax, ay, color);
 			ay = ay + unity;
 			ax++;
 		}
@@ -87,8 +87,8 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 		while (i < dy)
 		{
 			// if (2 < (ax - (int)ax)*100)
-			// 	mlx_pixel_put(mlx, mlx_win, ax, ytmp+1, color);
-			mlx_pixel_put(mlx, mlx_win, ax, ay, color);
+			// 	ft_draw(m, ax, ytmp+1, color);
+			ft_draw(m, ax, ay, color);
 			ay++;
 			ax = ax + (1 / unity);
 			i++;
@@ -101,8 +101,8 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, void *mlx_win, 
 		while (i> dy)
 		{
 			// if (2 < (ax - (int)ax)*100)
-			// 	mlx_pixel_put(mlx, mlx_win, ax, ytmp+1, color);
-			mlx_pixel_put(mlx, mlx_win, ax, ay, color);
+			// 	ft_draw(m, ax, ytmp+1, color);
+			ft_draw(m, ax, ay, color);
 			ay--;
 			ax = ax - (1 / unity);
 			i--;

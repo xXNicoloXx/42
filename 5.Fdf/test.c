@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 12:18:12 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 15:30:29 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void ft_fill_map(t_map *m, int fd)
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->m[y][x].y = y * m->z;
 				m->m[y][x].x = x * m->z;
-				m->m[y][x].z = ft_atoi(ligne + i) * 10;
+				m->m[y][x].z = ft_atoi(ligne + i) * 2;
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -148,7 +148,6 @@ void ft_rota(t_map *m)
 }
 void ft_incl(t_map *m)
 {
-	float tmpy;
 	int x;
 	int y;
 
@@ -159,7 +158,6 @@ void ft_incl(t_map *m)
 		while (x < m->x)
 		{
 			//printf("m = %f\t%f\n", m->m[y][x].x * cos(m->r), m->m[y][x].y * sin(m->r));
-			tmpy = m->m[y][x].y;
 			m->m[y][x].y = m->m[y][x].z * -cos(m->i/57.2958) + m->m[y][x].y * sin(m->i/57.2958);
 			x++;
 		}
@@ -260,8 +258,7 @@ int suite(t_map *m);
 
 int	ft_zoom(int keycode, t_map *m) //linux
 {
-	mlx_clear_window(m->mlx, m->mlx_win);
-	// ft_clean(m);
+	ft_clean(m);
 	if (keycode == 65362)
 			m->i = m->i + 5;
 	else if (keycode == 65364)
@@ -284,7 +281,6 @@ int	ft_zoom(int keycode, t_map *m) //linux
 
 int suite(t_map *m)
 {	
-	printf("zoom = %f", m->z);
 	int x = 0;
 	int y = 0;
 	// printf("Map\n");
@@ -305,17 +301,14 @@ int suite(t_map *m)
 	{
 		while (x < m->x - 1)
 		{
-			printf("%f\t%f\t%f\t%f\n",m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400);
 			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
 			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
 			x++;
 		}
-		printf("\n\n");
 		y++;
 		x = 0;
 	}
 	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
-	printf("Affichage ok\n");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
 	printf("x = 0 -> %d \t y = 0 -> %d    \n\n", m->x, m->y);
 	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n", m->i, m->r, m->z);
@@ -339,17 +332,12 @@ int main(void)
 	m.x = 0;
 	m.z = 25;
 	m.r = 0;
-	m.i = 90;
-	color = 0xffffff;
-
-	
-
-	
+	m.i = 0;
+	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
+	m.img.data = mlx_get_data_addr(m.img.i , &m.img.p, &m.img.size, &m.img.e);	
 	suite(&m);
-	printf("HOOK\n");
 	mlx_key_hook(m.mlx_win, ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
-	printf("HOOK ok\n");
 	mlx_loop(m.mlx);
 }
 
