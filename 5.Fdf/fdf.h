@@ -12,6 +12,7 @@ typedef struct s_pixel
 	float		y;
 	float		z;
 	float		h;
+
 }				t_pixel;
 
 typedef struct s_img
@@ -31,6 +32,7 @@ typedef struct s_map
 	t_pixel	**m;
 	int		x;
 	int		y;
+
 	float		minh;
 	float		maxh;
 	int		winx;
@@ -41,6 +43,9 @@ typedef struct s_map
 	float	i;
 	int		d;
 	unsigned long		color[100];
+	float		hcolor1;
+	float		hcolor2;
+	float 		lenline;
 	
 
 

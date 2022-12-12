@@ -6,13 +6,25 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 16:00:48 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 20:01:00 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mlx.h"
 #include <math.h>
 #include "fdf.h"
+
+int ft_color_line(float ax, float ay, float bx, float by, t_map *m)
+{
+	if (m->lenline < 0)
+		m->lenline *= -1;
+	if (m->hcolor1 < 0)
+	{
+		m->hcolor1 *= -1;
+		m->hcolor2 -= m->hcolor1;
+	}
+	return (12000);
+}
 
 void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 {
@@ -36,19 +48,21 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 	// printf("ax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
 	dx = (float)bx - (float)ax;
 	dy = (float)by - (float)ay;
-	// printf("dx = %.0f\tdy = %.0f\n", (float)dx, (float)dy);
+	printf("dx = %.0f\tdy = %.0f\n", (float)dx, (float)dy);
 	unity = dy / dx;
 	// printf("unity = %.3f\n", unity);
 	i = 0;
 	if (dy == 0)
 	{
 		// printf("0\n");
+		printf("dx = %f\n", dx);
+		m->lenline = dx;
 		while (i++ < dx)
 		{
 			// if (98 < (ytmp - (int)ytmp))
-			//  	ft_draw(m, ax, ytmp+1, color);
+			//  	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
 			// printf("ax = %f ay %f\n", ax, ay);
-			ft_draw(m, ax, ay, color);
+			ft_draw(m, ax, ay, ft_color_line(ax, ay, bx, by, m));
 			ay = ay + unity;
 			ax++;
 		}
@@ -56,12 +70,12 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 	}
 	else if ((0 < unity && unity < 1))
 	{
-		// printf("1\n");
+		m->lenline = dx;
 		while (i++ < dx)
 		{
 			// if (98 < (ytmp - (int)ytmp))
-			//  	ft_draw(m, ax, ytmp+1, color);
-			ft_draw(m, ax, ay, color);
+			//  	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
+			ft_draw(m, ax, ay, ft_color_line(ax, ay, bx, by, m));
 			ay = ay + unity;
 			ax++;
 		}
@@ -69,14 +83,14 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 	}
 	else if (-1 <= unity && unity < 0)
 	{
-		// printf("2\n", dx, i);
+		m->lenline = dx;
 		while (i++ < dx)
 		{
 			//printf("test");
 
 			// if (98 < (ytmp - (int)ytmp))
-			//  	ft_draw(m, ax, ytmp+1, color);
-			ft_draw(m, ax, ay, color);
+			//  	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
+			ft_draw(m, ax, ay, ft_color_line(ax, ay, bx, by, m));
 			ay = ay + unity;
 			ax++;
 		}
@@ -84,12 +98,12 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 	}
 	else if (1 <= unity)
 	{
-		// printf("3\n", dy, i);
+		m->lenline = dy;
 		while (i < dy)
 		{
 			// if (2 < (ax - (int)ax)*100)
-			// 	ft_draw(m, ax, ytmp+1, color);
-			ft_draw(m, ax, ay, color);
+			// 	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
+			ft_draw(m, ax, ay, ft_color_line(ax, ay, bx, by, m));
 			ay++;
 			ax = ax + (1 / unity);
 			i++;
@@ -98,12 +112,12 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 	}
 	else
 	{
-	// printf("4\n");
+		m->lenline = dy;
 		while (i> dy)
 		{
 			// if (2 < (ax - (int)ax)*100)
-			// 	ft_draw(m, ax, ytmp+1, color);
-			ft_draw(m, ax, ay, color);
+			// 	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
+			ft_draw(m, ax, ay, ft_color_line(ax, ay, bx, by, m));
 			ay--;
 			ax = ax - (1 / unity);
 			i--;

@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 19:12:36 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:49:18 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,8 +304,13 @@ int suite(t_map *m)
 	{
 		while (x < m->x - 1)
 		{
+			m->hcolor1 = m->m[y][x].h;
+			m->hcolor2 = m->m[y][x+1].h;
 			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400, m);
+			m->hcolor1 = m->m[y][x].h;
+			m->hcolor2 = m->m[y][x+1].h;
 			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 8400, m);
+			printf("\n\n\n");
 			x++;
 		}
 		y++;
@@ -337,8 +342,8 @@ int main(void)
 	m.minh = 0;
 	m.maxh = 0;
 	m.z = 6;
-	m.r = 0;
-	m.i = 90;
+	m.r = 45;
+	m.i = 45;
 	ft_init_color(&m);
 	
 

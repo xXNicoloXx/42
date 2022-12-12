@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:56:24 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 18:59:25 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 19:46:52 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void ft_tab_deg(t_map *m, int start, int end)
 	{
 		pc = ((i)/diff);
 		m->color[start + i] = roundf((m->img.r*(1-pc)) + (c.img.r*pc))* 65536 + roundf((m->img.g*(1-pc)) + (c.img.g*pc)) * 256 + roundf((m->img.b*(1-pc)) + (c.img.b*pc));
-		printf("i = %d\t = %d\n\n", start + i, m->color[start + i]);
+		// printf("i = %d\t = %d\n\n", start + i, m->color[start + i]);
 
 		i++;
 	}
@@ -108,7 +108,7 @@ void ft_tab_color(t_map *m)
 		mlx_pixel_put(m->mlx, m->mlx_win, i, 49, m->color[i]);
 		mlx_pixel_put(m->mlx, m->mlx_win, i, 50, m->color[i]);
 		mlx_pixel_put(m->mlx, m->mlx_win, i, 51, m->color[i]);
-		printf("color[%d] = %x(%d)\n",i, m->color[i], m->color[i]);
+		// printf("color[%d] = %x(%d)\n",i, m->color[i], m->color[i]);
 		i++;
 	} 
 }
