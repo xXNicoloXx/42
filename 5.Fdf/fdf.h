@@ -47,3 +47,5 @@ typedef struct s_map
 }					t_map;
 
 void ft_pos_pixel(t_map *m);
+void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m);
+void ft_draw(t_map *m, float x, float y, int color);

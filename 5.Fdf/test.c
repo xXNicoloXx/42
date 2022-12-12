@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 15:30:29 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 17:01:24 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,13 +220,14 @@ void ft_clean(t_map *m)
 	{
 		while (x < m->x-1)
 		{
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, 0, m->mlx_win, m->mlx);
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, 0, m->mlx_win, m->mlx);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, 0, m);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, 0, m);
 			x++;
 		}
 		y++;
 		x = 0;
 	}
+	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	write(1, "Clean end\n", 11);
 
 }
@@ -268,9 +269,9 @@ int	ft_zoom(int keycode, t_map *m) //linux
 	else if (keycode == 65363)
 			m->r = m->r + 5;
 	else if (keycode == 115)
-			m->z = m->z - 5;
+			m->z = m->z - 1;
 	else if (keycode == 119)
-			m->z = m->z + 5;
+			m->z = m->z + 1;
 			
 	fprintf(stderr, "code %d\n", keycode);
 	write(1, "coucou\n", 7);
@@ -283,35 +284,37 @@ int suite(t_map *m)
 {	
 	int x = 0;
 	int y = 0;
-	// printf("Map\n");
+	printf("Map\n");
 	ft_map(m);
-	// printf("Map OK\nHauteur\n");
+	printf("Map OK\nHauteur\n");
 	ft_hauteur(m);
-	// printf("Hauteur OK\nCentre\n");
+	printf("Hauteur OK\nCentre\n");
 	ft_centre(m);
-	// printf("Centre OK\nRota\n");
+	printf("Centre OK\nRota\n");
 	ft_rota(m);
-	// printf("Rota OK\nIncl\n");
+	printf("Rota OK\nIncl\n");
 	ft_incl(m);
-	// printf("Incl OK\nMove\n");
+	printf("Incl OK\nMove\n");
 	ft_move(m);
-	// printf("Move ok\n Affichage\n");
+	printf("Move ok\n Affichage\n");
 
 	while (y < m->y -1)
 	{
 		while (x < m->x - 1)
 		{
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400, m);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 8400, m);
 			x++;
 		}
 		y++;
 		x = 0;
 	}
+	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
 	printf("x = 0 -> %d \t y = 0 -> %d    \n\n", m->x, m->y);
 	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n", m->i, m->r, m->z);
+	printf(" 0 0 = %f|%f\n",m->m[0][0].x, m->m[0][0].y);
 	return 0;
 
 }
@@ -330,9 +333,9 @@ int main(void)
 	
 	m.y = 0;  
 	m.x = 0;
-	m.z = 25;
+	m.z = 6;
 	m.r = 0;
-	m.i = 0;
+	m.i = 90;
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i , &m.img.p, &m.img.size, &m.img.e);	
 	suite(&m);

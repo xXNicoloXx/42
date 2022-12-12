@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:56:24 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 15:36:40 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:45:20 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void ft_color(int nbr, t_map *m)
 {
     int tmp;
-    
+
     tmp = nbr/1048576;
     nbr = nbr - 1048576 * tmp;
     m->img.r = tmp * 16;
@@ -34,12 +34,16 @@ void ft_color(int nbr, t_map *m)
     m->img.b += nbr;
 }
 
-void ft_draw(t_map *m, int x, int y, int color)
+void ft_draw(t_map *m, float x, float y, int color)
 {
-    int pixel;
-    
+    unsigned long pixel;
+	x = roundf(x);
+	y = roundf(y);
+    ft_color(color, m);
     pixel = (y * m->img.size) + (x * 4);
-
+	if ((m->img.size) * m->winy < pixel - 5 || x <= 0 || y <= 0 || y > m->y * m->winy || x > m->winx)
+		return ;
+	
     if (m->img.e == 1)        // Most significant (Alpha) byte first
     {
         m->img.data[pixel + 0] = 0;

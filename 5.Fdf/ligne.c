@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 15:42:07 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/12 16:00:48 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m)
 		{
 			// if (98 < (ytmp - (int)ytmp))
 			//  	ft_draw(m, ax, ytmp+1, color);
+			// printf("ax = %f ay %f\n", ax, ay);
 			ft_draw(m, ax, ay, color);
 			ay = ay + unity;
 			ax++;
