@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/11 18:32:40 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/12 12:18:12 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,28 +235,49 @@ void ft_clean(t_map *m)
 
 int suite(t_map *m);
 
-int	ft_zoom(int keycode, t_map *m)
+// int	ft_zoom(int keycode, t_map *m) // Mac
+// {
+// 	ft_clean(m);
+// 	if (keycode == 126)
+// 			m->i = m->i + 5;
+// 	else if (keycode == 125)
+// 			m->i = m->i - 5;
+// 	else if (keycode == 123)
+// 			m->r = m->r - 5;
+// 	else if (keycode == 124)
+// 			m->r = m->r + 5;
+// 	else if (keycode == 1)
+// 			m->z = m->z - 5;
+// 	else if (keycode == 13)
+// 			m->z = m->z + 5;
+			
+// 	fprintf(stderr, "code %d\n", keycode);
+// 	write(1, "coucou\n", 7);
+// 	suite(m);
+// 	// mlx_destroy_window(m->mlx, m->mlx_win);
+// 	return 0;
+// }
+
+int	ft_zoom(int keycode, t_map *m) //linux
 {
-	ft_clean(m);
-	if (keycode == 126)
+	mlx_clear_window(m->mlx, m->mlx_win);
+	// ft_clean(m);
+	if (keycode == 65362)
 			m->i = m->i + 5;
-	else if (keycode == 125)
+	else if (keycode == 65364)
 			m->i = m->i - 5;
-	else if (keycode == 123)
+	else if (keycode == 65361)
 			m->r = m->r - 5;
-	else if (keycode == 124)
+	else if (keycode == 65363)
 			m->r = m->r + 5;
-	else if (keycode == 1)
+	else if (keycode == 115)
 			m->z = m->z - 5;
-	else if (keycode == 13)
+	else if (keycode == 119)
 			m->z = m->z + 5;
 			
 	fprintf(stderr, "code %d\n", keycode);
 	write(1, "coucou\n", 7);
-
-
 	suite(m);
-
 	// mlx_destroy_window(m->mlx, m->mlx_win);
 	return 0;
 }
@@ -280,17 +301,20 @@ int suite(t_map *m)
 	ft_move(m);
 	// printf("Move ok\n Affichage\n");
 
-	while (y < m->y-1)
+	while (y < m->y -1)
 	{
-		while (x < m->x-1)
+		while (x < m->x - 1)
 		{
+			printf("%f\t%f\t%f\t%f\n",m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400);
 			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
 			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 8400, m->mlx_win, m->mlx);
 			x++;
 		}
+		printf("\n\n");
 		y++;
 		x = 0;
 	}
+	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
 	printf("Affichage ok\n");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
 	printf("x = 0 -> %d \t y = 0 -> %d    \n\n", m->x, m->y);
@@ -313,7 +337,7 @@ int main(void)
 	
 	m.y = 0;  
 	m.x = 0;
-	m.z = 40;
+	m.z = 25;
 	m.r = 0;
 	m.i = 90;
 	color = 0xffffff;
@@ -324,6 +348,7 @@ int main(void)
 	suite(&m);
 	printf("HOOK\n");
 	mlx_key_hook(m.mlx_win, ft_zoom, &m);
+	mlx_do_key_autorepeaton(m.mlx);
 	printf("HOOK ok\n");
 	mlx_loop(m.mlx);
 }
