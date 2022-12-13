@@ -62,3 +62,4 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m);
 void ft_draw(t_map *m, float x, float y, int color);
 void ft_tab_color(t_map *m);
 void ft_init_color(t_map *m);
+int ft_monitoring(t_map *m);

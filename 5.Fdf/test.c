@@ -322,11 +322,10 @@ int suite(t_map *m)
 	printf("Draw\n");
 	ft_print_map(m);
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
-	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
+	ft_monitoring(m);
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
 	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
 	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°\n\n", m->i, m->r, m->z);
-	ft_monitoring(m);
 
 	return 0;
 
@@ -343,7 +342,7 @@ int main(void)
 	m.winy = 1480;
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
-	
+	mlx_string_put(m.mlx,  m.mlx_win, 5, 13, 0xffffff, "Loading ...");
 	m.y = 0;  
 	m.x = 0;
 	m.minh = 0;

@@ -101,15 +101,15 @@ void ft_tab_color(t_map *m)
 		else
 			i++;
 	}
-	i = 0;
-	while (i < 100)
-	{
-		mlx_pixel_put(m->mlx, m->mlx_win, i, 49, m->color[i]);
-		mlx_pixel_put(m->mlx, m->mlx_win, i, 50, m->color[i]);
-		mlx_pixel_put(m->mlx, m->mlx_win, i, 51, m->color[i]);
-		// printf("color[%d] = %x(%d)\n",i, m->color[i], m->color[i]);
-		i++;
-	} 
+	// i = 0;
+	// while (i < 100)
+	// {
+	// 	mlx_pixel_put(m->mlx, m->mlx_win, i, 49, m->color[i]);
+	// 	mlx_pixel_put(m->mlx, m->mlx_win, i, 50, m->color[i]);
+	// 	mlx_pixel_put(m->mlx, m->mlx_win, i, 51, m->color[i]);
+	// 	// printf("color[%d] = %x(%d)\n",i, m->color[i], m->color[i]);
+	// 	i++;
+	// } 
 }
 
 
@@ -123,18 +123,14 @@ void ft_init_color(t_map *m)
 		m->color[i] = 0;
 		i++;
 	}
-	m->color[0] = 0x00005f;
+	m->color[0] = 0x000020;
 	// m->color[5] = 0x0040ff;
 	// m->color[55] = 0x0090ff;
 	m->color[61] = 0x0090ff;
-	// m->color[63] = 0xffd34f;
-	m->color[63] = 0x63cf35;
-
-	m->color[65] = 0x63cf35;
-	m->color[65] = 0x63cf35 * 1.2;
-	m->color[99] = 0x63cf35;
-	m->color[80] = 0x4f3000;
-	m->color[99] = 0x4f3000;
+	m->color[63] = 0x72CC00;
+	m->color[73] = 0x298000;
+	m->color[85] = 0x4f3000;
+	m->color[87] = 0x4f3000;
 	m->color[90] = 0xffffff;
 	m->color[99] = 0xffffff;
 	ft_tab_color(m);
