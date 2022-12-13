@@ -227,7 +227,7 @@ void ft_clean(t_map *m)
 
 int suite(t_map *m);
 
-// int	ft_zoom(int keycode, t_map *m) // Mac
+// int	ft_key(int keycode, t_map *m) // Mac
 // {
 // 	ft_clean(m);
 // 	if (keycode == 126)
@@ -249,8 +249,17 @@ int suite(t_map *m);
 // 	// mlx_destroy_window(m->mlx, m->mlx_win);
 // 	return 0;
 // }
+void ft_zoom(int keycode, int x, int y, t_map *m)
+{
+	ft_clean(m);
+	if (keycode == 5)
+			m->z -= m->z*0.2;
+	else if (keycode == 4)
+			m->z += m->z*0.2;
+	suite(m);
+}
 
-int	ft_zoom(int keycode, t_map *m) //linux
+void	ft_key(int keycode, t_map *m) //linux
 {
 	fprintf(stderr, "code %d\n", keycode);
 	ft_clean(m);
@@ -262,10 +271,6 @@ int	ft_zoom(int keycode, t_map *m) //linux
 			m->r = m->r - 5;
 	else if (keycode == 65363)
 			m->r = m->r + 5;
-	else if (keycode == 115)
-			m->z = m->z - 1;
-	else if (keycode == 119)
-			m->z = m->z + 1;
 	else if (keycode == 61)
 		m->hauteur = m->hauteur + m->hauteur * 0.1;
 	else if (keycode == 45)
@@ -334,7 +339,6 @@ int suite(t_map *m)
 	ft_print_map(m);
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	ft_monitoring(m);
-	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
 	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
 	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°\n\n", m->i, m->r, m->z);
 
@@ -350,9 +354,12 @@ void ft_intimap(t_map *m)
 	m->z = 1;
 	m->r = 45;
 	m->i = 45;
-
 	m->hauteur = 0.01;
-	m->y = 0;  
+	ft_map(m);
+	m->z = m->winx / sqrt((m->x*m->z) * (m->x*m->z) + (m->y*m->z) * (m->y*m->z));
+	m->y = 0; 
+	m->hauteur = m->z / 100;
+	printf("hauteur = %f\n", m->hauteur);
 	m->x = 0;
 	m->minh = 0;
 	m->maxh = 0;
@@ -377,8 +384,8 @@ int main(void)
 	// ft_map(&m);
 	suite(&m);
 	ft_tab_color(&m);
-	mlx_key_hook(m.mlx_win, ft_zoom, &m);
-	// mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
+	mlx_key_hook(m.mlx_win, ft_key, &m);
+	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
 	mlx_loop(m.mlx);
 }

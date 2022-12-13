@@ -67,9 +67,8 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 	float i;
 	float tmp;
 	if ((ax < 0 || ay < 0 || ax > m->winx || ay > m->winy) && (bx < 0 || by < 0 || bx > m->winx || by > m->winy))
-		return
+		return ;
 	reverse = 0;
-	// printf("\n\nax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
 	if (bx < ax)
 	{
 		tmp = bx;
@@ -83,12 +82,9 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 	}
 	
 	
-	// printf("ax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
 	dx = (float)bx - (float)ax;
 	dy = (float)by - (float)ay;
-	// printf("dx = %.0f\tdy = %.0f\n", (float)dx, (float)dy);
 	unity = dy / dx;
-	// printf("unity = %.3f\n", unity);
 	i = 0;
 	if (dy == 0)
 	{
@@ -98,13 +94,8 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 			m->hcolor1 = m->hcolor2;
 			m->hcolor2 = tmp;
 		}
-		// printf("0\n");
-		// printf("dx = %f\n", dx);
 		while (i++ < dx)
 		{
-			// if (98 < (ytmp - (int)ytmp))
-			//  	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
-			// printf("ax = %f ay %f\n", ax, ay);
 			ft_draw(m, ax, ay, ft_color_line(dx, i, m));
 			ay = ay + unity;
 			ax++;
@@ -121,8 +112,6 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 		}
 		while (i++ < dx)
 		{
-			// if (98 < (ytmp - (int)ytmp))
-			//  	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
 			ft_draw(m, ax, ay, ft_color_line(dx, i, m));
 			ay = ay + unity;
 			ax++;
@@ -139,10 +128,6 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 		}
 		while (i++ < dx)
 		{
-			//printf("test");
-
-			// if (98 < (ytmp - (int)ytmp))
-			//  	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
 			ft_draw(m, ax, ay, ft_color_line(dx, i, m));
 			ay = ay + unity;
 			ax++;
@@ -159,8 +144,6 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 		}
 		while (i < dy)
 		{
-			// if (2 < (ax - (int)ax)*100)
-			// 	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
 			ft_draw(m, ax, ay, ft_color_line(dy, i, m));
 			ay++;
 			ax = ax + (1 / unity);
@@ -178,8 +161,6 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 		}
 		while (i> dy)
 		{
-			// if (2 < (ax - (int)ax)*100)
-			// 	ft_draw(m, ax, ytmp+1, ft_color_line(ax, ay, bx, by, m));
 			ft_draw(m, ax, ay, ft_color_line(dy, i, m));
 			ay--;
 			ax = ax - (1 / unity);

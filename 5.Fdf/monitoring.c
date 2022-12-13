@@ -21,6 +21,13 @@ int ft_monitoring(t_map *m)
 
     i = 0;
     j = 0;
+    if (m->y == 0 && m->x == 0)
+	{
+		printf("pas bon");
+		mlx_string_put(m->mlx,  m->mlx_win, m->winx/2-100, m->winy/2, 0xffffff, "Error invalid map");
+	}
+    else
+    {
     while (i < 95)
     {
         while (j < 50)
@@ -44,5 +51,5 @@ int ft_monitoring(t_map *m)
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*6, 0xffffff, "I: ");
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*6, 0xffffff, ft_itoa(m->i));
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*7, 0xffffff, "Z: ");
-    mlx_string_put(m->mlx,  m->mlx_win, 20, 13*7, 0xffffff, ft_itoa(m->z));
+    mlx_string_put(m->mlx,  m->mlx_win, 20, 13*7, 0xffffff, ft_itoa(m->z));}
 }
