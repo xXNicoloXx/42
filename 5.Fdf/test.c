@@ -77,7 +77,7 @@ void ft_fill_map(t_map *m, int fd)
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->m[y][x].y = y * m->z;
 				m->m[y][x].x = x * m->z;
-				m->m[y][x].z = ft_atoi(ligne + i);
+				m->m[y][x].z = ft_atoi(ligne + i) * 10;
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -225,8 +225,13 @@ void ft_clean(t_map *m)
 	{
 		while (x < m->x-1)
 		{
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, 0, m);
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, 0, m);
+			m->hcolor1 = 100;
+			m->hcolor2 = 100;
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
+			printf("\n");
+			m->hcolor1 = 100;
+			m->hcolor2 = 100;
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
 			x++;
 		}
 		y++;
@@ -300,16 +305,18 @@ int suite(t_map *m)
 	printf("Move\n");
 	ft_move(m);
 	printf("Draw\n");
+	ft_init_color(m);
 	while (y < m->y -1)
 	{
 		while (x < m->x - 1)
 		{
 			m->hcolor1 = m->m[y][x].h;
 			m->hcolor2 = m->m[y][x+1].h;
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m->m[y][x].h * 8400, m);
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
+			printf("\n");
 			m->hcolor1 = m->m[y][x].h;
-			m->hcolor2 = m->m[y][x+1].h;
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m->m[y][x].h * 8400, m);
+			m->hcolor2 = m->m[y+1][x].h;
+			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
 			printf("\n\n\n");
 			x++;
 		}
@@ -320,7 +327,7 @@ int suite(t_map *m)
 	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
 	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
-	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°  \n\n\n\n\n\n\n\n", m->i, m->r, m->z);
+	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°\n\n", m->i, m->r, m->z);
 	return 0;
 
 }
@@ -341,9 +348,10 @@ int main(void)
 	m.x = 0;
 	m.minh = 0;
 	m.maxh = 0;
-	m.z = 6;
-	m.r = 45;
-	m.i = 45;
+	m.z = 30;
+	m.r = -30;
+	m.i = 20
+	;
 	ft_init_color(&m);
 	
 

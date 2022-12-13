@@ -2,7 +2,7 @@
 #include "get_next_line.h"
 
 # ifndef MAP
-#  define MAP "./test_maps/42.fdf"
+#  define MAP "./test_maps/pyra.fdf"
 # endif
 
 
@@ -58,7 +58,7 @@ typedef struct s_map
 }					t_map;
 
 void ft_pos_pixel(t_map *m);
-void ft_ligne(float ax, float ay, float bx, float by, int color, t_map *m);
+void ft_ligne(float ax, float ay, float bx, float by, t_map *m);
 void ft_draw(t_map *m, float x, float y, int color);
 void ft_tab_color(t_map *m);
 void ft_init_color(t_map *m);

@@ -130,11 +130,15 @@ void ft_init_color(t_map *m)
 	m->color[20] = 0xffd34f;
 	m->color[25] = 0xffd34f;
 	m->color[35] = 0x63cf35;
+	m->color[45] = 0x0000ff;
 	m->color[55] = 0x63cf35;
 	m->color[55] = 0x63cf35;
 	m->color[70] = 0x4f3000;
 	m->color[85] = 0x4f3000;
 	m->color[90] = 0xffffff;
+	m->color[99] = 0xffffff;
+	ft_tab_color(m);
+
 	m->color[99] = 0xffffff;
 }
 // int main(void)
