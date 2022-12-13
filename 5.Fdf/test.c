@@ -77,7 +77,7 @@ void ft_fill_map(t_map *m, int fd)
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->m[y][x].y = y * m->z;
 				m->m[y][x].x = x * m->z;
-				m->m[y][x].z = ft_atoi(ligne + i) *0.1;
+				m->m[y][x].z = ft_atoi(ligne + i) *m->hauteur;
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -252,7 +252,7 @@ int suite(t_map *m);
 
 int	ft_zoom(int keycode, t_map *m) //linux
 {
-	// fprintf(stderr, "code %d\n", keycode);
+	fprintf(stderr, "code %d\n", keycode);
 	ft_clean(m);
 	if (keycode == 65362)
 			m->i = m->i + 5;
@@ -266,7 +266,23 @@ int	ft_zoom(int keycode, t_map *m) //linux
 			m->z = m->z - 1;
 	else if (keycode == 119)
 			m->z = m->z + 1;
-			
+	else if (keycode == 45)
+		m->hauteur = m->hauteur + 1;
+	else if (keycode == 61)
+		m->hauteur = m->hauteur - 1;
+	else if (keycode == 32)
+	{
+		m->z = 60;
+		m->r = 25;
+		m->i = 45;
+		m->hauteur = 10;
+	}
+	m->y = 0;  
+	m->x = 0;
+	m->minh = 0;
+	m->maxh = 0;
+		
+
 	suite(m);
 	// mlx_destroy_window(m->mlx, m->mlx_win);
 	return 0;
@@ -347,9 +363,10 @@ int main(void)
 	m.x = 0;
 	m.minh = 0;
 	m.maxh = 0;
-	m.z = 2;
+	m.z = 60;
 	m.r = 0;
 	m.i = 90;
+	m.hauteur = 1;
 	ft_init_color(&m);
 	
 

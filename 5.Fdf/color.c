@@ -96,6 +96,8 @@ void ft_tab_color(t_map *m)
 			i++;		
 			while (m->color[i] == 0 && i < 100)
 				i++;
+			if (99 < i)
+				return ;
 			ft_tab_deg(m, j, i);				
 		}
 		else
@@ -123,19 +125,11 @@ void ft_init_color(t_map *m)
 		m->color[i] = 0;
 		i++;
 	}
-	m->color[0] = 0x000020;
-	// m->color[5] = 0x0040ff;
-	// m->color[55] = 0x0090ff;
-	m->color[61] = 0x0090ff;
-	m->color[63] = 0x72CC00;
-	m->color[73] = 0x298000;
-	m->color[85] = 0x4f3000;
-	m->color[87] = 0x4f3000;
-	m->color[90] = 0xffffff;
+	m->color[0] = 0xff0000;
 	m->color[99] = 0xffffff;
 	ft_tab_color(m);
 
-	m->color[99] = 0xffffff;
+	// m->color[99] = 0x0000ff;
 }
 // int main(void)
 // {
@@ -146,3 +140,15 @@ void ft_init_color(t_map *m)
 //     printf("b = %d\n",m.img.b);
 // }
 
+
+
+	// m->color[0] = 0x000020;
+	// m->color[5] = 0x0040ff;
+	// m->color[55] = 0x0090ff;
+	// m->color[61] = 0x0090ff;
+	// m->color[63] = 0x72CC00;
+	// m->color[73] = 0x298000;			worldmap
+	// m->color[85] = 0x4f3000;
+	// m->color[87] = 0x4f3000;
+	// m->color[90] = 0xffffff;
+	// m->color[99] = 0xffffff;
