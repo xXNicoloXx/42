@@ -2,7 +2,7 @@
 #include "get_next_line.h"
 
 # ifndef MAP
-#  define MAP "./test_maps/42.fdf"
+#  define MAP "./test_maps/worldmap.fdf"
 # endif
 
 
@@ -42,7 +42,7 @@ typedef struct s_map
 	float	r;
 	float	i;
 	int		d;
-	int		hauteur;
+	float		hauteur;
 	unsigned long		color[100];
 	float		hcolor1;
 	float		hcolor2;

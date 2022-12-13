@@ -266,17 +266,12 @@ int	ft_zoom(int keycode, t_map *m) //linux
 			m->z = m->z - 1;
 	else if (keycode == 119)
 			m->z = m->z + 1;
-	else if (keycode == 45)
-		m->hauteur = m->hauteur + 1;
 	else if (keycode == 61)
-		m->hauteur = m->hauteur - 1;
+		m->hauteur = m->hauteur + m->hauteur * 0.1;
+	else if (keycode == 45)
+		m->hauteur = m->hauteur - m->hauteur *0.1;
 	else if (keycode == 32)
-	{
-		m->z = 60;
-		m->r = 25;
-		m->i = 45;
-		m->hauteur = 10;
-	}
+		ft_intimap(m);
 	m->y = 0;  
 	m->x = 0;
 	m->minh = 0;
@@ -347,26 +342,32 @@ int suite(t_map *m)
 
 }
 
+void ft_intimap(t_map *m)
+{
 
+	m->winx = 2520;
+	m->winy = 1480;
+	m->z = 1;
+	m->r = 45;
+	m->i = 45;
+
+	m->hauteur = 0.01;
+	m->y = 0;  
+	m->x = 0;
+	m->minh = 0;
+	m->maxh = 0;
+}
 
 int main(void)
 {
 	int color;
 	t_map m;
 
-	m.winx = 2520;
-	m.winy = 1480;
+	ft_intimap(&m);
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
 	mlx_string_put(m.mlx,  m.mlx_win, 5, 13, 0xffffff, "Loading ...");
-	m.y = 0;  
-	m.x = 0;
-	m.minh = 0;
-	m.maxh = 0;
-	m.z = 60;
-	m.r = 0;
-	m.i = 90;
-	m.hauteur = 1;
+
 	ft_init_color(&m);
 	
 

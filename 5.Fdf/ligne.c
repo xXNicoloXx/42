@@ -66,6 +66,8 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 	float unity;
 	float i;
 	float tmp;
+	if ((ax < 0 || ay < 0 || ax > m->winx || ay > m->winy) && (bx < 0 || by < 0 || bx > m->winx || by > m->winy))
+		return
 	reverse = 0;
 	// printf("\n\nax = %.0f\tay = %.0f\tbx = %.0f\tby = %.0f\n", ax, ay, bx, by);
 	if (bx < ax)
