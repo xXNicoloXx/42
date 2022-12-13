@@ -2,7 +2,7 @@
 #include "get_next_line.h"
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap.fdf"
+#  define MAP "./test_maps/worldmap_s.fdf"
 # endif
 
 
