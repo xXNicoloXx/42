@@ -77,7 +77,7 @@ void ft_fill_map(t_map *m, int fd)
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->m[y][x].y = y * m->z;
 				m->m[y][x].x = x * m->z;
-				m->m[y][x].z = ft_atoi(ligne + i) * 10;
+				m->m[y][x].z = ft_atoi(ligne + i) * 5;
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -221,23 +221,26 @@ void ft_clean(t_map *m)
 	y = 0;
 	x = 0;
 	write(1, "Clean\n", 7);
-	while (y < m->y-1)
-	{
-		while (x < m->x-1)
-		{
-			m->hcolor1 = 100;
-			m->hcolor2 = 100;
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
-			printf("\n");
-			m->hcolor1 = 100;
-			m->hcolor2 = 100;
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
-			x++;
-		}
-		y++;
-		x = 0;
-	}
-	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
+	mlx_destroy_image(m->mlx, m->img.i);
+	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
+
+	// while (y < m->y-1)
+	// {
+	// 	while (x < m->x-1)
+	// 	{
+	// 		m->hcolor1 = 100;
+	// 		m->hcolor2 = 100;
+	// 		ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
+	// 		printf("\n");
+	// 		m->hcolor1 = 100;
+	// 		m->hcolor2 = 100;
+	// 		ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
+	// 		x++;
+	// 	}
+	// 	y++;
+	// 	x = 0;
+	// }
+	// mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 
 }
 
@@ -288,10 +291,39 @@ int	ft_zoom(int keycode, t_map *m) //linux
 	return 0;
 }
 
+void ft_print_map(t_map *m)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+	while (y < m->y)
+	{
+		while (x < m->x)
+		{
+			if (x < m->x - 1)
+			{	
+				m->hcolor1 = m->m[y][x].h;
+				m->hcolor2 = m->m[y][x+1].h;	
+				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
+			}
+			if (y < m->y -1)
+			{
+				m->hcolor1 = m->m[y][x].h;
+				m->hcolor2 = m->m[y+1][x].h;
+				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
+			}
+			x++;
+		}
+		y++;
+		x = 0;
+	}
+}
+
 int suite(t_map *m)
 {	
-	int x = 0;
-	int y = 0;
+
 	printf("Map\n");
 	ft_map(m);
 	printf("\nHauteur\n");
@@ -306,23 +338,7 @@ int suite(t_map *m)
 	ft_move(m);
 	printf("Draw\n");
 	ft_init_color(m);
-	while (y < m->y -1)
-	{
-		while (x < m->x - 1)
-		{
-			m->hcolor1 = m->m[y][x].h;
-			m->hcolor2 = m->m[y][x+1].h;
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
-			printf("\n");
-			m->hcolor1 = m->m[y][x].h;
-			m->hcolor2 = m->m[y+1][x].h;
-			ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
-			printf("\n\n\n");
-			x++;
-		}
-		y++;
-		x = 0;
-	}
+	ft_print_map(m);
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
@@ -349,9 +365,8 @@ int main(void)
 	m.minh = 0;
 	m.maxh = 0;
 	m.z = 30;
-	m.r = -30;
-	m.i = 20
-	;
+	m.r = 0;
+	m.i = 90;
 	ft_init_color(&m);
 	
 
