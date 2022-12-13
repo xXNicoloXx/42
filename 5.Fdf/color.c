@@ -80,7 +80,6 @@ void ft_tab_deg(t_map *m, int start, int end)
 
 		i++;
 	}
-	printf("\n\n\n");
 }
 
 void ft_tab_color(t_map *m)
@@ -124,21 +123,23 @@ void ft_init_color(t_map *m)
 		m->color[i] = 0;
 		i++;
 	}
-	m->color[0] = 0x0090ff;
-	// m->color[5] = 0x0000ff;
-	// m->color[10] = 0x0000ff;
-	// m->color[20] = 0xffd34f;
-	// m->color[25] = 0xffd34f;
-	// m->color[35] = 0x63cf35;
-	// m->color[55] = 0x63cf35;
-	// m->color[55] = 0x63cf35;
-	// m->color[70] = 0x4f3000;
-	// m->color[85] = 0x4f3000;
-	// m->color[90] = 0xffffff;
-	m->color[99] = 0xff0000;
+	m->color[0] = 0x00005f;
+	// m->color[5] = 0x0040ff;
+	// m->color[55] = 0x0090ff;
+	m->color[61] = 0x0090ff;
+	// m->color[63] = 0xffd34f;
+	m->color[63] = 0x63cf35;
+
+	m->color[65] = 0x63cf35;
+	m->color[65] = 0x63cf35 * 1.2;
+	m->color[99] = 0x63cf35;
+	m->color[80] = 0x4f3000;
+	m->color[99] = 0x4f3000;
+	m->color[90] = 0xffffff;
+	m->color[99] = 0xffffff;
 	ft_tab_color(m);
 
-	m->color[99] = 0xff0000;
+	m->color[99] = 0xffffff;
 }
 // int main(void)
 // {
@@ -148,3 +149,4 @@ void ft_init_color(t_map *m)
 //     printf("g = %d\n",m.img.g);
 //     printf("b = %d\n",m.img.b);
 // }
+

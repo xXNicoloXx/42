@@ -77,7 +77,7 @@ void ft_fill_map(t_map *m, int fd)
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->m[y][x].y = y * m->z;
 				m->m[y][x].x = x * m->z;
-				m->m[y][x].z = ft_atoi(ligne + i) * 5;
+				m->m[y][x].z = ft_atoi(ligne + i) *0.1;
 
 				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
@@ -223,25 +223,6 @@ void ft_clean(t_map *m)
 	write(1, "Clean\n", 7);
 	mlx_destroy_image(m->mlx, m->img.i);
 	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
-
-	// while (y < m->y-1)
-	// {
-	// 	while (x < m->x-1)
-	// 	{
-	// 		m->hcolor1 = 100;
-	// 		m->hcolor2 = 100;
-	// 		ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
-	// 		printf("\n");
-	// 		m->hcolor1 = 100;
-	// 		m->hcolor2 = 100;
-	// 		ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// 	x = 0;
-	// }
-	// mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
-
 }
 
 int suite(t_map *m);
@@ -323,7 +304,7 @@ void ft_print_map(t_map *m)
 
 int suite(t_map *m)
 {	
-
+	
 	printf("Map\n");
 	ft_map(m);
 	printf("\nHauteur\n");
@@ -336,14 +317,17 @@ int suite(t_map *m)
 	ft_incl(m);
 	printf("Move\n");
 	ft_move(m);
-	printf("Draw\n");
+	printf("Color\n");
 	ft_init_color(m);
+	printf("Draw\n");
 	ft_print_map(m);
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	mlx_string_put( m->mlx,  m->mlx_win, 10, 10, 0xff0000, "test");
 	// mlx_hook(m->mlx_win, KeyPres, KeyPressMask, )
 	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
 	printf("I = %.1f°\tR = %.1f\tZ = %.1fx°\n\n", m->i, m->r, m->z);
+	ft_monitoring(m);
+
 	return 0;
 
 }
@@ -355,8 +339,8 @@ int main(void)
 	int color;
 	t_map m;
 
-	m.winx = 1400;
-	m.winy = 780;
+	m.winx = 2520;
+	m.winy = 1480;
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
 	
@@ -364,7 +348,7 @@ int main(void)
 	m.x = 0;
 	m.minh = 0;
 	m.maxh = 0;
-	m.z = 30;
+	m.z = 2;
 	m.r = 0;
 	m.i = 90;
 	ft_init_color(&m);
@@ -372,7 +356,8 @@ int main(void)
 
 
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
-	m.img.data = mlx_get_data_addr(m.img.i , &m.img.p, &m.img.size, &m.img.e);	
+	m.img.data = mlx_get_data_addr(m.img.i , &m.img.p, &m.img.size, &m.img.e);
+	// ft_map(&m);
 	suite(&m);
 	ft_tab_color(&m);
 	mlx_key_hook(m.mlx_win, ft_zoom, &m);
