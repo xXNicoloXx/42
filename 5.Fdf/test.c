@@ -169,8 +169,8 @@ void ft_rota(t_map *m)
 		while (x < m->x)
 		{
 			tmpx = m->m[y][x].x;
-			m->m[y][x].x = m->m[y][x].x * m->varcos + m->m[y][x].y * -m->varsin;
-			m->m[y][x].y = tmpx * m->varsin + m->m[y][x].y * m->varcos;
+			m->m[y][x].x = m->m[y][x].x * cos(m->r/57.2958) + m->m[y][x].y * -sin(m->r/57.2958);
+			m->m[y][x].y = tmpx * sin(m->r/57.2958) + m->m[y][x].y * cos(m->r/57.2958);
 			x++;
 		}
 		y++;
@@ -275,13 +275,45 @@ int suite(t_map *m);
 // 	// mlx_destroy_window(m->mlx, m->mlx_win);
 // 	return 0;
 // }
+
+void ft_mouse_move(int x, int y, t_map *m)
+{
+	static int x1;
+	static int y1;
+	printf("m = %d",m->mouse_move);
+	if (m->mouse_move == 1)	
+	{
+		ft_clean(m);
+		m->mouse_move = 0;
+		m->r += (x - x1)/30;
+		m->i += (y - y1)/30;
+		suite(m);
+	}
+	else
+	{
+		m->mouse_move = 1;
+		x1 = x;
+		y1 = y;
+
+	}
+	printf("%d\t%d\n\n", x, y);
+}
+
 void ft_zoom(int keycode, int x, int y, t_map *m)
 {
+	if (keycode != 1)
 	ft_clean(m);
 	if (keycode == 5)
 			m->z -= m->z*0.2;
 	else if (keycode == 4)
 			m->z += m->z*0.2;
+	else if (keycode == 1)
+	{
+		ft_mouse_move(x, y, m);
+		return ;
+	}
+	fprintf(stderr, "code %d\n", keycode);
+	
 	suite(m);
 }
 
@@ -306,7 +338,7 @@ void	ft_key(int keycode, t_map *m) //linux
 	else if (keycode == 48)
 	{
 			m->i = 90;
-			m->r = 0;
+			m->r = 40;
 	}
 	else if (keycode == 119)
 			m->movey = m->movey + 10;
@@ -421,7 +453,9 @@ void ft_intimap(t_map *m)
 	m->hauteur = m->z / 100;
 	m->minh = 0;
 	m->maxh = 0;
+	m->mouse_move = 0;
 }
+
 
 int main(void)
 {
@@ -444,7 +478,7 @@ int main(void)
 	ft_tab_color(&m);
 	mlx_key_hook(m.mlx_win, ft_key, &m);
 	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
-	mlx_do_key_autorepeaton(m.mlx);
+	mlx_do_key_autorepeatoff(m.mlx);
 	mlx_loop(m.mlx);
 }
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out

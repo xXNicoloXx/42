@@ -3,7 +3,7 @@
 #include <time.h>
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap.fdf"
+#  define MAP "./test_maps/worldmap_s.fdf"
 # endif
 
 
@@ -48,7 +48,7 @@ typedef struct s_map
 	int		movex;
 	int		movey;
 	float		hauteur;
-	unsigned long		color[100];
+	unsigned long		color[101];
 	float		hcolor1;
 	float		hcolor2;
 	float 		lenline;
@@ -59,6 +59,8 @@ typedef struct s_map
 	void	*mlx_win;
 
 	t_img	img;
+
+	int mouse_move;
 }					t_map;
 
 void ft_pos_pixel(t_map *m);
