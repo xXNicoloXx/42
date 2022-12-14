@@ -2,7 +2,7 @@
 #include "get_next_line.h"
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap_s.fdf"
+#  define MAP "./test_maps/worldmap.fdf"
 # endif
 
 
@@ -29,6 +29,7 @@ typedef struct s_img
 
 typedef struct s_map
 {
+	t_pixel	**initm;
 	t_pixel	**m;
 	int		x;
 	int		y;

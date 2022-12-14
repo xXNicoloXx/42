@@ -100,10 +100,11 @@ void	ft_map(t_map *map)
 
 	fd = open(MAP, O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
-	map->m = malloc(sizeof(t_pixel *) * (map->y + 1));	
+	map->initm = malloc(sizeof(t_pixel *) * (map->y + 1));	
 	fd = open(MAP, O_RDONLY);
 	ft_fill_map(map, fd);
 }
+
 void ft_hauteur(t_map *m)
 {
 	float tmpy;
