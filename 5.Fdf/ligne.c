@@ -100,7 +100,8 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 			ay = ay + unity;
 			ax++;
 		}
-		return ;
+		
+
 	}
 	else if ((0 < unity && unity < 1))
 	{
@@ -116,7 +117,8 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 			ay = ay + unity;
 			ax++;
 		}
-		return ;
+		
+
 	}
 	else if (-1 <= unity && unity < 0)
 	{
@@ -132,7 +134,6 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 			ay = ay + unity;
 			ax++;
 		}
-		return ;
 	}
 	else if (1 <= unity)
 	{
@@ -149,7 +150,7 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 			ax = ax + (1 / unity);
 			i++;
 		}
-		return ;
+		
 	}
 	else
 	{
@@ -166,6 +167,7 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 			ax = ax - (1 / unity);
 			i--;
 		}
+		
 	}
 }
 // int main (void)

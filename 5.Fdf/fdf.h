@@ -1,5 +1,6 @@
 #include "libft.h"
 #include "get_next_line.h"
+#include <time.h>
 
 # ifndef MAP
 #  define MAP "./test_maps/worldmap.fdf"
@@ -33,6 +34,8 @@ typedef struct s_map
 	t_pixel	**m;
 	int		x;
 	int		y;
+	float varcos;
+	float varsin;
 
 	float		minh;
 	float		maxh;
@@ -42,7 +45,8 @@ typedef struct s_map
 	float	z;
 	float	r;
 	float	i;
-	int		d;
+	int		movex;
+	int		movey;
 	float		hauteur;
 	unsigned long		color[100];
 	float		hcolor1;
@@ -55,8 +59,6 @@ typedef struct s_map
 	void	*mlx_win;
 
 	t_img	img;
-
-
 }					t_map;
 
 void ft_pos_pixel(t_map *m);
@@ -65,3 +67,4 @@ void ft_draw(t_map *m, float x, float y, int color);
 void ft_tab_color(t_map *m);
 void ft_init_color(t_map *m);
 int ft_monitoring(t_map *m);
+void ft_intimap(t_map *m);
