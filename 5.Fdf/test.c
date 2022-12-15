@@ -308,6 +308,43 @@ int suite(t_map *m);
 // 	return 0;
 // }
 
+void ft_annimation(t_map *m)
+{
+	int i;
+	int inc;
+	int rot;
+
+	i = 0;
+	inc = m->i;
+	rot = m->r;
+	m->i = 0;
+	m->r = 0;
+	while (i < 360/3)
+	{
+		m->i += 0.65;
+		m->r += 3;
+		m->z -= i/60;
+		suite(m);
+		ft_clean(m);
+		i++;
+	}
+	i = 0;
+	while (i < 360/3)
+	{
+		m->i -= 0.65;
+		m->r += 3;
+		m->z += i/60;
+		suite(m);
+		ft_clean(m);
+		i++;
+	}
+	ft_clean(m);
+
+	// m->i = inc;
+	// m->r = rot;
+
+}
+
 void ft_mouse_move(int x, int y, t_map *m)
 {
 	static int x1;
@@ -373,13 +410,15 @@ void	ft_key(int keycode, t_map *m) //linux
 		m->maxh = 0;
 		m->hauteur = m->hauteur - m->hauteur *0.3;
 	}
-	else if (keycode == 32)
+	else if (keycode == 49)
 		ft_intimap(m);
-	else if (keycode == 48)
+	else if (keycode == 50)
 	{
 			m->i = 90;
 			m->r = 0;
 	}
+	else if (keycode == 51)
+		ft_annimation(m);
 	else if (keycode == 119)
 			m->movey = m->movey + 30;
 	else if (keycode == 115)
@@ -478,7 +517,7 @@ void ft_intimap(t_map *m)
 {
 
 	m->winx = 2520;
-	m->winy = 1480;
+	m->winy = 1200;
 	m->z = 1;
 	m->r = 45;
 	m->i = 20;
@@ -520,7 +559,7 @@ int main(void)
 	ft_tab_color(&m);
 	mlx_hook(m.mlx_win, 2, 1L<<0, ft_key, &m);
 	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
-	mlx_do_key_autorepeatoff(m.mlx);
+	mlx_do_key_autorepeaton(m.mlx);
 	mlx_loop(m.mlx);
 }
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out

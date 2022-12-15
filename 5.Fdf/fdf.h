@@ -3,8 +3,8 @@
 #include <time.h>
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap.fdf"
-// #  define MAP "./moremaps/hardests/hardest04.fdf"
+// #  define MAP "./test_maps/worldmap.fdf"
+#  define MAP "./moremaps/hardests/hardest01.fdf"
 # endif
 
 
