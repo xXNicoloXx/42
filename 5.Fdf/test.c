@@ -166,8 +166,10 @@ void ft_rota(t_map *m)
 	m->varsin = sin(m->r/57.2958);
 	while (y < m->y)
 	{
+		write(1, "2", 1);
 		while (x < m->x)
 		{
+			write(1, "1", 1);
 			tmpx = m->m[y][x].x;
 			m->m[y][x].x = m->m[y][x].x * cos(m->r/57.2958) + m->m[y][x].y * -sin(m->r/57.2958);
 			m->m[y][x].y = tmpx * sin(m->r/57.2958) + m->m[y][x].y * cos(m->r/57.2958);

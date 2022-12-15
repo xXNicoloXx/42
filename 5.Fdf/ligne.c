@@ -43,7 +43,7 @@ int ft_color_line(float nbpix, float pospix, t_map *m)
 	{
 		tmp = (((100*(m->hcolor1 - m->minh)/deltah) - (100*(m->hcolor2 - m->minh)/deltah))/nbpix);
 		// printf("tmp = %f(%d)(%d) nbpix = %d\ti=%d\n",tmp, (int)(100*(m->hcolor1 - m->minh)/deltah), (int)(100*(m->hcolor2 - m->minh)/deltah), (int)nbpix, (int)pospix);
-		return (m->color[(int)((100*(m->hcolor1 - m->minh)/deltah) - tmp * pospix)]);
+		return (m->color[(int)((100*(m->hcolor1 - m->minh)/deltah) - tmp)]);
 	}
 	else 
 	{
