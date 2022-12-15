@@ -166,13 +166,11 @@ void ft_rota(t_map *m)
 	m->varsin = sin(m->r/57.2958);
 	while (y < m->y)
 	{
-		write(1, "2", 1);
 		while (x < m->x)
 		{
-			write(1, "1", 1);
 			tmpx = m->m[y][x].x;
-			m->m[y][x].x = m->m[y][x].x * cos(m->r/57.2958) + m->m[y][x].y * -sin(m->r/57.2958);
-			m->m[y][x].y = tmpx * sin(m->r/57.2958) + m->m[y][x].y * cos(m->r/57.2958);
+			m->m[y][x].x = m->m[y][x].x * m->varcos + m->m[y][x].y * -m->varsin;
+			m->m[y][x].y = tmpx * m->varsin + m->m[y][x].y * m->varcos;
 			x++;
 		}
 		y++;
@@ -191,7 +189,7 @@ void ft_incl(t_map *m)
 		while (x < m->x)
 		{
 			//printf("m = %f\t%f\n", m->m[y][x].x * cos(m->r), m->m[y][x].y * sin(m->r));
-			m->m[y][x].y = m->m[y][x].z * -cos(m->i/57.2958) + m->m[y][x].y * sin(m->i/57.2958);
+			m->m[y][x].y = m->m[y][x].z * m->z * -cos(m->i/57.2958) + m->m[y][x].y * sin(m->i/57.2958);
 			x++;
 		}
 		y++;
@@ -332,24 +330,32 @@ void	ft_key(int keycode, t_map *m) //linux
 	else if (keycode == 65363)
 			m->r = m->r + 5;
 	else if (keycode == 61)
+	{
 		m->hauteur = m->hauteur + m->hauteur * 0.3;
+		m->minh = 0;
+		m->maxh = 0;
+	}
 	else if (keycode == 45)
+	{
+		m->minh = 0;
+		m->maxh = 0;
 		m->hauteur = m->hauteur - m->hauteur *0.3;
+	}
 	else if (keycode == 32)
 		ft_intimap(m);
 	else if (keycode == 48)
 	{
 			m->i = 90;
-			m->r = 40;
+			m->r = 45;
 	}
 	else if (keycode == 119)
-			m->movey = m->movey + 10;
+			m->movey = m->movey + 30;
 	else if (keycode == 115)
-			m->movey = m->movey - 10;
+			m->movey = m->movey - 30;
 	else if (keycode == 97)
-			m->movex = m->movex + 10;
+			m->movex = m->movex + 30;
 	else if (keycode == 100)
-			m->movex = m->movex - 10;
+			m->movex = m->movex - 30;
 	
 
 		
@@ -391,48 +397,48 @@ void ft_print_map(t_map *m)
 
 int suite(t_map *m)
 {	
-	float t1 = clock();
+	// float t1 = clock();
 	ft_map(m);
-	float t2 = clock();
-	printf("Map \t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// float t2 = clock();
+	// printf("Map \t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_hauteur(m);
-	t2 = clock();
-	printf("Hauteur\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("Hauteur\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_centre(m);
-	t2 = clock();
-	printf("Centre\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("Centre\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_rota(m);
-	t2 = clock();
-	printf("Rota\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("Rota\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_incl(m);
-	t2 = clock();
-	printf("Incl\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("Incl\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_move(m);
-	t2 = clock();
-	printf("Move\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("Move\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_init_color(m);
-	t2 = clock();
-	printf("Color\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("Color\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_print_map(m);
-	t2 = clock();
-	printf("Draw\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("Draw\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
-	t2 = clock();
-	printf("put img\t\t\t%.1f\n", (t2 - t1)/1000);
-	t1 = clock();
+	// t2 = clock();
+	// printf("put img\t\t\t%.1f\n", (t2 - t1)/1000);
+	// t1 = clock();
 	ft_monitoring(m);
-	// printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
-	// printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
-	t2 = clock();
-	printf("end\t\t\t%.1f\n", (t2 - t1)/1000);
+	// // printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
+	// // printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
+	// t2 = clock();
+	// printf("end\t\t\t%.1f\n", (t2 - t1)/1000);
 	return 0;
 }
 
@@ -443,10 +449,12 @@ void ft_intimap(t_map *m)
 	m->winy = 1480;
 	m->z = 1;
 	m->r = 45;
-	m->i = 45;
-	m->hauteur = 0.01;
+	m->i = 20;
+	m->hauteur = 0.02;
 	m->movex = 0;
 	m->movey = 0;
+	m->x = 0;
+	m->y = 0;
 	float t1 = clock();
 	ft_copy_map(m);
 	float t2 = clock();

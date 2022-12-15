@@ -32,7 +32,7 @@ int ft_monitoring(t_map *m)
     {
         while (j < 50)
         {
-            mlx_pixel_put(m->mlx, m->mlx_win, j,  i, 0x404040);
+            mlx_pixel_put(m->mlx, m->mlx_win, j,  i, 0x202020);
             j++;
         }
         j = 0;
