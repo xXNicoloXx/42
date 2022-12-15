@@ -94,7 +94,7 @@ void ft_tab_color(t_map *m)
 		{
 			j = i;
 			i++;		
-			while (m->color[i] == 0 && i < 101)
+			while (i <= 99 && m->color[i] == 0)
 				i++;
 			if (99 < i)
 				return ;
@@ -125,7 +125,6 @@ void ft_init_color(t_map *m)
 		m->color[i] = 0;
 		i++;
 	}
-
 	m->color[0] = 0xff0000;		//42
 	m->color[99] = 0xffffff;
 	ft_tab_color(m);

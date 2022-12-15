@@ -44,12 +44,14 @@ int ft_y_map(int fd, int *xmax)
 	char *ligne;
 		
 	y = 0;
-	while (ligne = get_next_line(fd))
+	ligne = get_next_line(fd);
+	while (ligne)
 	{
 		*xmax = ft_x_map(ligne, *xmax);
 		//printf("xmax = %d\n",*xmax);
-		free(ligne);	
 		y++;
+		free(ligne);
+		ligne = get_next_line(fd);
 	}
 	close(fd);
 	return (y);
@@ -66,7 +68,8 @@ void ft_fill_map(t_map *m, int fd)
 	y = 0;
 	i = 0;
 	x = 0;
-	while (ligne = get_next_line(fd))
+	ligne = get_next_line(fd);
+	while (ligne)
 	{
 		// printf("\t%s", ligne);
 		m->initm[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
@@ -90,6 +93,8 @@ void ft_fill_map(t_map *m, int fd)
 		i = 0;
 		x = 0;
 		y++;
+		free(ligne);
+		ligne = get_next_line(fd);
 	} 
 	
 }
@@ -239,6 +244,31 @@ void ft_move(t_map *m)
 	}
 
 }
+
+void ft_free_map(t_map *m)
+{
+	int x;
+	int y;
+
+	x = 0;
+	y = 0;
+
+	while (y < m->y)
+	{
+		while (x < m->x)
+		{
+			free(&m->m[x][y].h);
+			free(&m->m[x][y].x);
+			free(&m->m[x][y].y);
+			free(&m->m[x][y].z);
+			x++;
+		}
+		x = 0;
+		y++;
+		
+	}
+}
+
 void ft_clean(t_map *m)
 {
 	int y;
@@ -247,6 +277,7 @@ void ft_clean(t_map *m)
 	y = 0;
 	x = 0;
 	write(1, "Clean\n", 7);
+	ft_free_map(m);
 	mlx_destroy_image(m->mlx, m->img.i);
 	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
 }
@@ -346,7 +377,7 @@ void	ft_key(int keycode, t_map *m) //linux
 	else if (keycode == 48)
 	{
 			m->i = 90;
-			m->r = 45;
+			m->r = 0;
 	}
 	else if (keycode == 119)
 			m->movey = m->movey + 30;
@@ -460,7 +491,7 @@ void ft_intimap(t_map *m)
 	float t2 = clock();
 	printf("copy map\t\t%.1f\n\n\n", (t2 - t1)/1000);
 	m->z = m->winx / sqrt((m->x*m->z) * (m->x*m->z) + (m->y*m->z) * (m->y*m->z));
-	m->hauteur = m->z / 100;
+	m->hauteur = m->z / 1000;
 	m->minh = 0;
 	m->maxh = 0;
 	m->mouse_move = 0;
@@ -486,7 +517,7 @@ int main(void)
 	// ft_map(&m);
 	suite(&m);
 	ft_tab_color(&m);
-	mlx_key_hook(m.mlx_win, ft_key, &m);
+	mlx_hook(m.mlx_win, 2, 1L<<0, ft_key, &m);
 	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
 	mlx_do_key_autorepeatoff(m.mlx);
 	mlx_loop(m.mlx);
