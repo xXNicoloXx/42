@@ -98,7 +98,7 @@ void ft_fill_map(t_map *m, int fd)
 	} 
 	
 }
-
+// s
 void	ft_copy_map(t_map *map)
 {
 	int fd;
