@@ -4,6 +4,7 @@
 
 # ifndef MAP
 #  define MAP "./test_maps/worldmap.fdf"
+// #  define MAP "./moremaps/hardests/hardest04.fdf"
 # endif
 
 
@@ -48,7 +49,7 @@ typedef struct s_map
 	int		movex;
 	int		movey;
 	float		hauteur;
-	unsigned long		color[101];
+	unsigned long		color[201];
 	float		hcolor1;
 	float		hcolor2;
 	float 		lenline;

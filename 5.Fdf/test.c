@@ -125,7 +125,7 @@ void ft_map(t_map *m)
 		{
 			m->m[y][x].y = y * m->z;
 			m->m[y][x].x = x * m->z;
-			m->m[y][x].z = m->initm[y][x].z *m->hauteur;
+			m->m[y][x].z = m->initm[y][x].z ;
 			x++;
 		}
 		y++;
@@ -145,10 +145,11 @@ void ft_hauteur(t_map *m)
 	{
 		while (x < m->x)
 		{
-			m->m[y][x].h = m->m[y][x].z;
+			m->m[y][x].h = m->m[y][x].z ;
 			if (m->m[y][x].h < m->minh)
+			{
 				m->minh = m->m[y][x].h;
-
+			}
 			if (m->maxh < m->m[y][x].h)
 				m->maxh = m->m[y][x].h;
 			x++;
@@ -194,7 +195,7 @@ void ft_incl(t_map *m)
 		while (x < m->x)
 		{
 			//printf("m = %f\t%f\n", m->m[y][x].x * cos(m->r), m->m[y][x].y * sin(m->r));
-			m->m[y][x].y = m->m[y][x].z * m->z * -cos(m->i/57.2958) + m->m[y][x].y * sin(m->i/57.2958);
+			m->m[y][x].y = (m->m[y][x].z* m->hauteur) * m->z * -cos(m->i/57.2958) + m->m[y][x].y * sin(m->i/57.2958);
 			x++;
 		}
 		y++;
@@ -257,10 +258,10 @@ void ft_free_map(t_map *m)
 	{
 		while (x < m->x)
 		{
-			free(&m->m[x][y].h);
-			free(&m->m[x][y].x);
-			free(&m->m[x][y].y);
-			free(&m->m[x][y].z);
+			// free(&m->m[x][y].h);
+			// free(&m->m[x][y].x);
+			// free(&m->m[x][y].y);
+			// free(&m->m[x][y].z);
 			x++;
 		}
 		x = 0;
@@ -410,7 +411,7 @@ void ft_print_map(t_map *m)
 			if (x < m->x - 1)
 			{	
 				m->hcolor1 = m->m[y][x].h;
-				m->hcolor2 = m->m[y][x+1].h;	
+				m->hcolor2 = m->m[y][x+1].h ;	
 				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
 			}
 			if (y < m->y -1)
