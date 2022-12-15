@@ -516,8 +516,8 @@ int suite(t_map *m)
 void ft_intimap(t_map *m)
 {
 
-	m->winx = 2520;
-	m->winy = 1200;
+	m->winx = 1000;
+	m->winy = 1000;
 	m->z = 1;
 	m->r = 45;
 	m->i = 20;

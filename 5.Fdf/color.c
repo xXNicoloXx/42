@@ -126,15 +126,16 @@ void ft_init_color(t_map *m)
 		i++;
 	}
 
-	m->color[0] = 0x008AE3;
+	m->color[0] = 0x000001;
+	m->color[10] = 0x004C75;
+	m->color[61] = 0x0094E3;
 	// m->color[59] = 0x0094E3;
 	// m->color[61] = 0xe0cda9;
-	m->color[2] = 0x72CC00;
-	m->color[20] = 0x298000;			//worldmap
-	m->color[40] = 0x4f3000;
-	m->color[70] = 0xffffff;
+	m->color[63] = 0x72CC00;
+	m->color[70] = 0x298000;			//worldmap
+	m->color[78] = 0x4f3000;
+	m->color[80] = 0xffffff;
 	m->color[99] = 0xffffff;
-	m->color[72] = 0xffffff;
 	ft_tab_color(m);
 
 	// m->color[99] = 0x0000ff;
