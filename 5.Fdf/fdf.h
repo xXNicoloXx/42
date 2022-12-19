@@ -3,8 +3,56 @@
 #include <time.h>
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap_XXL.fdf"
+#  define MAP "./test_maps/worldmap_s.fdf"
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
+// #  define Touch_LeftArrow 65361
+// #  define Touch_RightArrow 65363
+// #  define Touch_UpArrow 65362
+// #  define Touch_DownArrow 65364
+// #  define Touch_Moins 45
+// #  define Touch_Plus 61
+// #  define Touch_One 49
+// #  define Touch_Tow 50
+// #  define Touch_Three 51
+// #  define Touch_W 119
+// #  define Touch_A 100
+// #  define Touch_S 115
+// #  define Touch_D 97
+
+
+#  define Touch_LeftArrow 123
+#  define Touch_RightArrow 124
+#  define Touch_UpArrow 126
+#  define Touch_DownArrow 125
+#  define Touch_Moins 27
+#  define Touch_Plus 24
+#  define Touch_One 18
+#  define Touch_Tow 19
+#  define Touch_Three 20
+#  define Touch_W 13
+#  define Touch_A 0
+#  define Touch_S 1
+#  define Touch_D 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # endif
 
 

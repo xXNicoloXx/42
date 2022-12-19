@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/19 12:12:05 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/19 12:35:05 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,7 +277,7 @@ void ft_clean(t_map *m)
 
 	y = 0;
 	x = 0;
-	write(1, "Clean\n", 7);
+	// write(1, "Clean\n", 7);
 	ft_free_map(m);
 	mlx_destroy_image(m->mlx, m->img.i);
 	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
@@ -285,28 +285,28 @@ void ft_clean(t_map *m)
 
 int suite(t_map *m);
 
-int	ft_key(int keycode, t_map *m) // Mac
-{
-	ft_clean(m);
-	if (keycode == 126)
-			m->i = m->i + 5;
-	else if (keycode == 125)
-			m->i = m->i - 5;
-	else if (keycode == 123)
-			m->r = m->r - 5;
-	else if (keycode == 124)
-			m->r = m->r + 5;
-	else if (keycode == 1)
-			m->z = m->z - 5;
-	else if (keycode == 13)
-			m->z = m->z + 5;
+// int	ft_key(int keycode, t_map *m) // Mac
+// {
+// 	ft_clean(m);
+// 	if (keycode == 126)
+// 			m->i = m->i + 5;
+// 	else if (keycode == 125)
+// 			m->i = m->i - 5;
+// 	else if (keycode == 123)
+// 			m->r = m->r - 5;
+// 	else if (keycode == 124)
+// 			m->r = m->r + 5;
+// 	else if (keycode == 1)
+// 			m->z = m->z - 5;
+// 	else if (keycode == 13)
+// 			m->z = m->z + 5;
 			
-	fprintf(stderr, "code %d\n", keycode);
-	write(1, "coucou\n", 7);
-	suite(m);
-	// mlx_destroy_window(m->mlx, m->mlx_win);
-	return 0;
-}
+// 	fprintf(stderr, "code %d\n", keycode);
+// 	write(1, "coucou\n", 7);
+// 	suite(m);
+// 	// mlx_destroy_window(m->mlx, m->mlx_win);
+// 	return 0;
+// }
 
 void ft_annimation(t_map *m)
 {
@@ -390,47 +390,43 @@ void	ft_key(int keycode, t_map *m) //linux
 {
 	fprintf(stderr, "code %d\n", keycode);
 	ft_clean(m);
-	if (keycode == 65362)
+	if (keycode == Touch_UpArrow)
 			m->i = m->i + 5;
-	else if (keycode == 65364)
+	else if (keycode == Touch_DownArrow)
 			m->i = m->i - 5;
-	else if (keycode == 65361)
+	else if (keycode == Touch_LeftArrow)
 			m->r = m->r - 5;
-	else if (keycode == 65363)
+	else if (keycode == Touch_RightArrow)
 			m->r = m->r + 5;
-	else if (keycode == 61)
+	else if (keycode == Touch_Plus)
 	{
 		m->hauteur = m->hauteur + m->hauteur * 0.3;
 		m->minh = 0;
 		m->maxh = 0;
 	}
-	else if (keycode == 45)
+	else if (keycode == Touch_Moins)
 	{
 		m->minh = 0;
 		m->maxh = 0;
 		m->hauteur = m->hauteur - m->hauteur *0.3;
 	}
-	else if (keycode == 49)
+	else if (keycode == Touch_One)
 		ft_intimap(m);
-	else if (keycode == 50)
+	else if (keycode == Touch_Tow)
 	{
 			m->i = 90;
 			m->r = 0;
 	}
-	else if (keycode == 51)
+	else if (keycode == Touch_Three)
 		ft_annimation(m);
-	else if (keycode == 119)
+	else if (keycode == Touch_W)
 			m->movey = m->movey + 30;
-	else if (keycode == 115)
+	else if (keycode == Touch_S)
 			m->movey = m->movey - 30;
-	else if (keycode == 97)
+	else if (keycode == Touch_D)
 			m->movex = m->movex + 30;
-	else if (keycode == 100)
+	else if (keycode == Touch_A)
 			m->movex = m->movex - 30;
-	
-
-		
-
 	suite(m);
 	// mlx_destroy_window(m->mlx, m->mlx_win);
 	return ;
