@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/12 19:49:18 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/19 12:12:05 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,28 +285,28 @@ void ft_clean(t_map *m)
 
 int suite(t_map *m);
 
-// int	ft_key(int keycode, t_map *m) // Mac
-// {
-// 	ft_clean(m);
-// 	if (keycode == 126)
-// 			m->i = m->i + 5;
-// 	else if (keycode == 125)
-// 			m->i = m->i - 5;
-// 	else if (keycode == 123)
-// 			m->r = m->r - 5;
-// 	else if (keycode == 124)
-// 			m->r = m->r + 5;
-// 	else if (keycode == 1)
-// 			m->z = m->z - 5;
-// 	else if (keycode == 13)
-// 			m->z = m->z + 5;
+int	ft_key(int keycode, t_map *m) // Mac
+{
+	ft_clean(m);
+	if (keycode == 126)
+			m->i = m->i + 5;
+	else if (keycode == 125)
+			m->i = m->i - 5;
+	else if (keycode == 123)
+			m->r = m->r - 5;
+	else if (keycode == 124)
+			m->r = m->r + 5;
+	else if (keycode == 1)
+			m->z = m->z - 5;
+	else if (keycode == 13)
+			m->z = m->z + 5;
 			
-// 	fprintf(stderr, "code %d\n", keycode);
-// 	write(1, "coucou\n", 7);
-// 	suite(m);
-// 	// mlx_destroy_window(m->mlx, m->mlx_win);
-// 	return 0;
-// }
+	fprintf(stderr, "code %d\n", keycode);
+	write(1, "coucou\n", 7);
+	suite(m);
+	// mlx_destroy_window(m->mlx, m->mlx_win);
+	return 0;
+}
 
 void ft_annimation(t_map *m)
 {
@@ -565,4 +565,4 @@ int main(void)
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
 //gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -I./ -L./ -lmlx -lm -lXext -lX11
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && valgrind --leak-check=full --show-leak-kinds=all  ./a.out
-// APPLE gcc  *.c -I ./ -L ./ -lmlx -framework OpenGL -framework AppKit && ./a.out || grep "error"
+// APPLE gcc  *.c -I ./ -L ./ -lmlx -framework OpenGL -framework AppKit && ./a.out

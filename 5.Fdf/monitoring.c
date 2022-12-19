@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/13 15:48:03 by ngriveau         ###   ########.fr       */
+/*   Updated: 2022/12/18 21:31:00 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,48 +43,48 @@ int ft_monitoring(t_map *m)
     value = ft_itoa((int)m->x);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13, 0xffffff, value);
     // free(value);
-	printf("free moni\n");
+	// printf("free moni\n");
 
 
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*2, 0xffffff, "z: ");
     value = ft_itoa((int)m->y);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*2, 0xffffff, value);
     // free(value);
-	printf("free moni\n");
+	// printf("free moni\n");
 
 
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*3, 0xffffff, "h: ");
     value = ft_itoa((int)m->minh);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*3, 0xffffff, value);
     // free(value);
-	printf("free moni %f\n",m->minh);
+	// printf("free moni %f\n",m->minh);
 
 
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*4, 0xffffff, "H: ");
     value = ft_itoa((int)m->maxh);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*4, 0xffffff, value);
     // free(value);
-	printf("free moni %d %f\n", (int)m->maxh, m->maxh);
+	// printf("free moni %d %f\n", (int)m->maxh, m->maxh);
 
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13 *5, 0xffffff, "R:");
 
     value = ft_itoa((int)m->r);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13 *5, 0xffffff, value);
     // free(value);
-	printf("free moni\n");
+	// printf("free moni\n");
 
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*6, 0xffffff, "I: ");
     value = ft_itoa((int)m->i);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*6, 0xffffff, value);
     // free(value);
-	printf("free moni\n");
+	// printf("free moni\n");
 
 
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*7, 0xffffff, "Z: ");
     value = ft_itoa((int)m->z);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*7, 0xffffff, value);
     // free(value);
-	printf("free moni\n");
+	// printf("free moni\n");
 
     }
 }
