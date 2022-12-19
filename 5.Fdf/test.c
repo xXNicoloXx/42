@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/19 13:30:24 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/19 17:20:24 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -454,48 +454,56 @@ void ft_print_map(t_map *m)
 
 int suite(t_map *m)
 {	
-	// float t1 = clock();
+	if (m->i == 360)
+		m->i = 0;
+	if (m->i == -5)
+		m->i = 355;
+	if (m->r == 360)
+		m->r = 0;
+	if (m->r == -5)
+		m->r = 355;
+	float t1 = clock();
 	ft_map(m);
-	// float t2 = clock();
-	// printf("Map \t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	float t2 = clock();
+	printf("Map \t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_hauteur(m);
-	// t2 = clock();
-	// printf("Hauteur\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("Hauteur\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_centre(m);
-	// t2 = clock();
-	// printf("Centre\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("Centre\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_rota(m);
-	// t2 = clock();
-	// printf("Rota\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("Rota\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_incl(m);
-	// t2 = clock();
-	// printf("Incl\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("Incl\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_move(m);
-	// t2 = clock();
-	// printf("Move\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("Move\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_init_color(m);
-	// t2 = clock();
-	// printf("Color\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("Color\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_print_map(m);
-	// t2 = clock();
-	// printf("Draw\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("Draw\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
-	// t2 = clock();
-	// printf("put img\t\t\t%.1f\n", (t2 - t1)/1000);
-	// t1 = clock();
+	t2 = clock();
+	printf("put img\t\t\t%.1f\n", (t2 - t1)/1000);
+	t1 = clock();
 	ft_monitoring(m);
-	// // printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
-	// // printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
-	// t2 = clock();
-	// printf("end\t\t\t%.1f\n", (t2 - t1)/1000);
+	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
+	printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
+	t2 = clock();
+	printf("end\t\t\t%.1f\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (t2 - t1)/1000);
 	return 0;
 }
 
