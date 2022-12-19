@@ -3,7 +3,7 @@
 #include <time.h>
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap_s.fdf"
+#  define MAP "./test_maps/42.fdf"
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
 // #  define Touch_LeftArrow 65361
 // #  define Touch_RightArrow 65363
@@ -36,6 +36,18 @@
 
 # endif
 
+typedef struct s_print
+{
+	int		x;
+	int		y;
+	int		h;
+	int		cmpx;
+	int		cmpy;
+	int		cmph;
+	int		resetx;
+	int		resety;
+	int		reseth;
+}				t_print;
 
 typedef struct s_pixel
 {
@@ -62,6 +74,7 @@ typedef struct s_map
 {
 	t_pixel	**initm;
 	t_pixel	**m;
+	t_print print;
 	int		x;
 	int		y;
 	float varcos;
