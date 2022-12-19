@@ -34,25 +34,6 @@
 #  define Touch_S 1
 #  define Touch_D 2
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # endif
 
 

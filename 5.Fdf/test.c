@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/19 12:35:05 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/19 13:30:24 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,36 +277,25 @@ void ft_clean(t_map *m)
 
 	y = 0;
 	x = 0;
-	// write(1, "Clean\n", 7);
-	ft_free_map(m);
-	mlx_destroy_image(m->mlx, m->img.i);
-	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
+	while (y < m->winx)
+	{
+		while (x < m->winy)
+		{
+			ft_draw(m, x, y, 0);
+			x++;
+			// printf("x \n");
+		}
+		x = 0;
+		y++;
+	}
+	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
+	write(1, "Clean\n", 7);
+	// ft_free_map(m);
+	// mlx_destroy_image(m->mlx, m->img.i);
+	// m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
 }
 
 int suite(t_map *m);
-
-// int	ft_key(int keycode, t_map *m) // Mac
-// {
-// 	ft_clean(m);
-// 	if (keycode == 126)
-// 			m->i = m->i + 5;
-// 	else if (keycode == 125)
-// 			m->i = m->i - 5;
-// 	else if (keycode == 123)
-// 			m->r = m->r - 5;
-// 	else if (keycode == 124)
-// 			m->r = m->r + 5;
-// 	else if (keycode == 1)
-// 			m->z = m->z - 5;
-// 	else if (keycode == 13)
-// 			m->z = m->z + 5;
-			
-// 	fprintf(stderr, "code %d\n", keycode);
-// 	write(1, "coucou\n", 7);
-// 	suite(m);
-// 	// mlx_destroy_window(m->mlx, m->mlx_win);
-// 	return 0;
-// }
 
 void ft_annimation(t_map *m)
 {
@@ -367,6 +356,7 @@ void ft_mouse_move(int x, int y, t_map *m)
 	}
 	printf("%d\t%d\n\n", x, y);
 }
+
 
 void ft_zoom(int keycode, int x, int y, t_map *m)
 {
