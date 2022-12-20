@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/19 18:18:59 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/19 18:32:58 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -504,13 +504,13 @@ void ft_print_map(t_map *m)
 				printf("\t\th = %d\t x = %d\t y = %d\n", h, x, y);
 
 
-				if (x < m->x - 1 && y < m->y -1)
+				if (x != m->x - 1)
 				{	
 					m->hcolor1 = m->m[y][x].h;
 					m->hcolor2 = m->m[y][x+1].h ;	
 					ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
 				}
-				if (x < m->x - 1 && y < m->y -1)
+				if (y < m->y - 1)
 				{
 					m->hcolor1 = m->m[y][x].h;
 					m->hcolor2 = m->m[y+1][x].h;
