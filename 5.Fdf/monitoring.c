@@ -18,6 +18,7 @@ int ft_monitoring(t_map *m)
 {
     int i;
     int j;
+    int c;
     char *value;
     i = 0;
     j = 0;
@@ -38,53 +39,56 @@ int ft_monitoring(t_map *m)
         j = 0;
         i++;
     }
-
+    c = 99;
+    j = m->winy -100;
+    while (j < m->winy)
+    {
+        i = m->winx -10;
+        while (i < m->winx)
+        {
+            mlx_pixel_put(m->mlx, m->mlx_win, i,  j, m->color[c]);
+            i++;
+        }
+        c--;
+        j++;
+    }
 	mlx_string_put(m->mlx,  m->mlx_win, 5, 13, 0xffffff, "x: ");
     value = ft_itoa((int)m->x);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13, 0xffffff, value);
     // free(value);
 	// printf("free moni\n");
-
-
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*2, 0xffffff, "z: ");
     value = ft_itoa((int)m->y);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*2, 0xffffff, value);
     // free(value);
 	// printf("free moni\n");
-
-
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*3, 0xffffff, "h: ");
     value = ft_itoa((int)m->minh);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*3, 0xffffff, value);
     // free(value);
 	// printf("free moni %f\n",m->minh);
 
-
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*4, 0xffffff, "H: ");
     value = ft_itoa((int)m->maxh);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*4, 0xffffff, value);
     // free(value);
 	// printf("free moni %d %f\n", (int)m->maxh, m->maxh);
-
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13 *5, 0xffffff, "R:");
 
     value = ft_itoa((int)m->r);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13 *5, 0xffffff, value);
     // free(value);
 	// printf("free moni\n");
-
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*6, 0xffffff, "I: ");
     value = ft_itoa((int)m->i);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*6, 0xffffff, value);
     // free(value);
 	// printf("free moni\n");
 
-
     mlx_string_put(m->mlx,  m->mlx_win, 5, 13*7, 0xffffff, "Z: ");
     value = ft_itoa((int)m->z);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*7, 0xffffff, value);
     // free(value);
 	// printf("free moni\n");
-
     }
 }
