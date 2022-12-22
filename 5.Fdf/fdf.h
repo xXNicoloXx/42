@@ -18,6 +18,10 @@
 #  define Touch_A 100
 #  define Touch_S 115
 #  define Touch_D 97
+#  define ESC 65307
+#  define Touch_C 99
+
+
 
 
 // #  define Touch_LeftArrow 123
@@ -36,18 +40,6 @@
 
 # endif
 
-typedef struct s_print
-{
-	int		x;
-	int		y;
-	int		h;
-	int		cmpx;
-	int		cmpy;
-	int		cmph;
-	int		resetx;
-	int		resety;
-	int		reseth;
-}				t_print;
 
 typedef struct s_pixel
 {
@@ -74,7 +66,6 @@ typedef struct s_map
 {
 	t_pixel	**initm;
 	t_pixel	**m;
-	t_print print;
 	int		x;
 	int		y;
 	float varcos;
@@ -91,7 +82,8 @@ typedef struct s_map
 	int		movex;
 	int		movey;
 	float		hauteur;
-	unsigned long		color[201];
+	unsigned long		color[101];
+	int setupcolor;
 	float		hcolor1;
 	float		hcolor2;
 	float 		lenline;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:56:24 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/19 17:52:44 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/12 19:46:52 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,12 +125,42 @@ void ft_init_color(t_map *m)
 		m->color[i] = 0;
 		i++;
 	}
-
-	m->color[0] = 0xff0000;
-	m->color[99] = 0xffffff;
+	if (m->setupcolor > 4)
+		m->setupcolor = 0;
+	if (m->setupcolor == 0)
+	{
+		m->color[0] = 0x000001;
+		m->color[10] = 0x004C75;
+		m->color[61] = 0x0094E3;
+		// m->color[59] = 0x0094E3;
+		// m->color[61] = 0xe0cda9;
+		m->color[63] = 0x72CC00;
+		m->color[70] = 0x298000;			//worldmap
+		m->color[78] = 0x4f3000;
+		m->color[80] = 0xffffff;
+		m->color[99] = 0xffffff;
+	}
+	if (m->setupcolor == 1)
+	{
+		m->color[0] = 0xff00ff;
+		m->color[99] = 0x0070ff;
+	}
+	if (m->setupcolor == 2)
+	{
+		m->color[0] = 0xff0000;
+		m->color[99] = 0xffff00;
+	}
+	if (m->setupcolor == 3)
+	{
+		m->color[0] = 0x00ff00;
+		m->color[99] = 0xff00ff;
+	}
+	if (m->setupcolor == 4)
+	{
+		m->color[0] = 0x333333;
+		m->color[99] = 0xffffff;
+	}
 	ft_tab_color(m);
-
-	// m->color[99] = 0x0000ff;
 }
 // int main(void)
 // {

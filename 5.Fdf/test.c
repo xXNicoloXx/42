@@ -6,7 +6,7 @@
 /*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/19 18:32:58 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2022/12/19 17:20:24 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -277,22 +277,23 @@ void ft_clean(t_map *m)
 
 	y = 0;
 	x = 0;
-	while (y < m->winx)
-	{
-		while (x < m->winy)
-		{
-			ft_draw(m, x, y, 0);
-			x++;
-			// printf("x \n");
-		}
-		x = 0;
-		y++;
-	}
-	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
+	printf("winx = %.1f\t winy = %.1f", m->winx , m->winy);
+	// while (y < m->winx)
+	// {
+	// 	while (x < m->winy)
+	// 	{
+	// 		ft_draw(m, x, y, 0);
+	// 		x++;
+	// 		// printf("x \n");
+	// 	}
+	// 	x = 0;
+	// 	y++;
+	// }
+	// mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	write(1, "Clean\n", 7);
 	// ft_free_map(m);
-	// mlx_destroy_image(m->mlx, m->img.i);
-	// m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
+	mlx_destroy_image(m->mlx, m->img.i);
+	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
 }
 
 int suite(t_map *m);
@@ -312,7 +313,6 @@ void ft_annimation(t_map *m)
 	{
 		m->i += 0.65;
 		m->r += 3;
-		m->z -= i/60;
 		suite(m);
 		ft_clean(m);
 		i++;
@@ -322,7 +322,6 @@ void ft_annimation(t_map *m)
 	{
 		m->i -= 0.65;
 		m->r += 3;
-		m->z += i/60;
 		suite(m);
 		ft_clean(m);
 		i++;
@@ -417,112 +416,41 @@ void	ft_key(int keycode, t_map *m) //linux
 			m->movex = m->movex + 30;
 	else if (keycode == Touch_A)
 			m->movex = m->movex - 30;
+	else if (keycode == Touch_C)
+			m->setupcolor += 1;
+	else if (keycode == ESC)
+			mlx_destroy_window(m->mlx, m->mlx_win);
 	suite(m);
-	// mlx_destroy_window(m->mlx, m->mlx_win);
 	return ;
-}
-
-void ft_config_print_map(int *x, int *y, int *h, t_map *m)
-{
-		printf("\n\n\n\n");
-	if (180 < m->i)
-	{
-		printf("1");
-		*h = m->maxh;
-		m->print.reseth = m->maxh;
-		m->print.cmph = m->minh;
-		m->print.h = -1;
-	}
-	else
-	{
-		printf("2");
-
-		*h = m->minh;
-		m->print.reseth = m->minh;
-		m->print.cmph = m->maxh;
-		m->print.h = 1;
-	}
-	if (m->r < 180)
-	{
-		printf("3");
-
-		*x = 0;
-		m->print.resetx = 0;
-		m->print.cmpx = m->x;
-		m->print.x = 1;
-	}
-	else
-	{
-		printf("4");
-
-		*x = m->x;
-		m->print.resetx = m->x;
-		m->print.cmpx = 0;
-		m->print.x = -1;
-	}
-	if (m->r < 90 || 270 < m->r)
-	{
-		printf("5");
-
-		*y = 0;
-		m->print.resety = 0;
-		m->print.cmpy = m->y;
-		m->print.y = 1;
-	}
-	else
-	{
-		printf("6");
-
-		*y = m->y;
-		m->print.resety = m->y;
-		m->print.cmpy = 0;
-		m->print.y = -1;
-	}
-		printf("\n\n\n\noui h = %d\t x = %d\t y = %d (%d)\n", *h, *x, *y, m->y);
-
-	
 }
 
 void ft_print_map(t_map *m)
 {
 	int x;
 	int y;
-	int h;
 
-	ft_config_print_map(&x, &y, &h, m);
-	printf("\n\n\n\noui h = %d\t x = %d\t y = %d (%d)\n", h, x, y, m->y);
-	
-	while (h != m->print.cmph)
+	x = 0;
+	y = 0;
+	while (y < m->y)
 	{
-		printf("h = %d\t x = %d\t y = %d (%d)\n", h, x, y, m->y);
-		while (y != m->print.cmpy )
+		while (x < m->x)
 		{
-				printf("\th = %d\t x = %d\t y = %d\n", h, x, y);
-
-			while (x != m->print.cmpx)
-			{
-				printf("\t\th = %d\t x = %d\t y = %d\n", h, x, y);
-
-
-				if (x != m->x - 1)
-				{	
-					m->hcolor1 = m->m[y][x].h;
-					m->hcolor2 = m->m[y][x+1].h ;	
-					ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
-				}
-				if (y < m->y - 1)
-				{
-					m->hcolor1 = m->m[y][x].h;
-					m->hcolor2 = m->m[y+1][x].h;
-					ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
-				}
-				x += m->print.x;
+			if (x < m->x - 1)
+			{	
+				m->hcolor1 = m->m[y][x].h;
+				m->hcolor2 = m->m[y][x+1].h ;	
+				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
 			}
-			x = m->print.resetx;
-			y += m->print.y;
+			if (y < m->y -1)
+			{
+				m->hcolor1 = m->m[y][x].h;
+				m->hcolor2 = m->m[y+1][x].h;
+				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
+			}
+			x++;
 		}
-		y = m->print.resety;
-		h += m->print.h;
+		y++;
+		x = 0;
 	}
 }
 
@@ -584,8 +512,8 @@ int suite(t_map *m)
 void ft_intimap(t_map *m)
 {
 
-	m->winx = 1000;
-	m->winy = 1000;
+	m->winx = 1500;
+	m->winy = 800;
 	m->z = 1;
 	m->r = 45;
 	m->i = 20;
@@ -603,6 +531,7 @@ void ft_intimap(t_map *m)
 	m->minh = 0;
 	m->maxh = 0;
 	m->mouse_move = 0;
+	m->setupcolor = 0;
 }
 
 
