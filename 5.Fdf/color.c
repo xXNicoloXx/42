@@ -45,14 +45,14 @@ void ft_draw(t_map *m, float x, float y, int color)
 	if ((m->img.size) * m->winy < pixel - 5 || x <= 0 || y <= 0 || y > m->y * m->winy || x > m->winx)
 		return ;
 	
-    if (m->img.e == 1)        // Most significant (Alpha) byte first
+    if (m->img.e == 1)
     {
         m->img.data[pixel + 0] = 0;
         m->img.data[pixel + 1] = m->img.r;
         m->img.data[pixel + 2] = m->img.g;
         m->img.data[pixel + 3] = m->img.b;
     }
-    else if (m->img.e == 0)   // Least significant (Blue) byte first
+    else if (m->img.e == 0)
     {
         m->img.data[pixel + 0] = m->img.b;
         m->img.data[pixel + 1] = m->img.g;
@@ -76,8 +76,6 @@ void ft_tab_deg(t_map *m, int start, int end)
 	{
 		pc = ((i)/diff);
 		m->color[start + i] = roundf((m->img.r*(1-pc)) + (c.img.r*pc))* 65536 + roundf((m->img.g*(1-pc)) + (c.img.g*pc)) * 256 + roundf((m->img.b*(1-pc)) + (c.img.b*pc));
-		// printf("i = %d\t = %d\n\n", start + i, m->color[start + i]);
-
 		i++;
 	}
 }
@@ -103,15 +101,6 @@ void ft_tab_color(t_map *m)
 		else
 			i++;
 	}
-	// i = 0;
-	// while (i < 100)
-	// {
-	// 	mlx_pixel_put(m->mlx, m->mlx_win, i, 49, m->color[i]);
-	// 	mlx_pixel_put(m->mlx, m->mlx_win, i, 50, m->color[i]);
-	// 	mlx_pixel_put(m->mlx, m->mlx_win, i, 51, m->color[i]);
-	// 	// printf("color[%d] = %x(%d)\n",i, m->color[i], m->color[i]);
-	// 	i++;
-	// } 
 }
 
 
@@ -125,40 +114,42 @@ void ft_init_color(t_map *m)
 		m->color[i] = 0;
 		i++;
 	}
-	if (m->setupcolor > 4)
+	if (m->setupcolor > 5)
 		m->setupcolor = 0;
 	if (m->setupcolor == 0)
 	{
 		m->color[0] = 0x000001;
-		m->color[10] = 0x004C75;
-		m->color[61] = 0x0094E3;
-		// m->color[59] = 0x0094E3;
-		// m->color[61] = 0xe0cda9;
-		m->color[63] = 0x72CC00;
-		m->color[70] = 0x298000;			//worldmap
-		m->color[78] = 0x4f3000;
-		m->color[80] = 0xffffff;
 		m->color[99] = 0xffffff;
 	}
-	if (m->setupcolor == 1)
+	else if (m->setupcolor == 1)
 	{
 		m->color[0] = 0xff00ff;
 		m->color[99] = 0x0070ff;
 	}
-	if (m->setupcolor == 2)
+	else if (m->setupcolor == 2)
 	{
 		m->color[0] = 0xff0000;
 		m->color[99] = 0xffff00;
 	}
-	if (m->setupcolor == 3)
+	else if (m->setupcolor == 3)
 	{
 		m->color[0] = 0x00ff00;
 		m->color[99] = 0xff00ff;
 	}
-	if (m->setupcolor == 4)
+	else if (m->setupcolor == 4)
 	{
 		m->color[0] = 0x333333;
 		m->color[99] = 0xffffff;
+	}
+	else if (m->setupcolor == 5)
+	{
+		m->color[0] = 0xff0000;
+		m->color[15] = 0xffa500;
+		m->color[30] = 0xffff00;
+		m->color[45] = 0x008000;
+		m->color[60] = 0x0000ff;
+		m->color[75] = 0x4b0082;
+		m->color[99] = 0xee82ee;
 	}
 	ft_tab_color(m);
 }
