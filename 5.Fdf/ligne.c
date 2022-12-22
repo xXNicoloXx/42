@@ -19,8 +19,6 @@ int ft_color_line(float nbpix, float pospix, t_map *m)
 	float tmp;
 	float deltah;
 	char *atoi;
-	if (m->lenline < 0)
-		m->lenline *= -1;
 	// if (nbpix < 0 && pospix < 0)
 	// {
 	// 	tmp = m->hcolor1;

@@ -20,6 +20,7 @@
 #  define Touch_D 97
 #  define ESC 65307
 #  define Touch_C 99
+#  define Touch_M 109
 
 
 
@@ -68,31 +69,33 @@ typedef struct s_map
 	t_pixel	**m;
 	int		x;
 	int		y;
+	float		minh;
+	float		maxh;
+
+
 	float varcos;
 	float varsin;
 
-	float		minh;
-	float		maxh;
-	int		winx;
-	int		winy;
+	float			z;
+	float			r;
+	float			i;
+	int				movex;
+	int				movey;
 
-	float	z;
-	float	r;
-	float	i;
-	int		movex;
-	int		movey;
-	float		hauteur;
-	unsigned long		color[101];
-	int setupcolor;
+	float			hauteur;
+
+
+	unsigned long	color[101];
+	int				setupcolor;
 	float		hcolor1;
 	float		hcolor2;
-	float 		lenline;
 	
 
 
 	void	*mlx;
 	void	*mlx_win;
-
+	int		winx;
+	int		winy;
 	t_img	img;
 
 	int mouse_move;

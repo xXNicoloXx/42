@@ -39,12 +39,12 @@ int ft_monitoring(t_map *m)
         j = 0;
         i++;
     }
-    c = 99;
+    c = 100;
     j = m->winy -100;
-    while (j < m->winy)
+    while (j <= m->winy)
     {
-        i = m->winx -10;
-        while (i < m->winx)
+        i = m->winx -7;
+        while (i <=m->winx)
         {
             mlx_pixel_put(m->mlx, m->mlx_win, i,  j, m->color[c]);
             i++;
