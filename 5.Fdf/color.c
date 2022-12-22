@@ -138,7 +138,7 @@ void ft_init_color(t_map *m)
 		m->color[70] = 0x298000;			//worldmap
 		m->color[78] = 0x4f3000;
 		m->color[80] = 0xffffff;
-		// m->color[99] = 0xffffff;
+		m->color[99] = 0xffffff;
 	}
 	if (m->setupcolor == 1)
 	{

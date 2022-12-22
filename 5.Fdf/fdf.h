@@ -72,10 +72,6 @@ typedef struct s_map
 	float		minh;
 	float		maxh;
 
-
-	float varcos;
-	float varsin;
-
 	float			z;
 	float			r;
 	float			i;
@@ -83,7 +79,6 @@ typedef struct s_map
 	int				movey;
 
 	float			hauteur;
-
 
 	unsigned long	color[101];
 	int				setupcolor;
@@ -99,6 +94,9 @@ typedef struct s_map
 	t_img	img;
 
 	int mouse_move;
+	float varcos;
+	float varsin;
+	int verifmonitor;
 }					t_map;
 
 void ft_pos_pixel(t_map *m);
@@ -106,5 +104,5 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m);
 void ft_draw(t_map *m, float x, float y, int color);
 void ft_tab_color(t_map *m);
 void ft_init_color(t_map *m);
-int ft_monitoring(t_map *m);
+void ft_monitoring(t_map *m);
 void ft_intimap(t_map *m);

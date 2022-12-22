@@ -14,12 +14,15 @@
 #include "fdf.h"
 #include <X11/X.h>
 
-int ft_monitoring(t_map *m)
+void ft_monitoring(t_map *m)
 {
     int i;
     int j;
     int c;
     char *value;
+        
+    if (m->verifmonitor != 1)
+        return ;
     i = 0;
     j = 0;
     if (m->y == 0 && m->x == 0)

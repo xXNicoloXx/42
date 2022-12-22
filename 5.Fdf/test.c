@@ -420,6 +420,8 @@ void	ft_key(int keycode, t_map *m) //linux
 			m->setupcolor += 1;
 	else if (keycode == ESC)
 			mlx_destroy_window(m->mlx, m->mlx_win);
+	else if (keycode == Touch_M)
+			m->verifmonitor *= -1;
 	suite(m);
 	return ;
 }
@@ -532,6 +534,7 @@ void ft_intimap(t_map *m)
 	m->maxh = 0;
 	m->mouse_move = 0;
 	m->setupcolor = 0;
+	m->verifmonitor = 1;
 }
 
 
