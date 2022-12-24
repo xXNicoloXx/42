@@ -3,7 +3,7 @@
 #include <time.h>
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap.fdf"
+#  define MAP "./test_maps/t2.fdf"
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
 #  define Touch_LeftArrow 65361
 #  define Touch_RightArrow 65363
@@ -48,6 +48,7 @@ typedef struct s_pixel
 	float		y;
 	float		z;
 	float		h;
+	int		color;
 
 }				t_pixel;
 
@@ -84,6 +85,7 @@ typedef struct s_map
 	int				setupcolor;
 	float		hcolor1;
 	float		hcolor2;
+	int			MapColCus;
 	
 
 
@@ -106,3 +108,5 @@ void ft_tab_color(t_map *m);
 void ft_init_color(t_map *m);
 void ft_monitoring(t_map *m);
 void ft_intimap(t_map *m);
+int	ft_atoi_color(const char *str, int x, int y, t_map *m);
+void	ft_color(int nbr, t_map *m);

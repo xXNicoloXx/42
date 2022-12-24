@@ -23,15 +23,14 @@ int ft_x_map(char *ligne, int xmax)
 	x = 0;
 	while (ligne[i] != '\n' && ligne[i] != '\0')
 	{
-		if (ft_isdigit(ligne[i]))
+		if (ligne[i] != ' ')
 		{
 			x++;
-			// printf("x = %d\n",x);
-			while (ft_isdigit(ligne[i]))
-				i++;
+			while (ligne[i] != ' ' && ligne[i] != '\0')
+				i++;				
 		}
 		else
-			i++;
+			i++;	
 	}
 	if (xmax < x)
 		xmax = x;
@@ -75,20 +74,20 @@ void ft_fill_map(t_map *m, int fd)
 		m->initm[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
 		while (ligne[i] != '\n' && ligne[i] != '\0')
 		{
-			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
+			if (ligne[i] != ' ')
 			{
-				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->initm[y][x].y = y * m->z;
 				m->initm[y][x].x = x * m->z;
-				m->initm[y][x].z = ft_atoi(ligne + i);
+				m->initm[y][x].z = ft_atoi_color(ligne + i, x, y, m);
+				printf("x = %d\ty = %d\tcolor = %d\t z = %.1f\n", x, y, m->initm[y][x].color, m->initm[y][x].z);
 
-				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
-				while (ft_isdigit(ligne[i]) || ligne[i] == '-')
-					i++;
+				while (ligne[i] != ' ' && ligne[i] != '\0')
+					i++;				
 			}
 			else
 				i++;
+			
 		}
 		i = 0;
 		x = 0;
@@ -126,6 +125,8 @@ void ft_map(t_map *m)
 			m->m[y][x].y = y * m->z;
 			m->m[y][x].x = x * m->z;
 			m->m[y][x].z = m->initm[y][x].z ;
+			m->m[y][x].color = m->initm[y][x].color;
+
 			x++;
 		}
 		y++;
@@ -440,7 +441,8 @@ void ft_print_map(t_map *m)
 			if (x < m->x - 1)
 			{	
 				m->hcolor1 = m->m[y][x].h;
-				m->hcolor2 = m->m[y][x+1].h ;	
+				m->hcolor2 = m->m[y][x+1].h ;
+				// printf("h1 = %.0f\t h2 = %.0f\n", m->hcolor1 , m->hcolor2);	
 				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
 			}
 			if (y < m->y -1)
@@ -507,15 +509,15 @@ int suite(t_map *m)
 	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
 	printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
 	t2 = clock();
-	printf("end\t\t\t%.1f\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (t2 - t1)/1000);
+	printf("end\t\t\t%.1f\tcolor = %d\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (t2 - t1)/1000, m->color[14]);
 	return 0;
 }
 
 void ft_intimap(t_map *m)
 {
 
-	m->winx = 1500;
-	m->winy = 800;
+	m->winx = 1800;
+	m->winy = 1000;
 	m->z = 1;
 	m->r = 45;
 	m->i = 20;
