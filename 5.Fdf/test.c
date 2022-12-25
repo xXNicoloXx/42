@@ -79,7 +79,6 @@ void ft_fill_map(t_map *m, int fd)
 				m->initm[y][x].y = y * m->z;
 				m->initm[y][x].x = x * m->z;
 				m->initm[y][x].z = ft_atoi_color(ligne + i, x, y, m);
-				printf("x = %d\ty = %d\tcolor = %d\t z = %.1f\n", x, y, m->initm[y][x].color, m->initm[y][x].z);
 
 				x++;
 				while (ligne[i] != ' ' && ligne[i] != '\0')
@@ -363,9 +362,14 @@ void ft_zoom(int keycode, int x, int y, t_map *m)
 	if (keycode != 1)
 	ft_clean(m);
 	if (keycode == 5)
-			m->z -= m->z*0.2;
+	{
+		m->z -= m->z*0.2;
+
+	}
 	else if (keycode == 4)
-			m->z += m->z*0.2;
+	{
+		m->z += m->z*0.2;
+	}
 	else if (keycode == 1)
 	{
 		ft_mouse_move(x, y, m);
@@ -440,15 +444,61 @@ void ft_print_map(t_map *m)
 		{
 			if (x < m->x - 1)
 			{	
-				m->hcolor1 = m->m[y][x].h;
-				m->hcolor2 = m->m[y][x+1].h ;
+				printf("color = %d\n", m->m[y][x].color);
+				if (m->m[y][x].color == -1 && m->m[y][x+1].color == -1)
+				{
+					m->hcolor1 = m->m[y][x].h;
+					m->hcolor2 = m->m[y][x+1].h ;
+					m->MapColVerif = 0;
+				}
+				else if (m->m[y][x].color == -1 && m->m[y][x + 1].color != -1)
+				{
+					m->hcolor1 = m->m[y][x].h;
+					m->hcolor2 = m->m[y][x+1].color ;
+					m->MapColVerif = 2;
+				}
+				else if (m->m[y][x].color != -1 && m->m[y][x + 1].color == -1)
+				{
+					m->hcolor1 = m->m[y][x].color;
+					m->hcolor2 = m->m[y][x+1].h ;
+					m->MapColVerif = 1;
+				}
+				else
+				{
+					m->hcolor1 = m->m[y][x].color;
+					m->hcolor2 = m->m[y][x+1].color ;
+					m->MapColVerif = 3;
+				}
 				// printf("h1 = %.0f\t h2 = %.0f\n", m->hcolor1 , m->hcolor2);	
 				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
 			}
 			if (y < m->y -1)
 			{
-				m->hcolor1 = m->m[y][x].h;
-				m->hcolor2 = m->m[y+1][x].h;
+				if (m->m[y][x].color == -1 && m->m[y+1][x].color == -1)
+				{
+					m->hcolor1 = m->m[y][x].h;
+					m->hcolor2 = m->m[y+1][x].h ;
+					m->MapColVerif = 0;
+				}
+				else if (m->m[y][x].color == -1 && m->m[y+1][x].color != -1)
+
+				{
+					m->hcolor1 = m->m[y][x].h;
+					m->hcolor2 = m->m[y+1][x].color ;
+					m->MapColVerif = 2;
+				}
+				else if (m->m[y][x].color != -1 && m->m[y+1][x].color == -1)
+				{
+					m->hcolor1 = m->m[y][x].color;
+					m->hcolor2 = m->m[y+1][x].h ;
+					m->MapColVerif = 1;
+				}
+				else
+				{
+					m->hcolor1 = m->m[y][x].color;
+					m->hcolor2 = m->m[y+1][x].color ;
+					m->MapColVerif = 3;
+				}
 				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
 			}
 			x++;

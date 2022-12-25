@@ -41,8 +41,10 @@ int	ft_atoi_color(const char *str, int x, int y, t_map *m)
 		nb = nb * 10 + str[i] - 48;
 		i++;
 	}
+	// printf("str = %c\n", str[i]);
 	if (str[i] == ',')
 	{
+		// printf("str = %s\n", str+ i);
 		j = 0;
 		i += 3;
 		nbrcolor = 0;
@@ -50,15 +52,17 @@ int	ft_atoi_color(const char *str, int x, int y, t_map *m)
 			j++;
 		while (j)
 		{
-			if ('0 ' <= str[i] && str[i] <= '9')
+			if ('0' <= str[i] && str[i] <= '9')
 				nbrcolor += (str[i] - '0') * pow(16 , j-1);
 			else if ('a' <= str[i] && str[i] <= 'f')
 				nbrcolor += (str[i] - 87) * pow(16, j-1);
+			else if ('A' <= str[i] && str[i] <= 'F')
+				nbrcolor += (str[i] - 55) * pow(16, j-1);
 			i++;
 			j--;
 		}
 		m->initm[y][x].color = nbrcolor;
-
+		printf("color input %d\n" ,nbrcolor);
 	}
 	else
 		m->initm[y][x].color = -1;
