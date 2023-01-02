@@ -14,33 +14,18 @@
 #include <math.h>
 #include "fdf.h"
 
-int ft_color_line_with_map(float nbpix, float pospix, t_map *m)
-{
-	int color;
-	int deltah;
-
-	deltah = (float)m->maxh - (float)m->minh;
-	if (m->MapColVerif == 2)
-	{
-		printf("1 = %.0f, 2 = %.0f\n",m->hcolor1, m->hcolor2 );
-		// return 	((m->color[(int)(100*(m->hcolor2 - m->minh)/deltah)]*(pospix/nbpix)) + m->hcolor1 * (1-(pospix/nbpix)));
-	}
-	else if (m->MapColVerif == 3)
-	{
-		// printf("color = %.2f\n", (m->hcolor2 * (pospix/nbpix) + m->hcolor1 * (1-(pospix/nbpix))));
-		return (m->hcolor2 * (pospix/nbpix) + m->hcolor1 * (1-(pospix/nbpix)));
-		printf("color 1  = %.1f\t color 2 = %.1f\t nbr = %.0f \t pos = %.0f\n", m->hcolor1, m->hcolor2, nbpix, pospix);
-	}
-	return (0x505050);
-}
-
 int ft_color_line(float nbpix, float pospix, t_map *m)
 {
 	float tmp;
 	float deltah;
 	char *atoi;
-	if (m->MapColVerif != 0)
-		return (ft_color_line_with_map(nbpix,pospix, m));
+	// if (nbpix < 0 && pospix < 0)
+	// {
+	// 	tmp = m->hcolor1;
+	// 	m->hcolor1 = m->hcolor2;
+	// 	m->hcolor2 = tmp;
+	// }
+	
 	deltah = (float)m->maxh - (float)m->minh;
 	// printf("deltah = %f\tlen = %.1f \ti =%.1f\th1 = %f\th2 = %f\n", deltah, nbpix, pospix, 100*(m->hcolor1 - m->minh)/deltah , 100*(m->hcolor2 - m->minh)/deltah);
 	if (m->hcolor1 < m->hcolor2)
@@ -77,6 +62,9 @@ int ft_color_line(float nbpix, float pospix, t_map *m)
 		// printf("color[%d] = %d\n", tmp, m->color[tmp]);
 		return(m->color[(int)tmp]);
 	}
+		
+	// m->maxh/100*m->hcolor1 - m->minh
+	return (0x101010);
 }
 
 void ft_ligne(float ax, float ay, float bx, float by, t_map *m)

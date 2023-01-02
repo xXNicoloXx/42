@@ -23,14 +23,15 @@ int ft_x_map(char *ligne, int xmax)
 	x = 0;
 	while (ligne[i] != '\n' && ligne[i] != '\0')
 	{
-		if (ligne[i] != ' ')
+		if (ft_isdigit(ligne[i]))
 		{
 			x++;
-			while (ligne[i] != ' ' && ligne[i] != '\0')
-				i++;				
+			// printf("x = %d\n",x);
+			while (ft_isdigit(ligne[i]))
+				i++;
 		}
 		else
-			i++;	
+			i++;
 	}
 	if (xmax < x)
 		xmax = x;
@@ -74,19 +75,20 @@ void ft_fill_map(t_map *m, int fd)
 		m->initm[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
 		while (ligne[i] != '\n' && ligne[i] != '\0')
 		{
-			if (ligne[i] != ' ')
+			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
 			{
+				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				m->initm[y][x].y = y * m->z;
 				m->initm[y][x].x = x * m->z;
-				m->initm[y][x].z = ft_atoi_color(ligne + i, x, y, m);
+				m->initm[y][x].z = ft_atoi(ligne + i);
 
+				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
 				x++;
-				while (ligne[i] != ' ' && ligne[i] != '\0')
-					i++;				
+				while (ft_isdigit(ligne[i]) || ligne[i] == '-')
+					i++;
 			}
 			else
 				i++;
-			
 		}
 		i = 0;
 		x = 0;
@@ -124,8 +126,6 @@ void ft_map(t_map *m)
 			m->m[y][x].y = y * m->z;
 			m->m[y][x].x = x * m->z;
 			m->m[y][x].z = m->initm[y][x].z ;
-			m->m[y][x].color = m->initm[y][x].color;
-
 			x++;
 		}
 		y++;
@@ -362,14 +362,9 @@ void ft_zoom(int keycode, int x, int y, t_map *m)
 	if (keycode != 1)
 	ft_clean(m);
 	if (keycode == 5)
-	{
-		m->z -= m->z*0.2;
-
-	}
+			m->z -= m->z*0.2;
 	else if (keycode == 4)
-	{
-		m->z += m->z*0.2;
-	}
+			m->z += m->z*0.2;
 	else if (keycode == 1)
 	{
 		ft_mouse_move(x, y, m);
@@ -444,61 +439,14 @@ void ft_print_map(t_map *m)
 		{
 			if (x < m->x - 1)
 			{	
-				printf("color = %d\n", m->m[y][x].color);
-				if (m->m[y][x].color == -1 && m->m[y][x+1].color == -1)
-				{
-					m->hcolor1 = m->m[y][x].h;
-					m->hcolor2 = m->m[y][x+1].h ;
-					m->MapColVerif = 0;
-				}
-				else if (m->m[y][x].color == -1 && m->m[y][x + 1].color != -1)
-				{
-					m->hcolor1 = m->m[y][x].h;
-					m->hcolor2 = m->m[y][x+1].color ;
-					m->MapColVerif = 2;
-				}
-				else if (m->m[y][x].color != -1 && m->m[y][x + 1].color == -1)
-				{
-					m->hcolor1 = m->m[y][x].color;
-					m->hcolor2 = m->m[y][x+1].h ;
-					m->MapColVerif = 1;
-				}
-				else
-				{
-					m->hcolor1 = m->m[y][x].color;
-					m->hcolor2 = m->m[y][x+1].color ;
-					m->MapColVerif = 3;
-				}
-				// printf("h1 = %.0f\t h2 = %.0f\n", m->hcolor1 , m->hcolor2);	
+				m->hcolor1 = m->m[y][x].h;
+				m->hcolor2 = m->m[y][x+1].h ;	
 				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
 			}
 			if (y < m->y -1)
 			{
-				if (m->m[y][x].color == -1 && m->m[y+1][x].color == -1)
-				{
-					m->hcolor1 = m->m[y][x].h;
-					m->hcolor2 = m->m[y+1][x].h ;
-					m->MapColVerif = 0;
-				}
-				else if (m->m[y][x].color == -1 && m->m[y+1][x].color != -1)
-
-				{
-					m->hcolor1 = m->m[y][x].h;
-					m->hcolor2 = m->m[y+1][x].color ;
-					m->MapColVerif = 2;
-				}
-				else if (m->m[y][x].color != -1 && m->m[y+1][x].color == -1)
-				{
-					m->hcolor1 = m->m[y][x].color;
-					m->hcolor2 = m->m[y+1][x].h ;
-					m->MapColVerif = 1;
-				}
-				else
-				{
-					m->hcolor1 = m->m[y][x].color;
-					m->hcolor2 = m->m[y+1][x].color ;
-					m->MapColVerif = 3;
-				}
+				m->hcolor1 = m->m[y][x].h;
+				m->hcolor2 = m->m[y+1][x].h;
 				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
 			}
 			x++;
@@ -559,15 +507,15 @@ int suite(t_map *m)
 	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
 	printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
 	t2 = clock();
-	printf("end\t\t\t%.1f\tcolor = %d\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (t2 - t1)/1000, m->color[14]);
+	printf("end\t\t\t%.1f\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (t2 - t1)/1000);
 	return 0;
 }
 
 void ft_intimap(t_map *m)
 {
 
-	m->winx = 1800;
-	m->winy = 1000;
+	m->winx = 1500;
+	m->winy = 800;
 	m->z = 1;
 	m->r = 45;
 	m->i = 20;
@@ -601,8 +549,6 @@ int main(void)
 	mlx_string_put(m.mlx,  m.mlx_win, 5, 13, 0xffffff, "Loading ...");
 
 	ft_init_color(&m);
-	
-
 
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i , &m.img.p, &m.img.size, &m.img.e);
