@@ -115,9 +115,9 @@ void ft_setup_color_pt2(t_map *m)
 		m->color[0] = 0xff0000;
 		m->color[15] = 0xffa500;
 		m->color[30] = 0xffff00;
-		m->color[45] = 0x008000;
-		m->color[60] = 0x0000ff;
-		m->color[75] = 0x4b0082;
+		m->color[45] = 0x00f000;
+		m->color[60] = 0x0060ff;
+		m->color[75] = 0x8b00f2;
 		m->color[99] = 0xee82ee;
 	}
 	else if (m->setupcolor == 6)

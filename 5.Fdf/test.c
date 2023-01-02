@@ -73,7 +73,7 @@ void ft_fill_map(t_map *m, int fd)
 	while (ligne)
 	{
 		// printf("\t%s", ligne);
-		m->initm[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
+		m->initm[y] = ft_calloc(sizeof(t_pixel),(m->x));
 		while (ligne[i] != '\n' && ligne[i] != '\0')
 		{
 			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
@@ -107,7 +107,7 @@ void	ft_copy_map(t_map *map)
 
 	fd = open(MAP, O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
-	map->initm = malloc(sizeof(t_pixel *) * (map->y + 1));	
+	map->initm = malloc(sizeof(t_pixel *) * (map->y));	
 	fd = open(MAP, O_RDONLY);
 	ft_fill_map(map, fd);
 }
@@ -119,10 +119,10 @@ void ft_map(t_map *m)
 
 	x = 0;
 	y = 0;
-	m->m = malloc(sizeof(t_pixel *) * (m->y + 1));	
+	m->m = malloc(sizeof(t_pixel *) * (m->y));	
 	while (y < m->y)
 	{
-		m->m[y] = ft_calloc(sizeof(t_pixel),(m->x + 1));
+		m->m[y] = ft_calloc(sizeof(t_pixel),(m->x));
 		while (x < m->x)
 		{
 			m->m[y][x].y = y * m->z;
@@ -311,8 +311,8 @@ void ft_annimation(t_map *m)
 	{
 		m->i += 0.65;
 		m->r += 3;
-		suite(m);
 		ft_clean(m);
+		suite(m);
 		i++;
 	}
 	i = 0;
@@ -320,8 +320,8 @@ void ft_annimation(t_map *m)
 	{
 		m->i -= 0.65;
 		m->r += 3;
-		suite(m);
 		ft_clean(m);
+		suite(m);
 		i++;
 	}
 	suite(m);
@@ -397,8 +397,8 @@ void	ft_key(int keycode, t_map *m)
 		m->maxh = 0;
 		m->hauteur = m->hauteur - m->hauteur *0.3;
 	}
-	else if (keycode == Touch_One)
-		ft_intimap(m);
+	// else if (keycode == Touch_One)
+	// 	ft_intimap(m);
 	else if (keycode == Touch_Tow)
 	{
 			m->i = 90;
