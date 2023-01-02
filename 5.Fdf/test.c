@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 17:03:32 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/02 18:36:57 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include "fdf.h"
 #include <X11/X.h>
 
-int ft_x_map(char *ligne, int xmax)
+int	ft_x_map(char *ligne, int xmax)
 {
-	int i;
-	int x;
-	
+	int	i;
+	int	x;
+
 	i = 0;
 	x = 0;
 	while (ligne[i] != '\n' && ligne[i] != '\0')
@@ -26,7 +26,6 @@ int ft_x_map(char *ligne, int xmax)
 		if (ft_isdigit(ligne[i]))
 		{
 			x++;
-			// printf("x = %d\n",x);
 			while (ft_isdigit(ligne[i]))
 				i++;
 		}
@@ -38,17 +37,16 @@ int ft_x_map(char *ligne, int xmax)
 	return (xmax);
 }
 
-int ft_y_map(int fd, int *xmax)
+int	ft_y_map(int fd, int *xmax)
 {
-	int y;
-	char *ligne;
-		
+	int		y;
+	char	*ligne;
+
 	y = 0;
 	ligne = get_next_line(fd);
 	while (ligne)
 	{
 		*xmax = ft_x_map(ligne, *xmax);
-		//printf("xmax = %d\n",*xmax);
 		y++;
 		free(ligne);
 		ligne = get_next_line(fd);
@@ -58,71 +56,69 @@ int ft_y_map(int fd, int *xmax)
 	return (y);
 }
 
-
-void ft_fill_map(t_map *m, int fd)
+int	ft_fill_map_pt2(t_map *m, char *ligne, int y)
 {
-	int i;
-	int y;
-	int x;
-	char *ligne;
-	
-	y = 0;
+	int	x;
+	int	i;
+
 	i = 0;
 	x = 0;
+		m->initm[y] = ft_calloc(sizeof(t_pixel), (m->x));
+	while (ligne[i] != '\n' && ligne[i] != '\0')
+	{
+		if (ft_isdigit(ligne[i]) || ligne[i] == '-')
+		{
+			m->initm[y][x].y = y * m->z;
+			m->initm[y][x].x = x * m->z;
+			m->initm[y][x].z = ft_atoi(ligne + i);
+			x++;
+			while (ft_isdigit(ligne[i]) || ligne[i] == '-')
+				i++;
+		}
+		else
+			i++;
+	}
+}
+
+void	ft_fill_map(t_map *m, int fd)
+{
+	int		y;
+	char	*ligne;
+
+	y = 0;
 	ligne = get_next_line(fd);
 	while (ligne)
 	{
-		// printf("\t%s", ligne);
-		m->initm[y] = ft_calloc(sizeof(t_pixel),(m->x));
-		while (ligne[i] != '\n' && ligne[i] != '\0')
-		{
-			if (ft_isdigit(ligne[i]) || ligne[i] == '-')
-			{
-				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
-				m->initm[y][x].y = y * m->z;
-				m->initm[y][x].x = x * m->z;
-				m->initm[y][x].z = ft_atoi(ligne + i);
-
-				//printf("\tmap[%d][%d] = %d\n",y, x , map[y][x]);
-				x++;
-				while (ft_isdigit(ligne[i]) || ligne[i] == '-')
-					i++;
-			}
-			else
-				i++;
-		}
-		i = 0;
-		x = 0;
+		ft_fill_map_pt2(m, ligne, y);
 		y++;
 		free(ligne);
 		ligne = get_next_line(fd);
 	}
 	free(ligne);
-	
 }
-// s
+
 void	ft_copy_map(t_map *map)
 {
-	int fd;
+	int	fd;
 
 	fd = open(MAP, O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
-	map->initm = malloc(sizeof(t_pixel *) * (map->y));	
+	map->initm = malloc(sizeof(t_pixel *) * (map->y));
 	fd = open(MAP, O_RDONLY);
 	ft_fill_map(map, fd);
 }
 
-void ft_map(t_map *m)
+void	ft_map(t_map *m)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
-	m->m = malloc(sizeof(t_pixel *) * (m->y));	
+	m->m = malloc(sizeof(t_pixel *) * (m->y));
 	while (y < m->y)
 	{
-		m->m[y] = ft_calloc(sizeof(t_pixel),(m->x));
+		m->m[y] = ft_calloc(sizeof(t_pixel), (m->x));
 		while (x < m->x)
 		{
 			m->m[y][x].y = y * m->z;
@@ -133,13 +129,13 @@ void ft_map(t_map *m)
 		y++;
 		x = 0;
 	}
-
 }
-void ft_hauteur(t_map *m)
+
+void	ft_hauteur(t_map *m)
 {
-	float tmpy;
-	int x;
-	int y;
+	float	tmpy;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
@@ -161,17 +157,16 @@ void ft_hauteur(t_map *m)
 	}
 }
 
-
-void ft_rota(t_map *m)
+void	ft_rota(t_map *m)
 {
-	float tmpx;
-	int x;
-	int y;
+	float	tmpx;
+	int		x;
+	int		y;
 
 	x = 0;
 	y = 0;
-	m->varcos = cos(m->r/57.2958);
-	m->varsin = sin(m->r/57.2958);
+	m->varcos = cos(m->r / 57.2958);
+	m->varsin = sin(m->r / 57.2958);
 	while (y < m->y)
 	{
 		while (x < m->x)
@@ -185,19 +180,24 @@ void ft_rota(t_map *m)
 		x = 0;
 	}
 }
-void ft_incl(t_map *m)
+
+void	ft_incl(t_map *m)
 {
-	int x;
-	int y;
+	int		x;
+	int		y;
+	float	varcos;
+	float	varsin;
 
 	x = 0;
 	y = 0;
+	varcos = cos(m->i / 57.2958);
+	varsin = sin(m->i / 57.2958);
 	while (y < m->y)
 	{
 		while (x < m->x)
 		{
-			//printf("m = %f\t%f\n", m->m[y][x].x * cos(m->r), m->m[y][x].y * sin(m->r));
-			m->m[y][x].y = (m->m[y][x].z* m->hauteur) * m->z * -cos(m->i/57.2958) + m->m[y][x].y * sin(m->i/57.2958);
+			m->m[y][x].y = m->m[y][x].y * varsin;
+			m->m[y][x].y += (m->m[y][x].z * m->hauteur) * m->z * -varcos;
 			x++;
 		}
 		y++;
@@ -205,10 +205,10 @@ void ft_incl(t_map *m)
 	}
 }
 
-void ft_centre(t_map *m)
+void	ft_centre(t_map *m)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -216,21 +216,19 @@ void ft_centre(t_map *m)
 	{
 		while (x < m->x)
 		{
-			m->m[y][x].x = m->m[y][x].x - m->x*m->z/2;
-			m->m[y][x].y = m->m[y][x].y - m->y*m->z/2;
-
+			m->m[y][x].x = m->m[y][x].x - m->x * m->z / 2;
+			m->m[y][x].y = m->m[y][x].y - m->y * m->z / 2;
 			x++;
 		}
 		y++;
 		x = 0;
 	}
-
 }
 
-void ft_move(t_map *m)
+void	ft_move(t_map *m)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -238,112 +236,110 @@ void ft_move(t_map *m)
 	{
 		while (x < m->x)
 		{
-			m->m[y][x].x = m->m[y][x].x + m->winx/2 + m->movex;
-			m->m[y][x].y = m->m[y][x].y + m->winy/2 + m->movey;
+			m->m[y][x].x = m->m[y][x].x + m->winx / 2 + m->movex;
+			m->m[y][x].y = m->m[y][x].y + m->winy / 2 + m->movey;
 			x++;
 		}
 		y++;
 		x = 0;
 	}
-
 }
 
-void ft_free_map(t_map *m, int exit)
+void	ft_free_map(t_map *m, int exit)
 {
-	int y;
+	int	y;
 
 	y = 0;
 	while (y < m->y)
 	{
-		// printf("free\t%d\t%d\t%d\n", y, m->y, exit);
 		free(m->m[y]);
 		if (exit == 1)
 			free(m->initm[y]);
-		y++;		
-		// printf("y \n\n");
+		y++;
 	}
 	free(m->m);
 	if (exit == 1)
 		free(m->initm);
 }
 
-void ft_clean(t_map *m)
+void	ft_clean(t_map *m)
 {
-	int y;
-	int x;
+	int	y;
+	int	x;
 
 	y = 0;
 	x = 0;
-	// printf("winx = %.1f\t winy = %.1f", m->winx , m->winy);
-	// while (y < m->winx)
-	// {
-	// 	while (x < m->winy)
-	// 	{
-	// 		ft_draw(m, x, y, 0);
-	// 		x++;
-	// 		// printf("x \n");
-	// 	}
-	// 	x = 0;
-	// 	y++;
-	// }
-	// mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
-	// write(1, "Clean\n", 7);
-	// printf("ftclean\n");
+	if (OS == 1)
+	{
+		while (y < m->winx)
+		{
+			while (x < m->winy)
+			{
+				ft_draw(m, x, y, 0);
+				x++;
+			}
+			x = 0;
+			y++;
+		}
+		mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
+	}
+	else
+	{
+		mlx_destroy_image(m->mlx, m->img.i);
+		m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
+	}
 	ft_free_map(m, 0);
-	mlx_destroy_image(m->mlx, m->img.i);
-	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
 }
 
-int suite(t_map *m);
-
-void ft_annimation(t_map *m)
+void	ft_annimationpt2(t_map *m)
 {
-	int i;
-	int inc;
-	int rot;
+	int	i;
 
-	i = 0;
-	inc = m->i;
-	rot = m->r;
-	m->i = 0;
-	m->r = 0;
-	while (i < 360/3)
+	i = -1;
+	while (++i < 360 / 3)
 	{
 		m->i += 0.65;
 		m->r += 3;
 		ft_clean(m);
 		suite(m);
-		i++;
 	}
-	i = 0;
-	while (i < 360/3)
+	i = -1;
+	while (++i < 360 / 3)
 	{
 		m->i -= 0.65;
 		m->r += 3;
 		ft_clean(m);
 		suite(m);
-		i++;
 	}
-	ft_clean(m);
-	suite(m);
-	// ft_clean(m);
-
-	// m->i = inc;
-	// m->r = rot;
-
 }
 
-void ft_mouse_move(int x, int y, t_map *m)
+void	ft_annimation(t_map *m)
 {
-	static int x1;
-	static int y1;
-	// printf("m = %d",m->mouse_move);
-	if (m->mouse_move == 1)	
+	int	inc;
+	int	rot;
+
+	inc = m->i;
+	rot = m->r;
+	m->i = 0;
+	m->r = 0;
+	ft_annimationpt2(m);
+	ft_clean(m);
+	m->i = inc;
+	m->r = rot;
+	suite(m);
+}
+
+void	ft_mouse_move(int x, int y, t_map *m)
+{
+	static int	x1;
+	static int	y1;
+
+	if (m->mouse_move == 1)
 	{
 		ft_clean(m);
 		m->mouse_move = 0;
-		m->r += (x - x1)/30;
-		m->i += (y - y1)/30;
+		m->r += (x - x1) / 30;
+		m->i += (y - y1) / 30;
 		suite(m);
 	}
 	else
@@ -351,33 +347,78 @@ void ft_mouse_move(int x, int y, t_map *m)
 		m->mouse_move = 1;
 		x1 = x;
 		y1 = y;
-
 	}
-	// printf("%d\t%d\n\n", x, y);
 }
 
-
-void ft_zoom(int keycode, int x, int y, t_map *m)
+void	ft_zoom(int keycode, int x, int y, t_map *m)
 {
 	if (keycode != 1)
-	ft_clean(m);
+		ft_clean(m);
 	if (keycode == 5)
-			m->z -= m->z*0.2;
+		m->z -= m->z * 0.2;
 	else if (keycode == 4)
-			m->z += m->z*0.2;
+		m->z += m->z * 0.2;
 	else if (keycode == 1)
 	{
 		ft_mouse_move(x, y, m);
 		return ;
-	}
-	// fprintf(stderr, "code %d\n", keycode);
-	
+	}	
 	suite(m);
+}
+
+void	ft_key_pt3(int keycode, t_map *m)
+{
+	if (keycode == Touch_S)
+			m->movey = m->movey - 30;
+	else if (keycode == Touch_D)
+			m->movex = m->movex + 30;
+	else if (keycode == Touch_A)
+			m->movex = m->movex - 30;
+	else if (keycode == Touch_C)
+			m->setupcolor += 1;
+	else if (keycode == ESC)
+	{
+		ft_free_map(m, 1);
+		mlx_destroy_image(m->mlx, m->img.i);
+		mlx_destroy_window(m->mlx, m->mlx_win);
+		mlx_destroy_display(m->mlx);
+		free(m->mlx);
+		exit(0);
+	}
+	else if (keycode == Touch_M)
+			m->verifmonitor *= -1;
+}
+
+void	ft_key_pt2(int keycode, t_map *m)
+{
+	if (keycode == Touch_One)
+	{
+		m->r = 0;
+		m->i = 0;
+	}
+	else if (keycode == Touch_Tow)
+	{
+		m->i = 90;
+		m->r = 0;
+	}
+	else if (keycode == Touch_Three)
+	{
+		m->r = 45;
+		m->i = 20;
+	}
+	else if (keycode == Touch_Four)
+	{
+		m->r = -45;
+		m->i = 20;
+	}
+	else if (keycode == Touch_Six)
+		ft_annimation(m);
+	else if (keycode == Touch_W)
+			m->movey = m->movey + 30;
 }
 
 void	ft_key(int keycode, t_map *m)
 {
-	fprintf(stderr, "code %d\n", keycode);
 	if (keycode == Touch_UpArrow)
 			m->i = m->i + 5;
 	else if (keycode == Touch_DownArrow)
@@ -396,61 +437,29 @@ void	ft_key(int keycode, t_map *m)
 	{
 		m->minh = 0;
 		m->maxh = 0;
-		m->hauteur = m->hauteur - m->hauteur *0.3;
+		m->hauteur = m->hauteur - m->hauteur * 0.3;
 	}
-	else if (keycode == Touch_One)
-	{
-		m->r = 0;
-		m->i = 0;
-	}
-	else if (keycode == Touch_Tow)
-	{
-		m->i = 90;
-		m->r = 0;
-	}
-	else if (keycode == Touch_Three)
-	{
-		m->r = 45;
-		m->i = 20;
-	}
-	else if (keycode == Touch_Four)//
-	{
-		m->r = -45;
-		m->i = 20;
-	}
-	else if (keycode == Touch_Six)
-		ft_annimation(m);
-	else if (keycode == Touch_W)
-			m->movey = m->movey + 30;
-	else if (keycode == Touch_S)
-			m->movey = m->movey - 30;
-	else if (keycode == Touch_D)
-			m->movex = m->movex + 30;
-	else if (keycode == Touch_A)
-			m->movex = m->movex - 30;
-	else if (keycode == Touch_C)
-			m->setupcolor += 1;
-	else if (keycode == ESC)
-	{
-		ft_free_map(m, 1);
-		mlx_destroy_image(m->mlx, m->img.i);
-		mlx_destroy_window(m->mlx, m->mlx_win);
-		mlx_destroy_display(m->mlx);
-		free(m->mlx);
-		exit(0);
-		return ;
-	}
-	else if (keycode == Touch_M)
-			m->verifmonitor *= -1;
+	ft_key_pt2(keycode, m);
+	ft_key_pt3(keycode, m);
 	ft_clean(m);
 	suite(m);
 	return ;
 }
 
-void ft_print_map(t_map *m)
+void	ft_print_map_x(t_map *m)
 {
-	int x;
-	int y;
+	
+}
+
+void	ft_print_map_y(t_map *m)
+{
+	
+}
+
+void	ft_print_map(t_map *m)
+{
+	int	x;
+	int	y;
 
 	x = 0;
 	y = 0;
@@ -462,20 +471,20 @@ void ft_print_map(t_map *m)
 			{	
 				m->line.ax = m->m[y][x].x;
 				m->line.ay = m->m[y][x].y;
-				m->line.bx = m->m[y][x+1].x;
-				m->line.by = m->m[y][x+1].y;
+				m->line.bx = m->m[y][x + 1].x;
+				m->line.by = m->m[y][x + 1].y;
 				m->line.hcolor1 = m->m[y][x].h;
-				m->line.hcolor2 = m->m[y][x+1].h;
+				m->line.hcolor2 = m->m[y][x + 1].h;
 				ft_ligne(m);
 			}
 			if (y < m->y -1)
 			{
 				m->line.ax = m->m[y][x].x;
 				m->line.ay = m->m[y][x].y;
-				m->line.bx = m->m[y+1][x].x;
-				m->line.by = m->m[y+1][x].y;
+				m->line.bx = m->m[y + 1][x].x;
+				m->line.by = m->m[y + 1][x].y;
 				m->line.hcolor1 = m->m[y][x].h;
-				m->line.hcolor2 = m->m[y+1][x].h;
+				m->line.hcolor2 = m->m[y + 1][x].h;
 				ft_ligne(m);
 			}
 			x++;

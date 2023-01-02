@@ -5,6 +5,8 @@
 # ifndef MAP
 #  define MAP "./test_maps/42.fdf"
 #  define MSG_INVALID_MAP "Error invalid map"
+#  define MSG_INVALID_OS "Error invalid OS"
+#  define OS 3
 
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
 #  define Touch_LeftArrow 65361
