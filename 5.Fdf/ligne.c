@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/13 10:58:47 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/02 16:48:09 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,57 +14,57 @@
 #include <math.h>
 #include "fdf.h"
 
-int ft_color_line(float nbpix, float pospix, t_map *m)
+int	ft_color_line_up(float nbpix, float pospix, float deltah, t_map *m)
 {
-	float tmp;
-	float deltah;
-	char *atoi;
-	// if (nbpix < 0 && pospix < 0)
-	// {
-	// 	tmp = m->hcolor1;
-	// 	m->hcolor1 = m->hcolor2;
-	// 	m->hcolor2 = tmp;
-	// }
-	
-	deltah = (float)m->maxh - (float)m->minh;
-	// printf("deltah = %f\tlen = %.1f \ti =%.1f\th1 = %f\th2 = %f\n", deltah, nbpix, pospix, 100*(m->hcolor1 - m->minh)/deltah , 100*(m->hcolor2 - m->minh)/deltah);
-	if (m->hcolor1 < m->hcolor2)
-	{
-		if (nbpix < 0)
+	float	tmp;
+
+	if (nbpix < 0)
 			nbpix *= -1;
-		if (pospix < 0)
+	if (pospix < 0)
 			pospix *= -1;
-		tmp = (((100*(m->hcolor2 - m->minh)/deltah) - (100*(m->hcolor1 - m->minh)/deltah))/nbpix);
-		// printf("tmp = %f(%d)(%d) nbpix = %d\ti=%d\tcolor = %x\n",tmp, (int)(100*(m->hcolor1 - m->minh)/deltah), (int)(100*(m->hcolor2 - m->minh)/deltah), (int)nbpix, (int)pospix, m->color[(int)((100*(m->hcolor1 - m->minh)/deltah) + tmp * pospix)]);
-		// printf(" < %.2f\n", ((100*(m->hcolor1 - m->minh)/deltah) + tmp * pospix));
-		if (0 > (int)((100*(m->hcolor1 - m->minh)/deltah) + tmp * pospix))
-			return (m->color[0]);
-		else if  (99 < (int)((100*(m->hcolor1 - m->minh)/deltah) + tmp * pospix))
-			return (m->color[99]);
-		return (m->color[(int)((100*(m->hcolor1 - m->minh)/deltah) + tmp * pospix)]);
-	}
+	tmp = 100 * (m->hcolor2 - m->minh) / deltah;
+	tmp -= 100 * (m->hcolor1 - m->minh) / deltah;
+	tmp /= nbpix;
+	if (0 > (int)((100 * (m->hcolor1 - m->minh) / deltah) + tmp * pospix))
+		return (m->color[0]);
+	if (99 < (int)((100 * (m->hcolor1 - m->minh) / deltah) + tmp * pospix))
+		return (m->color[99]);
+	tmp = ((100 * (m->hcolor1 - m->minh) / deltah) + tmp * pospix);
+	return (m->color[(int)tmp]);
+}
+
+int	ft_color_line_down(float nbpix, float pospix, float deltah, t_map *m)
+{
+	float	tmp;
+
+	tmp = 100 * (m->hcolor1 - m->minh) / deltah;
+	tmp -= 100 * (m->hcolor2 - m->minh) / deltah;
+	tmp /= nbpix;
+	if (0 > (int)((100 * (m->hcolor1 - m->minh) / deltah) - tmp * pospix))
+		return (m->color[0]);
+	if (99 < (int)((100 * (m->hcolor1 - m->minh) / deltah) - tmp * pospix))
+		return (m->color[99]);
+	tmp = ((100 * (m->hcolor1 - m->minh) / deltah) - tmp * pospix);
+	return (m->color[(int)tmp]);
+}
+
+int	ft_color_line(float nbpix, float pospix, t_map *m)
+{
+	float	tmp;
+	float	deltah;
+
+	deltah = (float)m->maxh - (float)m->minh;
+	if (m->hcolor1 < m->hcolor2)
+		return (ft_color_line_up(nbpix, pospix, deltah, m));
 	else if (m->hcolor1 > m->hcolor2)
+		return (ft_color_line_down(nbpix, pospix, deltah, m));
+	else
 	{
-		tmp = (((100*(m->hcolor1 - m->minh)/deltah) - (100*(m->hcolor2 - m->minh)/deltah))/nbpix);
-		// printf("tmp = %f(%d)(%d) nbpix = %d\ti=%d\n",tmp, (int)(100*(m->hcolor1 - m->minh)/deltah), (int)(100*(m->hcolor2 - m->minh)/deltah), (int)nbpix, (int)pospix);
-		// printf("h1 = %.1f\thmin = %.1f\t deltah = %.1f> tmp = %.1f pospix = %.1f %.2f\n\n\n",m->hcolor1 , m->minh , deltah, tmp, pospix, ((100*(m->hcolor1 - m->minh)/deltah) - tmp * pospix));
-		if (0 > (int)((100*(m->hcolor1 - m->minh)/deltah) - tmp * pospix))
-			return (m->color[0]);
-		else if  (99 < (int)((100*(m->hcolor1 - m->minh)/deltah) - tmp * pospix))
-			return (m->color[99]);
-		return (m->color[(int)((100*(m->hcolor1 - m->minh)/deltah) - tmp * pospix)]);
-	}
-	else 
-	{
-		tmp = (100*(m->hcolor2 - m->minh)/deltah);
+		tmp = (100 * (m->hcolor2 - m->minh) / deltah);
 		if (tmp == 100)
 			tmp -= 1;
-		// printf("color[%d] = %d\n", tmp, m->color[tmp]);
-		return(m->color[(int)tmp]);
+		return (m->color[(int)tmp]);
 	}
-		
-	// m->maxh/100*m->hcolor1 - m->minh
-	return (0x101010);
 }
 
 void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
@@ -184,66 +184,3 @@ void ft_ligne(float ax, float ay, float bx, float by, t_map *m)
 		
 	}
 }
-// int main (void)
-// {
-// 	void	*mlx;
-// 	void	*mlx_win;
-// 	int	 color;
-	
-
-// 	mlx = mlx_init();
-// 	mlx_win = mlx_new_window(mlx, 1000, 800, "");
-// 	ft_ligne(100, 100, 200, 120, 0xff0000, mlx_win, mlx);
-// 	ft_ligne(100, 100, 120, 200, 0x00ff00, mlx_win, mlx);
-// 	ft_ligne(100, 100, 200, 80, 0x0ff0ff, mlx_win, mlx);
-// 	ft_ligne(100, 100, 120, 0, 0xffffff, mlx_win, mlx);
-	
-// 	ft_ligne(100, 100, 0, 120, 0xff0000, mlx_win, mlx);
-// 	ft_ligne(100, 100, 80, 200, 0x00ff00, mlx_win, mlx);
-// 	ft_ligne(100, 100, 0, 80, 0x0ff0ff, mlx_win, mlx);
-// 	ft_ligne(100, 100, 80, 0, 0xffffff, mlx_win, mlx);
-
-
-// 	ft_ligne(100, 100, 100, 0, 0xff80ff, mlx_win, mlx);
-// 	ft_ligne(100, 100, 100, 200, 0xff80ff, mlx_win, mlx);
-// 	ft_ligne(100, 100, 0, 100, 0xff80ff, mlx_win, mlx);
-// 	ft_ligne(100, 100, 200, 100, 0xff80ff, mlx_win, mlx);
-
-// 	ft_ligne(100, 100, 0, 0, 0x8fffff, mlx_win, mlx);
-// 	ft_ligne(100, 100, 0, 200, 0x8f0000, mlx_win, mlx);
-// 	ft_ligne(100, 100, 200, 0, 0xffff00, mlx_win, mlx);
-// 	ft_ligne(100, 100, 200, 200, 0x0000ff, mlx_win, mlx);
-	
-// 	int i = 0;
-// 	int j = 0;
-
-// 	while (i < 200)
-// 	{
-// 		ft_ligne(100, 100, i, 0, 0xff0000, mlx_win, mlx);
-// 		i = i+11;
-// 	}
-// 	while (j < 200)
-// 	{
-// 		ft_ligne(100, 100, 200, j, 0x00ff00, mlx_win, mlx);
-// 		j = j+11;
-// 	}
-// 	while (i > 0)
-// 	{
-// 		ft_ligne(100, 100, i, 200, 0x0000ff, mlx_win, mlx);
-// 		i = i-11;
-// 	}
-// 	while (j > 0)
-// 	{
-		
-// 		ft_ligne(100, 100, 0, j, 0xffffff, mlx_win, mlx);
-// 		j = j-11;
-// 	}
-	
-	
-// 	// 
-
-
-	
-
-// 	//ft_ligne(10, 10,200, 20, 0xffffff, mlx_win, mlx);
-// }
