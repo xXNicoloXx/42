@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
+/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/19 17:20:24 by nicolasgriv      ###   ########.fr       */
+/*   Updated: 2023/01/02 17:03:32 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -460,15 +460,23 @@ void ft_print_map(t_map *m)
 		{
 			if (x < m->x - 1)
 			{	
-				m->hcolor1 = m->m[y][x].h;
-				m->hcolor2 = m->m[y][x+1].h ;	
-				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y][x+1].x, m->m[y][x+1].y, m);
+				m->line.ax = m->m[y][x].x;
+				m->line.ay = m->m[y][x].y;
+				m->line.bx = m->m[y][x+1].x;
+				m->line.by = m->m[y][x+1].y;
+				m->line.hcolor1 = m->m[y][x].h;
+				m->line.hcolor2 = m->m[y][x+1].h;
+				ft_ligne(m);
 			}
 			if (y < m->y -1)
 			{
-				m->hcolor1 = m->m[y][x].h;
-				m->hcolor2 = m->m[y+1][x].h;
-				ft_ligne(m->m[y][x].x, m->m[y][x].y, m->m[y+1][x].x, m->m[y+1][x].y, m);
+				m->line.ax = m->m[y][x].x;
+				m->line.ay = m->m[y][x].y;
+				m->line.bx = m->m[y+1][x].x;
+				m->line.by = m->m[y+1][x].y;
+				m->line.hcolor1 = m->m[y][x].h;
+				m->line.hcolor2 = m->m[y+1][x].h;
+				ft_ligne(m);
 			}
 			x++;
 		}

@@ -68,10 +68,22 @@ typedef struct s_img
 	int		g;
 }				t_img;
 
+typedef struct s_line
+{
+	float ax; 
+	float ay;
+	float bx;
+	float by;
+	float		hcolor1;
+	float		hcolor2;
+	int reverse;
+}				t_line;
+
 typedef struct s_map
 {
 	t_pixel	**initm;
 	t_pixel	**m;
+	t_line line;
 	int		x;
 	int		y;
 	float		minh;
@@ -87,8 +99,7 @@ typedef struct s_map
 
 	unsigned long	color[101];
 	int				setupcolor;
-	float		hcolor1;
-	float		hcolor2;
+
 	
 
 
@@ -105,7 +116,7 @@ typedef struct s_map
 }					t_map;
 
 void ft_pos_pixel(t_map *m);
-void ft_ligne(float ax, float ay, float bx, float by, t_map *m);
+void ft_ligne(t_map *m);
 void ft_draw(t_map *m, float x, float y, int color);
 void ft_intimap(t_map *m);
 
@@ -116,7 +127,6 @@ void	ft_setup_color_pt2(t_map *m);
 void	ft_setup_color_pt3(t_map *m);
 
 //		COLOR CALCUL
-
 void	ft_color(int nbr, t_map *m);
 void	ft_draw(t_map *m, float x, float y, int color);
 void	ft_tab_deg(t_map *m, int start, int end);
@@ -129,3 +139,15 @@ void	ft_monitoring_display_info_pt1(t_map *m);
 void	ft_monitoring_display_info_pt2(t_map *m, char *value);
 void	ft_monitoring_fade_color(t_map *m);
 void	ft_monitoring(t_map *m);
+
+//		LINE
+void	ft_line_direction_pt1(float dx, float unity, float tmp, t_map *m);
+void	ft_line_direction_pt2(float dy, float unity, float tmp, t_map *m);
+void	ft_line_direction_pt3(float dy, float unity, float tmp, t_map *m);
+void	ft_reverse_direction(float tmp, t_map *m);
+void	ft_ligne(t_map *m);
+
+//		LINE COLOR 	
+int	ft_color_line(float nbpix, float pospix, t_map *m);
+int	ft_color_line_down(float nbpix, float pospix, float deltah, t_map *m);
+int	ft_color_line_up(float nbpix, float pospix, float deltah, t_map *m);
