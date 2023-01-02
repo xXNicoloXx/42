@@ -413,7 +413,7 @@ void	ft_key(int keycode, t_map *m)
 		m->r = 45;
 		m->i = 20;
 	}
-	else if (keycode == Touch_Four)
+	else if (keycode == Touch_Four)//
 	{
 		m->r = -45;
 		m->i = 20;
