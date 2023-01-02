@@ -195,4 +195,4 @@ void ft_init_color(t_map *m)
 	// m->color[80] = 0xffffff;
 	// m->color[99] = 0xffffff;
 	// m->color[0] = 0xff0000;		//42
-	// m->color[99] = 0xffffff;
+	// m->color[99] = 0xffffff;//
