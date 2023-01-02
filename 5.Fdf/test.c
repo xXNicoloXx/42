@@ -324,6 +324,7 @@ void ft_annimation(t_map *m)
 		suite(m);
 		i++;
 	}
+	ft_clean(m);
 	suite(m);
 	// ft_clean(m);
 
@@ -422,6 +423,7 @@ void	ft_key(int keycode, t_map *m)
 		mlx_destroy_image(m->mlx, m->img.i);
 		mlx_destroy_window(m->mlx, m->mlx_win);
 		mlx_destroy_display(m->mlx);
+		free(m->mlx);
 		exit(0);
 		return ;
 	}
@@ -558,9 +560,7 @@ int main(void)
 
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i , &m.img.p, &m.img.size, &m.img.e);
-	// ft_map(&m);
 	suite(&m);
-	ft_tab_color(&m);
 	mlx_hook(m.mlx_win, 2, 1L<<0, ft_key, &m);
 	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
