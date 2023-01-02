@@ -27,7 +27,7 @@ void ft_monitoring(t_map *m)
     j = 0;
     if (m->y == 0 && m->x == 0)
 	{
-		printf("pas bon");
+		// printf("pas bon");
 		mlx_string_put(m->mlx,  m->mlx_win, m->winx/2-100, m->winy/2, 0xffffff, "Error invalid map");
 	}
     else
@@ -92,6 +92,6 @@ void ft_monitoring(t_map *m)
     value = ft_itoa((int)m->z);
     mlx_string_put(m->mlx,  m->mlx_win, 20, 13*7, 0xffffff, value);
     free(value);
-	// printf("free moni\n");
+	printf("free moni\n");
     }
 }

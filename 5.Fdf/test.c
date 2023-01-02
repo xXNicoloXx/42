@@ -53,6 +53,7 @@ int ft_y_map(int fd, int *xmax)
 		free(ligne);
 		ligne = get_next_line(fd);
 	}
+	free(ligne);
 	close(fd);
 	return (y);
 }
@@ -95,7 +96,8 @@ void ft_fill_map(t_map *m, int fd)
 		y++;
 		free(ligne);
 		ligne = get_next_line(fd);
-	} 
+	}
+	free(ligne);
 	
 }
 // s
@@ -246,28 +248,23 @@ void ft_move(t_map *m)
 
 }
 
-void ft_free_map(t_map *m)
+void ft_free_map(t_map *m, int exit)
 {
-	int x;
 	int y;
 
-	x = 0;
 	y = 0;
-
 	while (y < m->y)
 	{
-		while (x < m->x)
-		{
-			// free(&m->m[x][y].h);
-			// free(&m->m[x][y].x);
-			// free(&m->m[x][y].y);
-			// free(&m->m[x][y].z);
-			x++;
-		}
-		x = 0;
-		y++;
-		
+		// printf("free\t%d\t%d\t%d\n", y, m->y, exit);
+		free(m->m[y]);
+		if (exit == 1)
+			free(m->initm[y]);
+		y++;		
+		// printf("y \n\n");
 	}
+	free(m->m);
+	if (exit == 1)
+		free(m->initm);
 }
 
 void ft_clean(t_map *m)
@@ -277,7 +274,7 @@ void ft_clean(t_map *m)
 
 	y = 0;
 	x = 0;
-	printf("winx = %.1f\t winy = %.1f", m->winx , m->winy);
+	// printf("winx = %.1f\t winy = %.1f", m->winx , m->winy);
 	// while (y < m->winx)
 	// {
 	// 	while (x < m->winy)
@@ -290,8 +287,9 @@ void ft_clean(t_map *m)
 	// 	y++;
 	// }
 	// mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
-	write(1, "Clean\n", 7);
-	// ft_free_map(m);
+	// write(1, "Clean\n", 7);
+	// printf("ftclean\n");
+	ft_free_map(m, 0);
 	mlx_destroy_image(m->mlx, m->img.i);
 	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
 }
@@ -326,7 +324,8 @@ void ft_annimation(t_map *m)
 		ft_clean(m);
 		i++;
 	}
-	ft_clean(m);
+	suite(m);
+	// ft_clean(m);
 
 	// m->i = inc;
 	// m->r = rot;
@@ -337,7 +336,7 @@ void ft_mouse_move(int x, int y, t_map *m)
 {
 	static int x1;
 	static int y1;
-	printf("m = %d",m->mouse_move);
+	// printf("m = %d",m->mouse_move);
 	if (m->mouse_move == 1)	
 	{
 		ft_clean(m);
@@ -353,7 +352,7 @@ void ft_mouse_move(int x, int y, t_map *m)
 		y1 = y;
 
 	}
-	printf("%d\t%d\n\n", x, y);
+	// printf("%d\t%d\n\n", x, y);
 }
 
 
@@ -370,15 +369,14 @@ void ft_zoom(int keycode, int x, int y, t_map *m)
 		ft_mouse_move(x, y, m);
 		return ;
 	}
-	fprintf(stderr, "code %d\n", keycode);
+	// fprintf(stderr, "code %d\n", keycode);
 	
 	suite(m);
 }
 
-void	ft_key(int keycode, t_map *m) //linux
+void	ft_key(int keycode, t_map *m)
 {
-	fprintf(stderr, "code %d\n", keycode);
-	ft_clean(m);
+	// fprintf(stderr, "code %d\n", keycode);
 	if (keycode == Touch_UpArrow)
 			m->i = m->i + 5;
 	else if (keycode == Touch_DownArrow)
@@ -419,9 +417,17 @@ void	ft_key(int keycode, t_map *m) //linux
 	else if (keycode == Touch_C)
 			m->setupcolor += 1;
 	else if (keycode == ESC)
-			mlx_destroy_window(m->mlx, m->mlx_win);
+	{
+		ft_free_map(m, 1);
+		mlx_destroy_image(m->mlx, m->img.i);
+		mlx_destroy_window(m->mlx, m->mlx_win);
+		mlx_destroy_display(m->mlx);
+		exit(0);
+		return ;
+	}
 	else if (keycode == Touch_M)
 			m->verifmonitor *= -1;
+	ft_clean(m);
 	suite(m);
 	return ;
 }
@@ -469,45 +475,45 @@ int suite(t_map *m)
 	float t1 = clock();
 	ft_map(m);
 	float t2 = clock();
-	printf("Map \t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Map \t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_hauteur(m);
 	t2 = clock();
-	printf("Hauteur\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Hauteur\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_centre(m);
 	t2 = clock();
-	printf("Centre\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Centre\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_rota(m);
 	t2 = clock();
-	printf("Rota\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Rota\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_incl(m);
 	t2 = clock();
-	printf("Incl\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Incl\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_move(m);
 	t2 = clock();
-	printf("Move\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Move\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_init_color(m);
 	t2 = clock();
-	printf("Color\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Color\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_print_map(m);
 	t2 = clock();
-	printf("Draw\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("Draw\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
 	t2 = clock();
-	printf("put img\t\t\t%.1f\n", (t2 - t1)/1000);
+	// printf("put img\t\t\t%.1f\n", (t2 - t1)/1000);
 	t1 = clock();
 	ft_monitoring(m);
-	printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
-	printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
+	// printf("x = 0 -> %d \t y = 0 -> %d  h = %.0f \t H = %.0f  \n\n", m->x, m->y, m->minh, m->maxh);
+	// printf("I = \t\t\t%.1f°\tR = \t\t\t%.1f\tZ = \t\t\t%.1fx°\n\n", m->i, m->r, m->z);
 	t2 = clock();
-	printf("end\t\t\t%.1f\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (t2 - t1)/1000);
+	// printf("end\t\t\t%.1f\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", (t2 - t1)/1000);
 	return 0;
 }
 
@@ -527,7 +533,7 @@ void ft_intimap(t_map *m)
 	float t1 = clock();
 	ft_copy_map(m);
 	float t2 = clock();
-	printf("copy map\t\t%.1f\n\n\n", (t2 - t1)/1000);
+	// printf("copy map\t\t%.1f\n\n\n", (t2 - t1)/1000);
 	m->z = m->winx / sqrt((m->x*m->z) * (m->x*m->z) + (m->y*m->z) * (m->y*m->z));
 	m->hauteur = m->z / 1000;
 	m->minh = 0;
