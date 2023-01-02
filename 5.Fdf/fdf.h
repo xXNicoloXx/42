@@ -3,7 +3,7 @@
 #include <time.h>
 
 # ifndef MAP
-#  define MAP "./test_maps/42.fdf"
+#  define MAP "./test_maps/worldmap_s.fdf"
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
 #  define Touch_LeftArrow 65361
 #  define Touch_RightArrow 65363
@@ -14,6 +14,9 @@
 #  define Touch_One 49
 #  define Touch_Tow 50
 #  define Touch_Three 51
+#  define Touch_Four 52
+#  define Touch_Five 53
+#  define Touch_Six 54
 #  define Touch_W 119
 #  define Touch_A 100
 #  define Touch_S 115

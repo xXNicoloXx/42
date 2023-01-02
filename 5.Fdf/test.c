@@ -377,7 +377,7 @@ void ft_zoom(int keycode, int x, int y, t_map *m)
 
 void	ft_key(int keycode, t_map *m)
 {
-	// fprintf(stderr, "code %d\n", keycode);
+	fprintf(stderr, "code %d\n", keycode);
 	if (keycode == Touch_UpArrow)
 			m->i = m->i + 5;
 	else if (keycode == Touch_DownArrow)
@@ -398,14 +398,27 @@ void	ft_key(int keycode, t_map *m)
 		m->maxh = 0;
 		m->hauteur = m->hauteur - m->hauteur *0.3;
 	}
-	// else if (keycode == Touch_One)
-	// 	ft_intimap(m);
+	else if (keycode == Touch_One)
+	{
+		m->r = 0;
+		m->i = 0;
+	}
 	else if (keycode == Touch_Tow)
 	{
-			m->i = 90;
-			m->r = 0;
+		m->i = 90;
+		m->r = 0;
 	}
 	else if (keycode == Touch_Three)
+	{
+		m->r = 45;
+		m->i = 20;
+	}
+	else if (keycode == Touch_Four)
+	{
+		m->r = -45;
+		m->i = 20;
+	}
+	else if (keycode == Touch_Six)
 		ft_annimation(m);
 	else if (keycode == Touch_W)
 			m->movey = m->movey + 30;
