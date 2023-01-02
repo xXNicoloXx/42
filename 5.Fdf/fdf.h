@@ -7,6 +7,9 @@
 #  define MSG_INVALID_MAP "Error invalid map"
 #  define MSG_INVALID_OS "Error invalid OS"
 #  define OS 3
+#  define WIDTH 1500
+#  define HEIGHT 800
+
 
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
 #  define Touch_LeftArrow 65361
@@ -153,3 +156,12 @@ void	ft_ligne(t_map *m);
 int	ft_color_line(float nbpix, float pospix, t_map *m);
 int	ft_color_line_down(float nbpix, float pospix, float deltah, t_map *m);
 int	ft_color_line_up(float nbpix, float pospix, float deltah, t_map *m);
+
+//		MAP
+int	ft_x_map(char *ligne, int xmax);
+int	ft_y_map(int fd, int *xmax);
+void	ft_fill_map(t_map *m, int fd);
+int	ft_fill_map_pt2(t_map *m, char *ligne, int y);
+void	ft_copy_map(t_map *map);
+
+
