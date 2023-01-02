@@ -3,7 +3,9 @@
 #include <time.h>
 
 # ifndef MAP
-#  define MAP "./test_maps/worldmap_s.fdf"
+#  define MAP "./test_maps/42.fdf"
+#  define MSG_INVALID_MAP "Error invalid map"
+
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
 #  define Touch_LeftArrow 65361
 #  define Touch_RightArrow 65363
@@ -105,9 +107,6 @@ typedef struct s_map
 void ft_pos_pixel(t_map *m);
 void ft_ligne(float ax, float ay, float bx, float by, t_map *m);
 void ft_draw(t_map *m, float x, float y, int color);
-void ft_tab_color(t_map *m);
-void ft_init_color(t_map *m);
-void ft_monitoring(t_map *m);
 void ft_intimap(t_map *m);
 
 
@@ -123,3 +122,10 @@ void	ft_draw(t_map *m, float x, float y, int color);
 void	ft_tab_deg(t_map *m, int start, int end);
 void	ft_tab_color(t_map *m);
 void	ft_init_color(t_map *m);
+
+//		MONITORING
+void	ft_monitoring_invalid_map(t_map *m);
+void	ft_monitoring_display_info_pt1(t_map *m);
+void	ft_monitoring_display_info_pt2(t_map *m, char *value);
+void	ft_monitoring_fade_color(t_map *m);
+void	ft_monitoring(t_map *m);
