@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.c                                            :+:      :+:    :+:   */
+/*   ft_color_calcul.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:56:24 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 15:51:20 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:19:33 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,23 +123,3 @@ void	ft_init_color(t_map *m)
 	ft_setup_color_pt1(m);
 	ft_tab_color(m);
 }
-// int main(void)
-// {
-//	 t_map m;
-//	 ft_color(0xffffff, &m);
-//     printf("r = %d\n",m.img.r);
-//     printf("g = %d\n",m.img.g);
-//     printf("b = %d\n",m.img.b);
-// }
-	// m->color[0] = 0x000001;
-	// m->color[10] = 0x004C75;
-	// m->color[61] = 0x0094E3;
-	// // m->color[59] = 0x0094E3;
-	// // m->color[61] = 0xe0cda9;
-	// m->color[63] = 0x72CC00;
-	// m->color[70] = 0x298000;			//worldmap
-	// m->color[78] = 0x4f3000;
-	// m->color[80] = 0xffffff;
-	// m->color[99] = 0xffffff;
-	// m->color[0] = 0xff0000;		//42
-	// m->color[99] = 0xffffff;//

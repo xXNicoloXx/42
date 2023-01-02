@@ -120,12 +120,6 @@ typedef struct s_map
 	int verifmonitor;
 }					t_map;
 
-void ft_pos_pixel(t_map *m);
-void ft_ligne(t_map *m);
-void ft_draw(t_map *m, float x, float y, int color);
-void ft_intimap(t_map *m);
-
-
 //		COLOR_MAP
 void	ft_setup_color_pt1(t_map *m);
 void	ft_setup_color_pt2(t_map *m);
@@ -153,15 +147,50 @@ void	ft_reverse_direction(float tmp, t_map *m);
 void	ft_ligne(t_map *m);
 
 //		LINE COLOR 	
-int	ft_color_line(float nbpix, float pospix, t_map *m);
-int	ft_color_line_down(float nbpix, float pospix, float deltah, t_map *m);
-int	ft_color_line_up(float nbpix, float pospix, float deltah, t_map *m);
+int		ft_color_line(float nbpix, float pospix, t_map *m);
+int		ft_color_line_down(float nbpix, float pospix, float deltah, t_map *m);
+int		ft_color_line_up(float nbpix, float pospix, float deltah, t_map *m);
 
 //		MAP
-int	ft_x_map(char *ligne, int xmax);
-int	ft_y_map(int fd, int *xmax);
+int		ft_x_map(char *ligne, int xmax);
+int		ft_y_map(int fd, int *xmax);
 void	ft_fill_map(t_map *m, int fd);
-int	ft_fill_map_pt2(t_map *m, char *ligne, int y);
+int		ft_fill_map_pt2(t_map *m, char *ligne, int y);
 void	ft_copy_map(t_map *map);
+void	ft_map(t_map *m);
+
+//		MAP CALCUL
+void	ft_hauteur(t_map *m);
+void	ft_rota(t_map *m);
+void	ft_incl(t_map *m);
+void	ft_centre(t_map *m);
+void	ft_move(t_map *m);
+
+//		KEY MOUSE
+void	ft_mouse_move(int x, int y, t_map *m);
+void	ft_zoom(int keycode, int x, int y, t_map *m);
+void	ft_key(int keycode, t_map *m);
+void	ft_key_pt2(int keycode, t_map *m);
+void	ft_key_pt3(int keycode, t_map *m);
+
+//		PRINT MAP
+void	ft_print_map(t_map *m);
+void	ft_print_map_y(int x, int y, t_map *m);
+void	ft_print_map_x(int x, int y, t_map *m);
+
+//		CLEAN
+void	ft_free_map(t_map *m, int exit);
+void	ft_clean(t_map *m);
+
+		//ANIMATION
+void	ft_annimation(t_map *m);
+void	ft_annimationpt2(t_map *m);
+
+//		START
+void	ft_all(t_map *m);
+void	ft_intivalue(t_map *m);
+int		main(void);
+
+
 
 
