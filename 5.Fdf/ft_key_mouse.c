@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 18:47:08 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:47:29 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_mouse_move(int x, int y, t_map *m)
 
 int	ft_zoom(int keycode, int x, int y, t_map *m)
 {
-	fprintf(stderr, "code %d\n", keycode);
 	if (keycode != 1)
 		ft_clean(m);
 	if (keycode == 5)
@@ -108,17 +107,17 @@ int	ft_key(int keycode, t_map *m)
 			m->i = m->i + 5;
 	else if (keycode == TOUCH_DOWNARROW)
 			m->i = m->i - 5;
-	else if (keycode == Touch_LeftArrow)
+	else if (keycode == TOUCH_LEFTARROW)
 			m->r = m->r - 5;
-	else if (keycode == Touch_RightArrow)
+	else if (keycode == TOUCH_RIGHTARROW)
 			m->r = m->r + 5;
-	else if (keycode == Touch_Plus)
+	else if (keycode == TOUCH_PLUS)
 	{
 		m->hauteur = m->hauteur + m->hauteur * 0.3;
 		m->minh = 0;
 		m->maxh = 0;
 	}
-	else if (keycode == Touch_Moins)
+	else if (keycode == TOUCH_MOINS)
 	{
 		m->minh = 0;
 		m->maxh = 0;
