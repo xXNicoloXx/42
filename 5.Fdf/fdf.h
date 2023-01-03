@@ -170,8 +170,8 @@ void	ft_move(t_map *m);
 
 //		KEY MOUSE
 void	ft_mouse_move(int x, int y, t_map *m);
-void	ft_zoom(int keycode, int x, int y, t_map *m);
-void	ft_key(int keycode, t_map *m);
+int		ft_zoom(int keycode, int x, int y, t_map *m);
+int		ft_key(int keycode, t_map *m);
 void	ft_key_pt2(int keycode, t_map *m);
 void	ft_key_pt3(int keycode, t_map *m);
 
@@ -192,7 +192,7 @@ void	ft_annimationpt2(t_map *m);
 void	ft_all(t_map *m);
 void	ft_intivalue(t_map *m);
 int		main(void);
-void ft_cross_close(t_map *m);
+int		ft_cross_close(t_map *m);
 
 
 

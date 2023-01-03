@@ -33,7 +33,7 @@ void	ft_mouse_move(int x, int y, t_map *m)
 	}
 }
 
-void	ft_zoom(int keycode, int x, int y, t_map *m)
+int	ft_zoom(int keycode, int x, int y, t_map *m)
 {
 	fprintf(stderr, "code %d\n", keycode);
 	if (keycode != 1)
@@ -45,9 +45,10 @@ void	ft_zoom(int keycode, int x, int y, t_map *m)
 	else if (keycode == 1)
 	{
 		ft_mouse_move(x, y, m);
-		return ;
+		return (1);
 	}	
 	ft_all(m);
+	return (1);
 }
 
 void	ft_key_pt3(int keycode, t_map *m)
@@ -101,7 +102,7 @@ void	ft_key_pt2(int keycode, t_map *m)
 			m->movey = m->movey + 30;
 }
 
-void	ft_key(int keycode, t_map *m)
+int	ft_key(int keycode, t_map *m)
 {
 	if (keycode == Touch_UpArrow)
 			m->i = m->i + 5;
@@ -127,5 +128,5 @@ void	ft_key(int keycode, t_map *m)
 	ft_key_pt3(keycode, m);
 	ft_clean(m);
 	ft_all(m);
-	return ;
+	return (1);
 }

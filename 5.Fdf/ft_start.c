@@ -56,7 +56,7 @@ void	ft_intivalue(t_map *m)
 	m->maxh = 0;
 }
 
-void	ft_cross_close(t_map *m)
+int	ft_cross_close(t_map *m)
 {
 	ft_free_map(m, 1);
 	mlx_destroy_image(m->mlx, m->img.i);
@@ -64,6 +64,7 @@ void	ft_cross_close(t_map *m)
 	mlx_destroy_display(m->mlx);
 	free(m->mlx);
 	exit(0);
+	return (1);
 }
 
 int	main(void)
@@ -78,8 +79,8 @@ int	main(void)
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i, &m.img.p, &m.img.size, &m.img.e);
 	ft_all(&m);
-	mlx_hook(m.mlx_win, 2, 1L << 0, ft_key, &m);
-	mlx_hook(m.mlx_win, 17, 1L << 0, ft_cross_close, &m);
+	mlx_hook(m.mlx_win, 2, 1L << 0, &ft_key, &m);
+	mlx_hook(m.mlx_win, 17, 1L << 0, &ft_cross_close, &m);
 	mlx_mouse_hook(m.mlx_win, &ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
 	mlx_loop(m.mlx);
