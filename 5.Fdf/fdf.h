@@ -1,38 +1,39 @@
-#include "libft.h"
-#include "get_next_line.h"
-#include "mlx.h"
-#include <time.h>
-#include <X11/X.h>
+#ifndef FDF_H
+# define FDF_H
 
-# ifndef MAP
-#  define MAP "./test_maps/42.fdf"
-#  define MSG_INVALID_MAP "Error invalid map"
-#  define MSG_INVALID_OS "Error invalid OS"
-#  define OS 3
-#  define WIDTH 1500
-#  define HEIGHT 800
+# include "libft.h"
+# include "get_next_line.h"
+# include "mlx.h"
+# include <time.h>
+# include <X11/X.h>
 
+# define MAP "./test_maps/42.fdf"
+# define MSG_INVALID_MAP "Error invalid map"
+# define MSG_INVALID_OS "Error invalid OS"
+# define OS 3
+# define WIDTH 1500
+# define HEIGHT 800
 
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
-#  define Touch_LeftArrow 65361
-#  define Touch_RightArrow 65363
-#  define Touch_UpArrow 65362
-#  define Touch_DownArrow 65364
-#  define Touch_Moins 45
-#  define Touch_Plus 61
-#  define Touch_One 49
-#  define Touch_Tow 50
-#  define Touch_Three 51
-#  define Touch_Four 52
-#  define Touch_Five 53
-#  define Touch_Six 54
-#  define Touch_W 119
-#  define Touch_A 100
-#  define Touch_S 115
-#  define Touch_D 97
-#  define ESC 65307
-#  define Touch_C 99
-#  define Touch_M 109
+# define Touch_LeftArrow 65361
+# define Touch_RightArrow 65363
+# define Touch_UpArrow 65362
+# define Touch_DownArrow 65364
+# define Touch_Moins 45
+# define Touch_Plus 61
+# define Touch_One 49
+# define Touch_Tow 50
+# define Touch_Three 51
+# define Touch_Four 52
+# define Touch_Five 53
+# define Touch_Six 54
+# define Touch_W 119
+# define Touch_A 100
+# define Touch_S 115
+# define Touch_D 97
+# define ESC 65307
+# define Touch_C 99
+# define Touch_M 109
 
 
 
