@@ -6,11 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 19:22:31 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:06:36 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
+
 #include "fdf.h"
 #include <X11/X.h>
 
@@ -69,7 +69,7 @@ int	main(void)
 	mlx_string_put(m.mlx, m.mlx_win, 5, 13, 0xffffff, "Loading ...");
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i, &m.img.p, &m.img.size, &m.img.e);
-	suite(&m);
+	ft_all(&m);
 	mlx_hook(m.mlx_win, 2, 1L<<0, ft_key, &m);
 	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);

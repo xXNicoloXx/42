@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 19:18:26 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 11:05:10 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_mouse_move(int x, int y, t_map *m)
 		m->mouse_move = 0;
 		m->r += (x - x1) / 30;
 		m->i += (y - y1) / 30;
-		suite(m);
+		ft_all(m);
 	}
 	else
 	{
@@ -46,7 +46,7 @@ void	ft_zoom(int keycode, int x, int y, t_map *m)
 		ft_mouse_move(x, y, m);
 		return ;
 	}	
-	suite(m);
+	ft_all(m);
 }
 
 void	ft_key_pt3(int keycode, t_map *m)
@@ -125,6 +125,6 @@ void	ft_key(int keycode, t_map *m)
 	ft_key_pt2(keycode, m);
 	ft_key_pt3(keycode, m);
 	ft_clean(m);
-	suite(m);
+	ft_all(m);
 	return ;
 }

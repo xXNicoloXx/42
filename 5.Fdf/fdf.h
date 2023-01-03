@@ -1,6 +1,7 @@
 #include "libft.h"
 #include "get_next_line.h"
 #include <time.h>
+#include "mlx.h"
 
 # ifndef MAP
 #  define MAP "./test_maps/42.fdf"
