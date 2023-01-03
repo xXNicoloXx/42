@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 14:15:40 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:22:27 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void	ft_zoom(int keycode, int x, int y, t_map *m)
 void	ft_key_pt3(int keycode, t_map *m)
 {
 	if (keycode == Touch_S)
-			m->movey = m->movey - POWMOVE;
+			m->movey = m->movey - 30;
 	else if (keycode == Touch_D)
-			m->movex = m->movex + POWMOVE;
+			m->movex = m->movex + 30;
 	else if (keycode == Touch_A)
-			m->movex = m->movex - POWMOVE;
+			m->movex = m->movex - 30;
 	else if (keycode == Touch_C)
 			m->setupcolor += 1;
 	else if (keycode == ESC || keycode == -16779872)
@@ -98,21 +98,19 @@ void	ft_key_pt2(int keycode, t_map *m)
 	else if (keycode == Touch_Six)
 		ft_annimation(m);
 	else if (keycode == Touch_W)
-			m->movey = m->movey + POWMOVE;
+			m->movey = m->movey + 30;
 }
 
 void	ft_key(int keycode, t_map *m)
 {
-	fprintf(stderr, "code %d\n", keycode);
-
 	if (keycode == Touch_UpArrow)
-			m->i = m->i + POWDEG;
+			m->i = m->i + 5;
 	else if (keycode == Touch_DownArrow)
-			m->i = m->i - POWDEG;
+			m->i = m->i - 5;
 	else if (keycode == Touch_LeftArrow)
-			m->r = m->r - POWDEG;
+			m->r = m->r - 5;
 	else if (keycode == Touch_RightArrow)
-			m->r = m->r + POWDEG;
+			m->r = m->r + 5;
 	else if (keycode == Touch_Plus)
 	{
 		m->hauteur = m->hauteur + m->hauteur * 0.3;
