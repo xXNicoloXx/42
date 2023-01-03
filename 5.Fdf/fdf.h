@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 18:44:52 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:18:03 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,55 @@
 
 # include "libft.h"
 # include "get_next_line.h"
-# include "mlx.h"
+# include "./minilibx-linux/mlx.h"
 # include <time.h>
 # include <X11/X.h>
 
 # define MAP "./test_maps/42.fdf"
-# define MSG_INVALID_MAP "Error invalid map"
-# define MSG_INVALID_OS "Error invalid OS"
-# define OS 3
+// LINUX: 0		MacOS: 1
+# define OS 0
+// Resolution	
 # define WIDTH 1500
 # define HEIGHT 800
+//Message error
+# define MSG_INVALID_MAP "Error invalid map"
 
-// #   define MAP "./moremaps/hardests/hardest01.fdf"
-# define TOUCH_LEFTARROW 65361
-# define TOUCH_RIGHTARROW 65363
-# define TOUCH_UPARROW 65362
-# define TOUCH_DOWNARROW 65364
-# define TOUCH_MOINS 45
-# define TOUCH_PLUS 61
-# define TOUCH_ONE 49
-# define TOUCH_TOW 50
-# define TOUCH_THREE 51
-# define TOUCH_FOUR 52
-# define TOUCH_FIVE 53
-# define TOUCH_SIX 54
-# define TOUCH_W 119
-# define TOUCH_A 100
-# define TOUCH_S 115
-# define TOUCH_D 97
-# define ESC 65307
-# define TOUCH_C 99
-# define TOUCH_M 109 //
-
-// #  define TOUCH_LEFTARROW 123
-// #  define TOUCH_RIGHTARROW 124
-// #  define TOUCH_UPARROW 126
-// #  define TOUCH_DOWNARROW 125
-// #  define TOUCH_MOINS 27
-// #  define TOUCH_PLUS 24
-// #  define TOUCH_ONE 18
-// #  define TOUCH_TOW 19
-// #  define TOUCH_THREE 20
-// #  define TOUCH_W 13
-// #  define TOUCH_A 0
-// #  define TOUCH_S 1
-// #  define TOUCH_D 2
+# if OS == 0
+#  define TOUCH_LEFTARROW 65361
+#  define TOUCH_RIGHTARROW 65363
+#  define TOUCH_UPARROW 65362
+#  define TOUCH_DOWNARROW 65364
+#  define TOUCH_MOINS 45
+#  define TOUCH_PLUS 61
+#  define TOUCH_ONE 49
+#  define TOUCH_TOW 50
+#  define TOUCH_THREE 51
+#  define TOUCH_FOUR 52
+#  define TOUCH_FIVE 53
+#  define TOUCH_SIX 54
+#  define TOUCH_W 119
+#  define TOUCH_A 100
+#  define TOUCH_S 115
+#  define TOUCH_D 97
+#  define ESC 65307
+#  define TOUCH_C 99
+#  define TOUCH_M 109
+# elif OS == 1
+#  define TOUCH_LEFTARROW 123
+#  define TOUCH_RIGHTARROW 124
+#  define TOUCH_UPARROW 126
+#  define TOUCH_DOWNARROW 125
+#  define TOUCH_MOINS 27
+#  define TOUCH_PLUS 24
+#  define TOUCH_ONE 18
+#  define TOUCH_TOW 19
+#  define TOUCH_THREE 20
+#  define TOUCH_W 13
+#  define TOUCH_A 0
+#  define TOUCH_S 1
+#  define TOUCH_D 2
+# else
+# endif
 
 typedef struct s_pixel
 {
