@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 12:22:27 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:46:47 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,13 @@ int	ft_zoom(int keycode, int x, int y, t_map *m)
 
 void	ft_key_pt3(int keycode, t_map *m)
 {
-	if (keycode == Touch_S)
+	if (keycode == TOUCH_S)
 			m->movey = m->movey - 30;
-	else if (keycode == Touch_D)
+	else if (keycode == TOUCH_D)
 			m->movex = m->movex + 30;
-	else if (keycode == Touch_A)
+	else if (keycode == TOUCH_A)
 			m->movex = m->movex - 30;
-	else if (keycode == Touch_C)
+	else if (keycode == TOUCH_C)
 			m->setupcolor += 1;
 	else if (keycode == ESC || keycode == -16779872)
 	{
@@ -70,33 +70,33 @@ void	ft_key_pt3(int keycode, t_map *m)
 		free(m->mlx);
 		exit(0);
 	}
-	else if (keycode == Touch_M)
+	else if (keycode == TOUCH_M)
 			m->verifmonitor *= -1;
 }
 
 void	ft_key_pt2(int keycode, t_map *m)
 {
-	if (keycode == Touch_One)
+	if (keycode == TOUCH_ONE)
 	{
 		m->r = 0;
 		m->i = 0;
 	}
-	else if (keycode == Touch_Tow)
+	else if (keycode == TOUCH_TOW)
 	{
 		m->i = 90;
 		m->r = 0;
 	}
-	else if (keycode == Touch_Three)
+	else if (keycode == TOUCH_THREE)
 	{
 		m->r = 45;
 		m->i = 20;
 	}
-	else if (keycode == Touch_Four)
+	else if (keycode == TOUCH_FOUR)
 	{
 		m->r = -45;
 		m->i = 20;
 	}
-	else if (keycode == Touch_Six)
+	else if (keycode == TOUCH_SIX)
 		ft_annimation(m);
 	else if (keycode == Touch_W)
 			m->movey = m->movey + 30;
