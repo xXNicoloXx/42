@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 11:14:40 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:22:27 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	ft_mouse_move(int x, int y, t_map *m)
 {
 	static int	x1;
 	static int	y1;
+
 	if (m->mouse_move == 1)
 	{
 		ft_clean(m);
@@ -59,7 +60,7 @@ void	ft_key_pt3(int keycode, t_map *m)
 			m->movex = m->movex - 30;
 	else if (keycode == Touch_C)
 			m->setupcolor += 1;
-	else if (keycode == ESC)
+	else if (keycode == ESC || keycode == -16779872)
 	{
 		ft_free_map(m, 1);
 		mlx_destroy_image(m->mlx, m->img.i);
@@ -102,7 +103,6 @@ void	ft_key_pt2(int keycode, t_map *m)
 
 void	ft_key(int keycode, t_map *m)
 {
-	fprintf(stderr, "code %d\n", keycode);
 	if (keycode == Touch_UpArrow)
 			m->i = m->i + 5;
 	else if (keycode == Touch_DownArrow)

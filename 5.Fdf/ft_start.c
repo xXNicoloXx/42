@@ -6,13 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 11:06:36 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:24:51 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "fdf.h"
-#include <X11/X.h>
 
 void	ft_all(t_map *m)
 {	
@@ -58,6 +56,16 @@ void	ft_intivalue(t_map *m)
 	m->maxh = 0;
 }
 
+void	ft_cross_close(t_map *m)
+{
+	ft_free_map(m, 1);
+	mlx_destroy_image(m->mlx, m->img.i);
+	mlx_destroy_window(m->mlx, m->mlx_win);
+	mlx_destroy_display(m->mlx);
+	free(m->mlx);
+	exit(0);
+}
+
 int	main(void)
 {
 	int		color;
@@ -70,7 +78,8 @@ int	main(void)
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i, &m.img.p, &m.img.size, &m.img.e);
 	ft_all(&m);
-	mlx_hook(m.mlx_win, 2, 1L<<0, ft_key, &m);
+	mlx_hook(m.mlx_win, 2, 1L << 0, ft_key, &m);
+	mlx_hook(m.mlx_win, 17, 1L << 0, ft_cross_close, &m);
 	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
 	mlx_loop(m.mlx);

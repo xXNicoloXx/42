@@ -1,7 +1,8 @@
 #include "libft.h"
 #include "get_next_line.h"
-#include <time.h>
 #include "mlx.h"
+#include <time.h>
+#include <X11/X.h>
 
 # ifndef MAP
 #  define MAP "./test_maps/42.fdf"
@@ -191,6 +192,7 @@ void	ft_annimationpt2(t_map *m);
 void	ft_all(t_map *m);
 void	ft_intivalue(t_map *m);
 int		main(void);
+void ft_cross_close(t_map *m);
 
 
 
