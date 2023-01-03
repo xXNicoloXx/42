@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 12:24:51 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 12:26:47 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(void)
 	ft_all(&m);
 	mlx_hook(m.mlx_win, 2, 1L << 0, ft_key, &m);
 	mlx_hook(m.mlx_win, 17, 1L << 0, ft_cross_close, &m);
-	mlx_mouse_hook(m.mlx_win, ft_zoom, &m);
+	mlx_mouse_hook(m.mlx_win, &ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
 	mlx_loop(m.mlx);
 }
