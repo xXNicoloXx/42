@@ -9,11 +9,25 @@
 #  define MSG_INVALID_MAP "Error invalid map"
 #  define MSG_INVALID_OS "Error invalid OS"
 #  define OS 3
-#  define WIDTH 1500
-#  define HEIGHT 800
+#  define WIDTH 2500
+#  define HEIGHT 1200
+#  define POWMOVE 30
+#  define POWDEG 5
 
 
 // #  define MAP "./moremaps/hardests/hardest01.fdf"
+// #  define MAP1 "./test_maps/42.fdf"
+// #  define MAP2"./test_maps/worldmap_s.fdf"
+// #  define MAP3 "./test_maps/worldmap.fdf"
+// #  define MAP4 "./test_maps/worldmap_XXL.fdf"
+// #  define MAP5 "./test_maps/42.fdf"
+// #  define MAP6 "./test_maps/42.fdf"
+// #  define MAP7 "./test_maps/42.fdf"
+// #  define MAP8 "./test_maps/42.fdf"
+// #  define MAP9 "./test_maps/42.fdf"
+// #  define MAP10 "./test_maps/42.fdf"
+
+
 #  define Touch_LeftArrow 65361
 #  define Touch_RightArrow 65363
 #  define Touch_UpArrow 65362
@@ -31,8 +45,9 @@
 #  define Touch_S 115
 #  define Touch_D 97
 #  define ESC 65307
-#  define Touch_C 99
+#  define Touch_C 99		
 #  define Touch_M 109
+#  define Touch_I 105
 
 
 
@@ -120,6 +135,7 @@ typedef struct s_map
 	float varcos;
 	float varsin;
 	int verifmonitor;
+	int selectmap;
 }					t_map;
 
 //		COLOR_MAP
@@ -145,6 +161,7 @@ void	ft_monitoring(t_map *m);
 void	ft_line_direction_pt1(float dx, float unity, float tmp, t_map *m);
 void	ft_line_direction_pt2(float dy, float unity, float tmp, t_map *m);
 void	ft_line_direction_pt3(float dy, float unity, float tmp, t_map *m);
+
 void	ft_reverse_direction(float tmp, t_map *m);
 void	ft_ligne(t_map *m);
 
@@ -174,6 +191,7 @@ void	ft_zoom(int keycode, int x, int y, t_map *m);
 void	ft_key(int keycode, t_map *m);
 void	ft_key_pt2(int keycode, t_map *m);
 void	ft_key_pt3(int keycode, t_map *m);
+void	ft_key_pt4(int keycode, t_map *m);
 
 //		PRINT MAP
 void	ft_print_map(t_map *m);

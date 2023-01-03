@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:51:00 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 15:56:04 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/03 14:04:41 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_setup_color_pt3(t_map *m)
 	m->color[63] = 0x72CC00;
 	m->color[70] = 0x298000;
 	m->color[78] = 0x4f3000;
-	m->color[80] = 0xffffff;
+	m->color[82] = 0xffffff;
 	m->color[99] = 0xffffff;
 	}
 }
@@ -42,7 +42,7 @@ void	ft_setup_color_pt2(t_map *m)
 {
 	if (m->setupcolor == 4)
 	{
-		m->color[0] = 0x333333;
+		m->color[0] = 0x111111;
 		m->color[99] = 0xffffff;
 	}
 	else
