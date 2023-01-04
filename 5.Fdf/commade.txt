@@ -1,4 +1,4 @@
-clear && gcc -g *.c -lmlx -lm -lXext -lX11 -I ./minilibx-linux/ -L ./minilibx-linux && ./a.out\
+clear && gcc -g *.c -lmlx -lm -lXext -lX11 -I ./minilibx-linux/ -L ./minilibx-linux && ./a.out
 clear && gcc  *.c -I ./ -L ./ -lmlx -framework OpenGL -framework AppKit && ./a.out
 
 //clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out

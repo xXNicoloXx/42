@@ -5,17 +5,17 @@ ft_line_color.c	ft_map_calcul.c		ft_start.c
 
 OBJS = ${FILES:.c=.o}
 
-LIB = libftprintf.a
+LIB = Fdf
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -lmlx -lm -lXext -lX11 -I ./lib/minilibx-linux/ -L ./lib/minilibx-linux
-
+FLAGSLINUX = -Wall -Werror -Wextra -lmlx -lm -lXext -lX11 -I ./lib/minilibx-linux/ -L ./lib/minilibx-linux/
+FLAGSMACOS = -lmlx -framework OpenGL -framework AppKit -I ./lib/minilibx_macos -L ./lib/minilibx
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${LIB}:	${OBJS}
-		ar -rsc ${LIB} ${OBJS}
+		cc -o ${LIB} ${FLAGSLINUX} ${OBJS}
 
 all: 	${LIB}
 
