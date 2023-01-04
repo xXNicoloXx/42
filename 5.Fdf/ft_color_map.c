@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 15:51:00 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 15:56:04 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:59:28 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_setup_color_pt1(t_map *m)
 {
 	if (m->setupcolor == 0)
 	{
-		m->color[0] = 0x0000ff;
+		m->color[0] = 0x0066ff;
 		m->color[99] = 0xff0000;
 	}
 	else if (m->setupcolor == 1)
