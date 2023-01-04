@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:34:31 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 17:36:15 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:40:54 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	ft_color_line(float nbpix, float pospix, t_map *m)
 	float	deltah;
 
 	deltah = (float)m->maxh - (float)m->minh;
+	if (deltah == 0)
+		deltah = 1;
 	if (m->line.hcolor1 < m->line.hcolor2)
 		return (ft_color_line_up(nbpix, pospix, deltah, m));
 	else if (m->line.hcolor1 > m->line.hcolor2)

@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 13:21:07 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:18:08 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,6 @@ void	ft_intivalue(t_map *m)
 	m->x = 0;
 	m->y = 0;
 	m->mouse_move = 0;
-	m->setupcolor = 0;
-	m->verifmonitor = 1;
 	ft_copy_map(m);
 	m->z = m->winx / sqrt(pow(m->x * m->z, 2) + pow(m->y * m->z, 2));
 	m->hauteur = m->z / 1000;
@@ -68,13 +66,16 @@ int	ft_cross_close(t_map *m)
 	return (1);
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	int		color;
 	t_map	m;
 
 	m.pathmap.indexmap = 0;
-	m.pathmap.currentmap = MAP1;
+	m.setupcolor = 0;
+	m.verifmonitor = 1;
+	m.pathmap.currentmap = argv[1];
+	m.pathmap.map0 = argv[1];
 	ft_intivalue(&m);
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");

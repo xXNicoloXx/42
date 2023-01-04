@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 13:27:14 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:43:34 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,22 @@
 # include "./minilibx-linux/mlx.h"
 # include <time.h>
 # include <X11/X.h>
-
-# define MAP "./test_maps/42.fdf"
-// LINUX: 0		MacOS: 1
-# define OS 0
-// Resolution	
-# define WIDTH 1500
-# define HEIGHT 800
-//Message error
+//
+//	LINUX: 0		MacOS: 1	LINUX ECOLE: 2	MacBook Air 13.3: 3
+//
+# define OS 2
+//
+//	Resolution	
+//
+# define WIN_WIDTH 1000
+# define WIN_HEIGHT 1000
+//
+//	Message error
+//
 # define MSG_INVALID_MAP "Error invalid map"
-
+//
+//	MAPS
+//
 # define MAP1 "./test_maps/42.fdf"
 # define MAP2 "./test_maps/worldmap_s.fdf"
 # define MAP3 "./test_maps/worldmap.fdf"
@@ -35,10 +41,31 @@
 # define MAP5 "./test_maps/mars.fdf"
 # define MAP6 "./test_maps/pylone.fdf"
 # define MAP7 "./test_maps/t3.fdf"
-# define MAP8 "./test_maps/42.fdf"
-# define MAP9 "./test_maps/42.fdf"
+# define MAP8 "./test_maps/plat.fdf"
+# define MAP9 "./test_maps/pyra.fdf"
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
-# if OS == 0
+# if OS == 0 || OS == 2
 #  define TOUCH_LEFTARROW 65361
 #  define TOUCH_RIGHTARROW 65363
 #  define TOUCH_UPARROW 65362
@@ -59,7 +86,14 @@
 #  define TOUCH_C 99
 #  define TOUCH_M 109
 #  define TOUCH_I 105
-# elif OS == 1
+#  if OS == 2
+#   define WIDTH 2560
+#   define HEIGHT 1310 
+#  else
+#   define WIDTH WIN_WIDTH
+#   define HEIGHT WIN_HEIGHT 
+#  endif
+# elif OS == 1 || OS == 3
 #  define TOUCH_LEFTARROW 123
 #  define TOUCH_RIGHTARROW 124
 #  define TOUCH_UPARROW 126
@@ -73,6 +107,13 @@
 #  define TOUCH_A 0
 #  define TOUCH_S 1
 #  define TOUCH_D 2
+#  if OS == 3
+#   define WIDTH 500
+#   define HEIGHT 500
+#  else
+#   define WIDTH WIN_WIDTH
+#   define HEIGHT WIN_HEIGHT 
+#  endif
 # else
 # endif
 
@@ -230,6 +271,6 @@ void	ft_annimationpt2(t_map *m);
 //		START
 void	ft_all(t_map *m);
 void	ft_intivalue(t_map *m);
-int		main(void);
+int		main(int argc, char **argv);
 int		ft_cross_close(t_map *m);
 #endif
