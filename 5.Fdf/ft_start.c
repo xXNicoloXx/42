@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 14:18:08 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:43:23 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_all(t_map *m)
 	ft_move(m);
 	ft_init_color(m);
 	ft_print_map(m);
-	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
+	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0); //
 	ft_monitoring(m);
 }
 
