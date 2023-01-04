@@ -24,4 +24,6 @@ fclean:	clean;
 
 re:	fclean all
 
+macos: 
+
 .PHONY: all clean fclean re

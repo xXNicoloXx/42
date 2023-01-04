@@ -1,17 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ligne.c                                            :+:      :+:    :+:   */
+/*   ft_line.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 17:34:25 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:15:01 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include <math.h>
 #include "fdf.h"
 
 void	ft_line_direction_pt1(float dx, float unity, float tmp, t_map *m)

@@ -6,12 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:56:24 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 19:19:33 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:14:35 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "mlx.h"
 
 void	ft_color(int nbr, t_map *m)
 {

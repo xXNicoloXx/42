@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 20:27:04 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:15:14 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "libft.h"
 # include "get_next_line.h"
-# include "./minilibx-linux/mlx.h"
+# include "./lib/minilibx-linux/mlx.h"
 # include <time.h>
+# include <math.h>
 # include <X11/X.h>
 //
 //	LINUX: 0		MacOS: 1	LINUX ECOLE: 2	MacBook Air 13.3: 3
@@ -34,15 +35,15 @@
 //
 //	MAPS
 //
-# define MAP1 "./test_maps/42.fdf"
-# define MAP2 "./test_maps/pylone.fdf"
-# define MAP3 "./test_maps/worldmap_s.fdf"
-# define MAP4 "./test_maps/t3.fdf"
-# define MAP5 "./test_maps/pentenegpos.fdf"
-# define MAP6 "./test_maps/100-6.fdf"
-# define MAP7 "./test_maps/julia.fdf"
-# define MAP8 "./test_maps/france.fdf"
-# define MAP9 "./test_maps/worldmap_XXL.fdf"
+# define MAP1 "./maps/42.fdf"
+# define MAP2 "./maps/pylone.fdf"
+# define MAP3 "./maps/worldmap_s.fdf"
+# define MAP4 "./maps/t3.fdf"
+# define MAP5 "./maps/pentenegpos.fdf"
+# define MAP6 "./maps/100-6.fdf"
+# define MAP7 "./maps/julia.fdf"
+# define MAP8 "./maps/france.fdf"
+# define MAP9 "./maps/worldmap_XXL.fdf"
 //
 //
 //

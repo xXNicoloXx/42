@@ -6,13 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 16:22:34 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:15:19 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
 #include "fdf.h"
-#include <X11/X.h>
 
 void	ft_monitoring_invalid_map(t_map *m)
 {
