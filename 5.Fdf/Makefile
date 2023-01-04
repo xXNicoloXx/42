@@ -9,13 +9,15 @@ LIB = Fdf
 
 CC = gcc
 
-FLAGSLINUX = -Wall -Werror -Wextra -lmlx -lm -lXext -lX11 -I ./lib/minilibx-linux/ -L ./lib/minilibx-linux/
-FLAGSMACOS = -lmlx -framework OpenGL -framework AppKit -I ./lib/minilibx_macos -L ./lib/minilibx
+INCLUDE = -I ./
+FLAGSLINUX = -Wall -Werror -Wextra -lmlx -lm -lXext -lX11 -I ./lib/minilibx-linux -L ./lib/minilibx-linux
+FLAGSMACOS = -lmlx -framework OpenGL -framework AppKit -I ./lib/minilibx_macos -L ./lib/minilibx_macos
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 ${LIB}:	${OBJS}
-		cc -o ${LIB} ${FLAGSLINUX} ${OBJS}
+		+$(MAKE) -C ./lib/minilibx-linux/
+		gcc -o ${LIB} ${OBJS} ${INCLUDE} ${FLAGSLINUX}
 
 all: 	${LIB}
 

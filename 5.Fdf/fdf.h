@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 22:15:14 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 23:03:08 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 //	MAPS
 //
 # define MAP1 "./maps/42.fdf"
-# define MAP2 "./maps/pylone.fdf"
+# define MAP2 "./maps/py55lone.fdf"
 # define MAP3 "./maps/worldmap_s.fdf"
 # define MAP4 "./maps/t3.fdf"
 # define MAP5 "./maps/pentenegpos.fdf"
