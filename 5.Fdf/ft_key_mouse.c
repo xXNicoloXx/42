@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 18:47:29 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:25:44 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ void	ft_key_pt3(int keycode, t_map *m)
 		free(m->mlx);
 		exit(0);
 	}
-	else if (keycode == TOUCH_M)
+	else if (keycode == TOUCH_I)
 			m->verifmonitor *= -1;
+	ft_key_pt4(keycode, m);
 }
 
 void	ft_key_pt2(int keycode, t_map *m)

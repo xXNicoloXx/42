@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/03 19:18:03 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:51:24 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,17 @@
 //Message error
 # define MSG_INVALID_MAP "Error invalid map"
 
+# define MAP1 "./test_maps/42.fdf"
+# define MAP2 "./test_maps/worldmap_s.fdf"
+# define MAP3 "./test_maps/worldmap.fdf"
+# define MAP4
+# define MAP5
+# define MAP6
+# define MAP7
+# define MAP8
+# define MAP9
+
+
 # if OS == 0
 #  define TOUCH_LEFTARROW 65361
 #  define TOUCH_RIGHTARROW 65363
@@ -48,6 +59,7 @@
 #  define ESC 65307
 #  define TOUCH_C 99
 #  define TOUCH_M 109
+#  define TOUCH_I 105
 # elif OS == 1
 #  define TOUCH_LEFTARROW 123
 #  define TOUCH_RIGHTARROW 124
@@ -97,11 +109,28 @@ typedef struct s_line
 	int		reverse;
 }	t_line;
 
+typedef struct s_pathmap
+{
+	char	*map0;
+	char	*map1;
+	char	*map2;
+	char	*map3;
+	char	*map4;
+	char	*map5;
+	char	*map6;
+	char	*map7;
+	char	*map8;
+	char	*map9;
+	char	*currentmap;
+	int		indexmap;
+}	t_pathmap;
+
 typedef struct s_map
 {
 	t_pixel			**initm;
 	t_pixel			**m;
 	t_line			line;
+	t_pathmap		pathmap;
 	int				x;
 	int				y;
 	float			minh;
@@ -182,6 +211,8 @@ int		ft_zoom(int keycode, int x, int y, t_map *m);
 int		ft_key(int keycode, t_map *m);
 void	ft_key_pt2(int keycode, t_map *m);
 void	ft_key_pt3(int keycode, t_map *m);
+void	ft_key_pt4(int keycode, t_map *m);
+
 
 //		PRINT MAP
 void	ft_print_map(t_map *m);
