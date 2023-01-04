@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:57:28 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 19:52:06 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:13:41 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_y_map(int fd, int *xmax)
 	return (y);
 }
 
-int	ft_error_malloc(int y, t_map *m)
+int	ft_error_malloc_init(int y, t_map *m)
 {
 	if (y != 0)
 	{	
@@ -77,7 +77,7 @@ int	ft_fill_map_pt2(t_map *m, char *ligne, int y)
 	x = 0;
 	m->initm[y] = ft_calloc(sizeof(t_pixel), (m->x));
 	if (!(m->initm[y]))
-		return (ft_error_malloc(y, m));
+		return (ft_error_malloc_init(y, m));
 	while (ligne[i] != '\n' && ligne[i] != '\0')
 	{
 		if (ligne[i] != ' ')

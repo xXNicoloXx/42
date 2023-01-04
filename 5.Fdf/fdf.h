@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 19:02:06 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:01:18 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 //
 //	LINUX: 0		MacOS: 1	LINUX ECOLE: 2	MacBook Air 13.3: 3
 //
-# define OS 2
+# define OS 0
 //
 //	Resolution	
 //
@@ -35,12 +35,12 @@
 //	MAPS
 //
 # define MAP1 "./test_maps/42.fdf"
-# define MAP2 "./test_maps/julia.fdf"
-# define MAP3 "./test_maps/pylone.fdf"
-# define MAP4 "./test_maps/worldmap_s.fdf"
-# define MAP5 "./test_maps/t3.fdf"
-# define MAP6 "./test_maps/pentenegpos.fdf"
-# define MAP7 "./test_maps/100-6.fdf"
+# define MAP2 "./test_maps/pylone.fdf"
+# define MAP3 "./test_maps/worldmap_s.fdf"
+# define MAP4 "./test_maps/t3.fdf"
+# define MAP5 "./test_maps/pentenegpos.fdf"
+# define MAP6 "./test_maps/100-6.fdf"
+# define MAP7 "./test_maps/julia.fdf"
 # define MAP8 "./test_maps/france.fdf"
 # define MAP9 "./test_maps/worldmap_XXL.fdf"
 //
@@ -57,10 +57,10 @@
 //
 //
 //
-//-10035
-//6168
 //
-//1184
+//
+//
+//
 //
 //
 //
@@ -236,7 +236,9 @@ int		ft_y_map(int fd, int *xmax);
 int		ft_fill_map(t_map *m, int fd);
 int		ft_fill_map_pt2(t_map *m, char *ligne, int y);
 int		ft_copy_map(t_map *map);
-void	ft_map(t_map *m);
+int		ft_map(t_map *m);
+int		ft_error_malloc_init(int y, t_map *m);
+
 
 //		MAP CALCUL
 void	ft_hauteur(t_map *m);
@@ -269,7 +271,7 @@ void	ft_annimation(t_map *m);
 void	ft_annimationpt2(t_map *m);
 
 //		START
-void	ft_all(t_map *m);
+int		ft_all(t_map *m);
 int		ft_intivalue(t_map *m);
 int		main(int argc, char **argv);
 int		ft_cross_close(t_map *m);
