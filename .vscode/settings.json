@@ -1,8 +1,0 @@
-{
-    "files.associations": {
-        "cmath": "c",
-        "fdf.h": "c",
-        "get_next_line.h": "c",
-        "ft_map_calcul": "c"
-    }
-}
