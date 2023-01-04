@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:57:28 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 18:59:11 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:02:37 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,9 @@ void	ft_copy_map(t_map *map)
 {
 	int	fd;
 
-	fd = open(MAP, O_RDONLY);
+	fd = open(map->pathmap.currentmap, O_RDONLY);
 	map->y = ft_y_map(fd, &map->x);
 	map->initm = malloc(sizeof(t_pixel *) * (map->y));
-	fd = open(MAP, O_RDONLY);
+	fd = open(map->pathmap.currentmap, O_RDONLY);
 	ft_fill_map(map, fd);
 }

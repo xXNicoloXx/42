@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 11:51:24 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:57:38 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@
 # define MAP1 "./test_maps/42.fdf"
 # define MAP2 "./test_maps/worldmap_s.fdf"
 # define MAP3 "./test_maps/worldmap.fdf"
-# define MAP4
-# define MAP5
-# define MAP6
-# define MAP7
-# define MAP8
-# define MAP9
+# define MAP4 "./test_maps/42.fdf"
+# define MAP5 "./test_maps/42.fdf"
+# define MAP6 "./test_maps/42.fdf"
+# define MAP7 "./test_maps/42.fdf"
+# define MAP8 "./test_maps/42.fdf"
+# define MAP9 "./test_maps/42.fdf"
 
 
 # if OS == 0
@@ -212,6 +212,7 @@ int		ft_key(int keycode, t_map *m);
 void	ft_key_pt2(int keycode, t_map *m);
 void	ft_key_pt3(int keycode, t_map *m);
 void	ft_key_pt4(int keycode, t_map *m);
+void    ft_init_path_map(t_map  *m);
 
 
 //		PRINT MAP
