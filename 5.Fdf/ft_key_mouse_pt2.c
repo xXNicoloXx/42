@@ -6,61 +6,64 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 19:20:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 12:09:22 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:26:28 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void    ft_init_path_map(t_map  *m)
+void	ft_init_path_map(t_map *m)
 {
-    m->pathmap.map1 = MAP1;
-    m->pathmap.map2 = MAP2;
-    m->pathmap.map3 = MAP3;
-    m->pathmap.map4 = MAP4;
-    m->pathmap.map5 = MAP5;
-    m->pathmap.map6 = MAP6;
-    m->pathmap.map7 = MAP7;
-    m->pathmap.map8 = MAP8;
-    m->pathmap.map9 = MAP9;
+	m->pathmap.map1 = MAP1;
+	m->pathmap.map2 = MAP2;
+	m->pathmap.map3 = MAP3;
+	m->pathmap.map4 = MAP4;
+	m->pathmap.map5 = MAP5;
+	m->pathmap.map6 = MAP6;
+	m->pathmap.map7 = MAP7;
+	m->pathmap.map8 = MAP8;
+	m->pathmap.map9 = MAP9;
+}
+
+void	ft_intdex_map(t_map *m)
+{
+	if (m->pathmap.indexmap == 0)
+		m->pathmap.currentmap = m->pathmap.map0;
+	else if (m->pathmap.indexmap == 1)
+		m->pathmap.currentmap = m->pathmap.map1;
+	else if (m->pathmap.indexmap == 2)
+		m->pathmap.currentmap = m->pathmap.map2;
+	else if (m->pathmap.indexmap == 3)
+		m->pathmap.currentmap = m->pathmap.map3;
+	else if (m->pathmap.indexmap == 4)
+		m->pathmap.currentmap = m->pathmap.map4;
+	else if (m->pathmap.indexmap == 5)
+		m->pathmap.currentmap = m->pathmap.map5;
+	else if (m->pathmap.indexmap == 6)
+		m->pathmap.currentmap = m->pathmap.map6;
+	else if (m->pathmap.indexmap == 7)
+		m->pathmap.currentmap = m->pathmap.map7;
+	else if (m->pathmap.indexmap == 8)
+		m->pathmap.currentmap = m->pathmap.map8;
+	else if (m->pathmap.indexmap == 9)
+		m->pathmap.currentmap = m->pathmap.map9;
+	else
+	{
+		m->pathmap.indexmap = 0;
+		m->pathmap.currentmap = m->pathmap.map0;
+	}
 }
 
 void	ft_key_pt4(int keycode, t_map *m)
 {
-    fprintf(stderr, "test code %d\n", keycode);
-    if (keycode == TOUCH_M)
-    {
-        m->pathmap.indexmap += 1;
-        ft_free_map(m, 1);
-        if (m->pathmap.indexmap == 0)
-            m->pathmap.currentmap = m->pathmap.map0;
-        else if (m->pathmap.indexmap == 1)
-            m->pathmap.currentmap = m->pathmap.map1;
-        else if (m->pathmap.indexmap == 2)
-            m->pathmap.currentmap = m->pathmap.map2;
-        else if (m->pathmap.indexmap == 3)
-            m->pathmap.currentmap = m->pathmap.map3;
-        else if (m->pathmap.indexmap == 4)
-            m->pathmap.currentmap = m->pathmap.map4;
-        else if (m->pathmap.indexmap == 5)
-            m->pathmap.currentmap = m->pathmap.map5;
-        else if (m->pathmap.indexmap == 6)
-            m->pathmap.currentmap = m->pathmap.map6;
-        else if (m->pathmap.indexmap == 7)
-            m->pathmap.currentmap = m->pathmap.map7;
-        else if (m->pathmap.indexmap == 8)
-            m->pathmap.currentmap = m->pathmap.map8;
-        else if (m->pathmap.indexmap == 9)
-            m->pathmap.currentmap = m->pathmap.map9;
-        else
-        {
-            m->pathmap.indexmap = 0;
-            m->pathmap.currentmap = m->pathmap.map0;
-        }
-        ft_intivalue(m);
-        ft_all(m);
-
-    }
+	if (keycode == TOUCH_M)
+	{
+		m->pathmap.indexmap += 1;
+		ft_free_map(m, 1);
+		ft_intdex_map(m);
+		ft_intivalue(m);
+		ft_all(m);
+	}
 }
 
 // touche m

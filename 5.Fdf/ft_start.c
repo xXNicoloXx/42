@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 12:05:30 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:21:07 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	ft_all(t_map *m)
 
 void	ft_intivalue(t_map *m)
 {
-    fprintf(stderr, "current map(%d) = %s\n", m->pathmap.indexmap, m->pathmap.currentmap);
 	ft_init_path_map(m);
 	m->winx = WIDTH;
 	m->winy = HEIGHT;

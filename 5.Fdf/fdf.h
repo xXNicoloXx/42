@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 12:12:05 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 13:27:14 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # define MAP7 "./test_maps/t3.fdf"
 # define MAP8 "./test_maps/42.fdf"
 # define MAP9 "./test_maps/42.fdf"
-
 
 # if OS == 0
 #  define TOUCH_LEFTARROW 65361
@@ -212,8 +211,8 @@ int		ft_key(int keycode, t_map *m);
 void	ft_key_pt2(int keycode, t_map *m);
 void	ft_key_pt3(int keycode, t_map *m);
 void	ft_key_pt4(int keycode, t_map *m);
-void    ft_init_path_map(t_map  *m);
-
+void	ft_init_path_map(t_map *m);
+void	ft_intdex_map(t_map *m);
 
 //		PRINT MAP
 void	ft_print_map(t_map *m);
