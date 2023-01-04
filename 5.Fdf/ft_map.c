@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:57:28 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 16:15:22 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:57:00 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_fill_map(t_map *m, int fd)
 	free(ligne);
 }
 
-void	ft_copy_map(t_map *map)
+int ft_copy_map(t_map *map)
 {
 	int	fd;
 
@@ -108,6 +108,10 @@ void	ft_copy_map(t_map *map)
 	}
 	map->y = ft_y_map(fd, &map->x);
 	map->initm = malloc(sizeof(t_pixel *) * (map->y));
+	if (!(map->initm))
+		return (-1);
+	fprintf(stderr, "icci pote\n");
 	fd = open(map->pathmap.currentmap, O_RDONLY);
 	ft_fill_map(map, fd);
+	return (1);
 }
