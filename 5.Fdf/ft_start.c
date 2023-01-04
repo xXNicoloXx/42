@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 19:30:01 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:39:31 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	main(int argc, char **argv)
 	m.pathmap.map0 = argv[1];
 	if (ft_intivalue(&m) == -1)
 	{
-		fprintf(stderr, "\t\tMALLOC ERROR\n");	
+		write(1, "MALLOC ERROR", 13);
 		return (-1);
 	}
 	m.mlx = mlx_init();
