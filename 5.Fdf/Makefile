@@ -9,7 +9,7 @@ LIB = libftprintf.a
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -I ./
+CFLAGS = -Wall -Werror -Wextra -lmlx -lm -lXext -lX11 -I ./lib/minilibx-linux/ -L ./lib/minilibx-linux
 
 .c.o:
 		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}

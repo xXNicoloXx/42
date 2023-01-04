@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 14:56:24 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 22:14:35 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:24:32 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	ft_draw(t_map *m, float x, float y, int color)
 	y = roundf(y);
 	ft_color(color, m);
 	pixel = (y * m->img.size) + (x * 4);
-	if ((m->img.size) * m->winy < pixel - 5 || x <= 0 || y <= 0
-		|| y > m->y * m->winy || x > m->winx)
+	if (((unsigned long)(m->img.size) * m->winy) < pixel - 5 || x <= 0
+		|| y <= 0 || y > m->y * m->winy || x > m->winx)
 		return ;
 	if (m->img.e == 1)
 	{

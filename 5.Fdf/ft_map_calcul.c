@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:02:49 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 19:20:29 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:26:43 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_hauteur(t_map *m)
 {
-	float	tmpy;
 	int		x;
 	int		y;
 

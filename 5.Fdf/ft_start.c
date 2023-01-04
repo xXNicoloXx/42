@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 20:13:24 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:27:56 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ int	ft_cross_close(t_map *m)
 	return (1);
 }
 
-void	ft_launch(t_map *m, char **argv)
+void	ft_launch(t_map *m, int argc, char **argv)
 {
+	(void) argc;
 	m->pathmap.indexmap = 0;
 	m->setupcolor = 0;
 	m->verifmonitor = 1;
@@ -81,10 +82,9 @@ void	ft_launch(t_map *m, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int		color;
 	t_map	m;
 
-	ft_launch(&m, argv);
+	ft_launch(&m, argc, argv);
 	if (ft_intivalue(&m) == -1)
 	{
 		write(1, "MALLOC ERROR INIT\n", 19);

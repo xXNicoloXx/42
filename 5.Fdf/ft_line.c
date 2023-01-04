@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 22:15:01 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:25:36 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,9 @@ void	ft_ligne(t_map *m)
 	float	dx;
 	float	dy;
 	float	unity;
-	float	i;
 	float	tmp;
 
+	tmp = 0;
 	if ((m->line.ax < 0 || m->line.ay < 0 || m->line.ax > m->winx
 			|| m->line.ay > m->winy) && (m->line.bx < 0 || m->line.by < 0
 			|| m->line.bx > m->winx || m->line.by > m->winy))
@@ -100,7 +100,6 @@ void	ft_ligne(t_map *m)
 	dx = (float)m->line.bx - (float)m->line.ax;
 	dy = (float)m->line.by - (float)m->line.ay;
 	unity = dy / dx;
-	i = 0;
 	if (dy == 0 || (0 < unity && unity < 1) || (-1 <= unity && unity < 0))
 		ft_line_direction_pt1(dx, unity, tmp, m);
 	else if (1 <= unity)
