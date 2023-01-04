@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:57:28 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 15:24:54 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:15:22 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	ft_x_map(char *ligne, int xmax)
 	x = 0;
 	while (ligne[i] != '\n' && ligne[i] != '\0')
 	{
-		if (ft_isdigit(ligne[i]))
+		if (ligne[i] != ' ')
 		{
 			x++;
-			while (ft_isdigit(ligne[i]))
+			while (ligne[i] != ' ' && ligne[i] != '\0')
 				i++;
 		}
 		else
@@ -64,13 +64,14 @@ int	ft_fill_map_pt2(t_map *m, char *ligne, int y)
 		m->initm[y] = ft_calloc(sizeof(t_pixel), (m->x));
 	while (ligne[i] != '\n' && ligne[i] != '\0')
 	{
-		if (ft_isdigit(ligne[i]) || ligne[i] == '-')
+		if (ligne[i] != ' ')
 		{
 			m->initm[y][x].y = y * m->z;
 			m->initm[y][x].x = x * m->z;
 			m->initm[y][x].z = ft_atoi(ligne + i);
 			x++;
-			while (ft_isdigit(ligne[i]) || ligne[i] == '-')
+			while (ligne[i] != ' ' && ligne[i] != '\0')
+
 				i++;
 		}
 		else
