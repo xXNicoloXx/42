@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 20:01:18 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:27:04 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,8 +237,6 @@ int		ft_fill_map(t_map *m, int fd);
 int		ft_fill_map_pt2(t_map *m, char *ligne, int y);
 int		ft_copy_map(t_map *map);
 int		ft_map(t_map *m);
-int		ft_error_malloc_init(int y, t_map *m);
-
 
 //		MAP CALCUL
 void	ft_hauteur(t_map *m);
@@ -265,6 +263,8 @@ void	ft_print_map_x(int x, int y, t_map *m);
 //		CLEAN
 void	ft_free_map(t_map *m, int exit);
 void	ft_clean(t_map *m);
+int		ft_error_malloc_copy(t_map *m, int index, int y);
+int		ft_error_malloc_init(int y, t_map *m);
 
 // ANIMATION
 void	ft_annimation(t_map *m);

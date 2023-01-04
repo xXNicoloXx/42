@@ -6,30 +6,11 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:01:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 20:24:41 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:25:59 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-int ft_error_malloc_copy(t_map *m, int index, int y)
-{
-	ft_error_malloc_init(m->y-1, m);
-	if (index == 1)
-	{
-		while (y != -1)
-		{
-			free(m->m[y]);
-			y--;
-		}
-		free(m->m);
-	}
-	mlx_destroy_image(m->mlx, m->img.i);
-	mlx_destroy_window(m->mlx, m->mlx_win);
-	mlx_destroy_display(m->mlx);
-	free(m->mlx);
-	return (-1);
-}
 
 int	ft_map(t_map *m)
 {
