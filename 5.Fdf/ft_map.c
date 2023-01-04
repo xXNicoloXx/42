@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:57:28 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 19:38:11 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:52:06 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_y_map(int fd, int *xmax)
 	return (y);
 }
 
-int ft_error_malloc(int y, t_map *m)
+int	ft_error_malloc(int y, t_map *m)
 {
 	if (y != 0)
 	{	
@@ -87,7 +87,6 @@ int	ft_fill_map_pt2(t_map *m, char *ligne, int y)
 			m->initm[y][x].z = ft_atoi(ligne + i);
 			x++;
 			while (ligne[i] != ' ' && ligne[i] != '\0')
-
 				i++;
 		}
 		else
@@ -120,7 +119,7 @@ int	ft_fill_map(t_map *m, int fd)
 	return (1);
 }
 
-int ft_copy_map(t_map *map)
+int	ft_copy_map(t_map *map)
 {
 	int	fd;
 
