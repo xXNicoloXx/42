@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:01:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 20:19:31 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 20:24:41 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ int	ft_map(t_map *m)
 		return (ft_error_malloc_copy(m, 0, y));
 	while (y < m->y)
 	{
-		if (y < 6)
-			m->m[y] = ft_calloc(sizeof(t_pixel), (m->x));
-		else
-			m->m[y] = NULL;
+		m->m[y] = ft_calloc(sizeof(t_pixel), (m->x));
 		if (!(m->m[y]))
 			return (ft_error_malloc_copy(m, 1, y));
 		while (x < m->x)
