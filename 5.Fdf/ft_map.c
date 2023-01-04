@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:57:28 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 18:57:00 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:35:30 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,20 @@ int	ft_y_map(int fd, int *xmax)
 	return (y);
 }
 
+int ft_error_malloc(int y, t_map *m)
+{
+	if (y != 0)
+	{	
+		while (y != -1)
+		{
+			free(m->initm[y]);
+			y--;
+		}
+	}
+	free(m->initm);
+	return (-1);
+}
+
 int	ft_fill_map_pt2(t_map *m, char *ligne, int y)
 {
 	int	x;
@@ -61,7 +75,12 @@ int	ft_fill_map_pt2(t_map *m, char *ligne, int y)
 
 	i = 0;
 	x = 0;
+	if (y < 5)
 		m->initm[y] = ft_calloc(sizeof(t_pixel), (m->x));
+	else
+		m->initm[y] = NULL;
+	if (!(m->initm[y]))
+		return (ft_error_malloc(y, m));
 	while (ligne[i] != '\n' && ligne[i] != '\0')
 	{
 		if (ligne[i] != ' ')
@@ -77,9 +96,10 @@ int	ft_fill_map_pt2(t_map *m, char *ligne, int y)
 		else
 			i++;
 	}
+	return (1);
 }
 
-void	ft_fill_map(t_map *m, int fd)
+int	ft_fill_map(t_map *m, int fd)
 {
 	int		y;
 	char	*ligne;
@@ -88,12 +108,19 @@ void	ft_fill_map(t_map *m, int fd)
 	ligne = get_next_line(fd);
 	while (ligne)
 	{
-		ft_fill_map_pt2(m, ligne, y);
+		if (ft_fill_map_pt2(m, ligne, y) == -1)
+		{
+			free(ligne);
+			close(fd);
+			return (-1);
+		}
 		y++;
 		free(ligne);
 		ligne = get_next_line(fd);
 	}
 	free(ligne);
+	close(fd);
+	return (1);
 }
 
 int ft_copy_map(t_map *map)
@@ -110,8 +137,8 @@ int ft_copy_map(t_map *map)
 	map->initm = malloc(sizeof(t_pixel *) * (map->y));
 	if (!(map->initm))
 		return (-1);
-	fprintf(stderr, "icci pote\n");
 	fd = open(map->pathmap.currentmap, O_RDONLY);
-	ft_fill_map(map, fd);
+	if (ft_fill_map(map, fd) == -1)
+		return (-1);
 	return (1);
 }

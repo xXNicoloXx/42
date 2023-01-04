@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 18:59:28 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:02:06 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,7 @@ int		ft_color_line_up(float nbpix, float pospix, float deltah, t_map *m);
 //		MAP
 int		ft_x_map(char *ligne, int xmax);
 int		ft_y_map(int fd, int *xmax);
-void	ft_fill_map(t_map *m, int fd);
+int		ft_fill_map(t_map *m, int fd);
 int		ft_fill_map_pt2(t_map *m, char *ligne, int y);
 int		ft_copy_map(t_map *map);
 void	ft_map(t_map *m);

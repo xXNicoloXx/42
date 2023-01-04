@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 18:56:42 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 19:30:01 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_intivalue(t_map *m)
 	// printf("code = %d\n",ft_copy_map(m));
 	if (ft_copy_map(m) == -1)
 	{
-		fprintf(stderr, "nonnnn\n");
+		fprintf(stderr, "initvalue -1\n");
 		return (-1);
 	}
 	m->z = m->winx / sqrt(pow(m->x * m->z, 2) + pow(m->y * m->z, 2));
@@ -77,13 +77,17 @@ int	main(int argc, char **argv)
 	int		color;
 	t_map	m;
 
+
 	m.pathmap.indexmap = 0;
 	m.setupcolor = 0;
 	m.verifmonitor = 1;
 	m.pathmap.currentmap = argv[1];
 	m.pathmap.map0 = argv[1];
 	if (ft_intivalue(&m) == -1)
+	{
+		fprintf(stderr, "\t\tMALLOC ERROR\n");	
 		return (-1);
+	}
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
 	mlx_string_put(m.mlx, m.mlx_win, 5, 13, 0xffffff, "Loading ...");
