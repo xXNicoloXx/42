@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 19:20:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 12:06:54 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:09:22 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@ void	ft_key_pt4(int keycode, t_map *m)
     fprintf(stderr, "test code %d\n", keycode);
     if (keycode == TOUCH_M)
     {
-        fprintf(stderr, "b key pt4 current map(%d) = %s\n", m->pathmap.indexmap, m->pathmap.currentmap);
         m->pathmap.indexmap += 1;
-        fprintf(stderr, "a key pt4 current map(%d) = %s\n", m->pathmap.indexmap, m->pathmap.currentmap);
         ft_free_map(m, 1);
         if (m->pathmap.indexmap == 0)
             m->pathmap.currentmap = m->pathmap.map0;

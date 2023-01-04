@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 11:57:38 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:12:05 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@
 # define MAP2 "./test_maps/worldmap_s.fdf"
 # define MAP3 "./test_maps/worldmap.fdf"
 # define MAP4 "./test_maps/42.fdf"
-# define MAP5 "./test_maps/42.fdf"
-# define MAP6 "./test_maps/42.fdf"
-# define MAP7 "./test_maps/42.fdf"
+# define MAP5 "./test_maps/mars.fdf"
+# define MAP6 "./test_maps/pylone.fdf"
+# define MAP7 "./test_maps/t3.fdf"
 # define MAP8 "./test_maps/42.fdf"
 # define MAP9 "./test_maps/42.fdf"
 
