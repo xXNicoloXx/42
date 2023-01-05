@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:56:26 by ngriveau          #+#    #+#             */
-/*   Updated: 2022/12/08 16:28:51 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:31:26 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_my_malloc(char *buffer, char *ligne, int size)
 		i++;
 	upligne = malloc(sizeof(char) * (ft_s(ligne, 1) + ft_s(&buffer[i], 1) + 2));
 	if (upligne == NULL)
-		return (NULL);
+		return (free(ligne), NULL);
 	upligne[ft_s(ligne, 1) + ft_s(&buffer[i], 1)] = '\0';
 	size = ft_s(ligne, 1);
 	while (--size + 1)
@@ -63,7 +63,10 @@ char	*ft_new_line(char *buffer, int size, int fd)
 	{
 		ligne = ft_my_malloc(buffer, ligne, size);
 		if (ligne == NULL)
-			return (free(ligne), NULL);
+		{
+			
+			return (NULL);
+		}
 		if (ligne[ft_s(ligne, 0)] == '\n')
 			return (ligne);
 		size = read(fd, buffer, BUFFER_SIZE);

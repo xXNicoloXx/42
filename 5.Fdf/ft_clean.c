@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:11:57 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 20:26:44 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:29:34 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,27 +29,31 @@ void	ft_free_map(t_map *m, int exit)
 		free(m->initm);
 }
 
-void	ft_clean(t_map *m)
+void	ft_clean_mac(t_map *m)
 {
 	int	y;
 	int	x;
 
 	y = 0;
 	x = 0;
-	if (OS == 1)
+	while (y < m->winx)
 	{
-		while (y < m->winx)
+		while (x < m->winy)
 		{
-			while (x < m->winy)
-			{
-				ft_draw(m, x, y, 0);
-				x++;
-			}
-			x = 0;
-			y++;
+			ft_draw(m, x, y, 0);
+			x++;
 		}
-		mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
+		x = 0;
+		y++;
 	}
+	mlx_put_image_to_window(m->mlx, m->mlx_win, m->img.i, 0, 0);
+}
+
+void	ft_clean(t_map *m)
+{
+
+	if (OS == 1)
+		ft_clean_mac(m);
 	else
 	{
 		mlx_destroy_image(m->mlx, m->img.i);

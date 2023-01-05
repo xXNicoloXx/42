@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 17:06:41 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:18:16 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -267,6 +267,7 @@ void	ft_print_map_x(int x, int y, t_map *m);
 
 //		CLEAN
 void	ft_free_map(t_map *m, int exit);
+void	ft_clean_mac(t_map *m);
 void	ft_clean(t_map *m);
 int		ft_error_malloc_copy(t_map *m, int index, int y);
 int		ft_error_malloc_init(int y, t_map *m);
