@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 01:15:58 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 01:34:48 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 //
 //	LINUX: 0		MacOS: 1	LINUX ECOLE: 2	MacBook Air 13.3: 3
 //
-# define OS 2
+# define OS 0
 //
 //	Resolution	
 //
@@ -43,7 +43,7 @@
 # define MAP6 "./maps/100-6.fdf"
 # define MAP7 "./maps/julia.fdf"
 # define MAP8 "./maps/france.fdf"
-# define MAP9 "./maps/worldmap_XXL.fdf"
+# define MAP9 "./maps/worldmap.fdf"
 //
 //
 //
@@ -85,7 +85,9 @@
 #  define TOUCH_D 97
 #  define ESC 65307
 #  define TOUCH_C 99
+#  define TOUCH_X 120
 #  define TOUCH_M 109
+#  define TOUCH_N 110
 #  define TOUCH_I 105
 #  if OS == 2
 #   define WIDTH 2560

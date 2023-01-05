@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 19:20:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 14:40:25 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 01:38:54 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_init_path_map(t_map *m)
 
 void	ft_intdex_map(t_map *m)
 {
-	if (m->pathmap.indexmap == 0)
+	if (m->pathmap.indexmap == 0 || m->pathmap.indexmap == 10)
 		m->pathmap.currentmap = m->pathmap.map0;
 	else if (m->pathmap.indexmap == 1)
 		m->pathmap.currentmap = m->pathmap.map1;
@@ -45,12 +45,17 @@ void	ft_intdex_map(t_map *m)
 		m->pathmap.currentmap = m->pathmap.map7;
 	else if (m->pathmap.indexmap == 8)
 		m->pathmap.currentmap = m->pathmap.map8;
-	else if (m->pathmap.indexmap == 9)
+	else if (m->pathmap.indexmap == 9 || m->pathmap.indexmap == -1)
 		m->pathmap.currentmap = m->pathmap.map9;
-	else
+}
+
+void	ft_key_pt5(int keycode, t_map *m)
+{
+	if (keycode == TOUCH_X)
 	{
-		m->pathmap.indexmap = 0;
-		m->pathmap.currentmap = m->pathmap.map0;
+		m->setupcolor -= 1;
+		if (m->setupcolor == -1)
+				m->setupcolor = 6;
 	}
 }
 
@@ -61,9 +66,22 @@ void	ft_key_pt4(int keycode, t_map *m)
 		m->pathmap.indexmap += 1;
 		ft_free_map(m, 1);
 		ft_intdex_map(m);
+		if (m->pathmap.indexmap == 10)
+			m->pathmap.indexmap = 0;
 		ft_intivalue(m);
 		ft_all(m);
 	}
+	else if (keycode == TOUCH_N)
+	{
+		m->pathmap.indexmap -= 1;
+		ft_free_map(m, 1);
+		ft_intdex_map(m);
+		if (m->pathmap.indexmap == -1)
+			m->pathmap.indexmap = 9;
+		ft_intivalue(m);
+		ft_all(m);
+	}
+	ft_key_pt5(keycode, m);
 }
 
 // touche m
