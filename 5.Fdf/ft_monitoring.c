@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 14:38:06 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:06:35 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	ft_monitoring_invalid_map(t_map *m)
 	mlx_string_put(m->mlx, m->mlx_win, m->winx / 2 - 100, m->winy / 2, c, t);
 }
 
-void	ft_monitoring_display_info_pt2(t_map *m, char *value)
+void	ft_monitoring_display_info_pt2(t_map *m)
 {
+	char	*value;
+
 	mlx_string_put(m->mlx, m->mlx_win, 5, 13 * 6, 0xffffff, "I: ");
 	value = ft_itoa((int)m->i);
 	mlx_string_put(m->mlx, m->mlx_win, 20, 13 * 6, 0xffffff, value);
@@ -59,7 +61,7 @@ void	ft_monitoring_display_info_pt1(t_map *m)
 	value = ft_itoa((int)m->r);
 	mlx_string_put(m->mlx, m->mlx_win, 20, 13 * 5, 0xffffff, value);
 	free(value);
-	ft_monitoring_display_info_pt2(m, value);
+	ft_monitoring_display_info_pt2(m);
 }
 
 void	ft_monitoring_fade_color(t_map *m)

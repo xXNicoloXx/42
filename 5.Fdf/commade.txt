@@ -1,10 +1,10 @@
+
+
+FDF 
+
 clear && gcc -g *.c -lmlx -lm -lXext -lX11 -I ./lib/minilibx-linux/ -L ./lib/minilibx-linux && ./a.out
 clear && gcc  *.c -I ./lib/minilibx_macos/ -L ./lib/minilibx_macos -lmlx -framework OpenGL -framework AppKit && ./a.out
 
-//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && ./a.out
-//gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -I./ -L./ -lmlx -lm -lXext -lX11
-//clear && gcc ft_isdigit.c test.c ft_atoi.c ft_calloc.c get_next_line_utils.c get_next_line.c ligne.c -lmlx -lm -lXext -lX11 -I ./minilibx/ -L ./minilibx && valgrind --leak-check=full --show-leak-kinds=all  ./a.out
-// APPLE gcc  *.c -I ./ -L ./ -lmlx -framework OpenGL -framework AppKit && ./a.out
 
-
+scan-build-12 make 									//vakgrind++
 //fprintf(stderr, "code %d\n", keycode);

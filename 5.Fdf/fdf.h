@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 14:27:49 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:06:41 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -218,7 +218,7 @@ void	ft_init_color(t_map *m);
 //		MONITORING
 void	ft_monitoring_invalid_map(t_map *m);
 void	ft_monitoring_display_info_pt1(t_map *m);
-void	ft_monitoring_display_info_pt2(t_map *m, char *value);
+void	ft_monitoring_display_info_pt2(t_map *m);
 void	ft_monitoring_display_info_pt3(t_map *m);
 void	ft_monitoring_fade_color(t_map *m);
 void	ft_monitoring(t_map *m);

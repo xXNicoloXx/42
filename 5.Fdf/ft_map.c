@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:57:28 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 01:26:10 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 15:37:52 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ int	ft_y_map(int fd, int *xmax)
 	{
 		*xmax = ft_x_map(ligne, *xmax);
 		y++;
-		free(ligne);
 		ligne = get_next_line(fd);
 	}
-	free(ligne);
 	close(fd);
 	return (y);
 }
