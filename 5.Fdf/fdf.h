@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 13:35:57 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:27:49 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@
 #  define TOUCH_M 109
 #  define TOUCH_N 110
 #  define TOUCH_I 105
+#  define TOUCH_P 112
 #  if OS == 2
 #   define WIDTH 2560
 #   define HEIGHT 1310 
@@ -199,6 +200,7 @@ typedef struct s_map
 	float			varcos;
 	float			varsin;
 	int				verifmonitor;
+	int				verifprojection;
 }	t_map;
 
 //		COLOR_MAP

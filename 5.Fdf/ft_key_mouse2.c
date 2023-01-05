@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_mouse_pt2.c                                 :+:      :+:    :+:   */
+/*   ft_key_mouse2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 19:20:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 01:38:54 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:32:45 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,28 @@ void	ft_intdex_map(t_map *m)
 
 void	ft_key_pt5(int keycode, t_map *m)
 {
+	static float inc;
+	
 	if (keycode == TOUCH_X)
 	{
 		m->setupcolor -= 1;
 		if (m->setupcolor == -1)
 				m->setupcolor = 6;
+	}
+	else if (keycode == TOUCH_P)
+	{
+		if (m->verifprojection == 1)
+		{
+			m->verifprojection *= -1;
+			inc = m->i;
+			m->i = 0;
+		}
+		else
+		{
+			m->verifprojection *= -1;
+			m->i = inc;
+		}
+		
 	}
 }
 

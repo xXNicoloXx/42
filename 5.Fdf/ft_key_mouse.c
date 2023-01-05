@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 01:53:04 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:33:46 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,27 +76,27 @@ void	ft_key_pt3(int keycode, t_map *m)
 
 void	ft_key_pt2(int keycode, t_map *m)
 {
-	if (keycode == TOUCH_ONE)
+	if (keycode == TOUCH_ONE && m->verifprojection == 1)
 	{
 		m->r = 0;
 		m->i = 0;
 	}
-	else if (keycode == TOUCH_TOW)
+	else if (keycode == TOUCH_TOW && m->verifprojection == 1)
 	{
 		m->i = 90;
 		m->r = 0;
 	}
-	else if (keycode == TOUCH_THREE)
+	else if (keycode == TOUCH_THREE && m->verifprojection == 1)
 	{
 		m->r = 45;
 		m->i = 20;
 	}
-	else if (keycode == TOUCH_FOUR)
+	else if (keycode == TOUCH_FOUR && m->verifprojection == 1)
 	{
 		m->r = -45;
 		m->i = 20;
 	}
-	else if (keycode == TOUCH_FIVE)
+	else if (keycode == TOUCH_FIVE && m->verifprojection == 1)
 		ft_annimation(m);
 	else if (keycode == TOUCH_W)
 			m->movey = m->movey + 30;
@@ -104,9 +104,9 @@ void	ft_key_pt2(int keycode, t_map *m)
 
 int	ft_key(int keycode, t_map *m)
 {
-	if (keycode == TOUCH_UPARROW)
+	if (keycode == TOUCH_UPARROW && m->verifprojection == 1)
 			m->i = m->i + 5;
-	else if (keycode == TOUCH_DOWNARROW)
+	else if (keycode == TOUCH_DOWNARROW && m->verifprojection == 1)
 			m->i = m->i - 5;
 	else if (keycode == TOUCH_LEFTARROW)
 			m->r = m->r - 5;

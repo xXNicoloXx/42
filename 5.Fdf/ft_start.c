@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 22:27:56 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:36:26 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ int	ft_all(t_map *m)
 
 int	ft_intivalue(t_map *m)
 {
+	printf("%d\n", m->verifprojection);
 	ft_init_path_map(m);
 	m->winx = WIDTH;
 	m->winy = HEIGHT;
 	m->z = 1;
 	m->r = 45;
-	m->i = 20;
+	if (m->verifprojection == 1)
+		m->i = 20;
 	m->hauteur = 0.02;
 	m->movex = 0;
 	m->movey = 0;
@@ -78,6 +80,7 @@ void	ft_launch(t_map *m, int argc, char **argv)
 	m->verifmonitor = 1;
 	m->pathmap.currentmap = argv[1];
 	m->pathmap.map0 = argv[1];
+	m->verifprojection = 1;
 }
 
 int	main(int argc, char **argv)
