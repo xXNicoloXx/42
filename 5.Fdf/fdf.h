@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 01:52:48 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 02:23:23 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 //
 //	LINUX: 0		MacOS: 1	LINUX ECOLE: 2	MacBook Air 13.3: 3
 //
-# define OS 0
+# define OS 2
 //
 //	Resolution	
 //
@@ -35,7 +35,7 @@
 //
 //	MAPS
 //
-# define MAP1 "./maps/t3.fdf"
+# define MAP1 "./maps/42.fdf"
 # define MAP2 "./maps/pylone.fdf"
 # define MAP3 "./maps/worldmap_s.fdf"
 # define MAP4 "./maps/t3.fdf"
@@ -217,6 +217,7 @@ void	ft_init_color(t_map *m);
 void	ft_monitoring_invalid_map(t_map *m);
 void	ft_monitoring_display_info_pt1(t_map *m);
 void	ft_monitoring_display_info_pt2(t_map *m, char *value);
+void	ft_monitoring_display_info_pt3(t_map *m);
 void	ft_monitoring_fade_color(t_map *m);
 void	ft_monitoring(t_map *m);
 
@@ -268,7 +269,7 @@ void	ft_clean(t_map *m);
 int		ft_error_malloc_copy(t_map *m, int index, int y);
 int		ft_error_malloc_init(int y, t_map *m);
 
-// ANIMATION
+// 		ANIMATION
 void	ft_annimation(t_map *m);
 void	ft_annimationpt2(t_map *m);
 

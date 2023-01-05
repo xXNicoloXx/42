@@ -1,7 +1,7 @@
-FILES =			ft_animation.c		ft_clean.c				ft_isdigit.c		ft_key_mouse_pt2.c	ft_map2.c \
+FILES =			ft_animation.c		ft_clean.c				ft_isdigit.c		ft_key_mouse2.c	ft_map2.c \
 ft_map_print.c	get_next_line.c		ft_atoi.c				ft_color_calcul.c	ft_itoa.c			ft_line.c \
 ft_map.c		ft_monitoring.c		get_next_line_utils.c	ft_calloc.c			ft_color_map.c		ft_key_mouse.c \
-ft_line_color.c	ft_map_calcul.c		ft_start.c
+ft_line_color.c	ft_map_calcul.c		ft_start.c				ft_monitoring2.c
 
 OBJS = ${FILES:.c=.o}
 DEPS = ${FILES:.c=.d}
