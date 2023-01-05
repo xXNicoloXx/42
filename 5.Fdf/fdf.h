@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 23:51:02 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 01:04:49 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 //
 //	LINUX: 0		MacOS: 1	LINUX ECOLE: 2	MacBook Air 13.3: 3
 //
-# define OS 0
+# define OS 2
 //
 //	Resolution	
 //
@@ -35,7 +35,7 @@
 //
 //	MAPS
 //
-# define MAP1 "./maps/42.fdf"
+# define MAP1 "./maps/t3.fdf"
 # define MAP2 "./maps/pylone.fdf"
 # define MAP3 "./maps/worldmap_s.fdf"
 # define MAP4 "./maps/t3.fdf"

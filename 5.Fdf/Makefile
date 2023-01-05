@@ -4,17 +4,16 @@ ft_map.c		ft_monitoring.c		get_next_line_utils.c	ft_calloc.c			ft_color_map.c		f
 ft_line_color.c	ft_map_calcul.c		ft_start.c
 
 OBJS = ${FILES:.c=.o}
+DEPS = ${FILES:.c=.d}
 LIB = Fdf
-
 CC = gcc
 
 INCLUDE = -I ./
 FLAGSLINUX = -Wall -Werror -Wextra -lmlx -lm -lXext -MMD -lX11 -I ./lib/minilibx-linux -L ./lib/minilibx-linux
 FLAGSMACOS = -lmlx -framework OpenGL -framework AppKit -I ./lib/minilibx_macos -L ./lib/minilibx_macos
 
-%.o: %.c
-	gcc -c $(CFLAGS) $*.c -o $*.o
-	gcc -MM $(CFLAGS) $*.c > $*.d
+%.o: %.c fdf.h
+			${CC} -I. ${FLAGSLINUX} -MMD -c $< -o ${<:.c=.o}
 
 ${LIB}:	${OBJS}
 		+$(MAKE) -C ./lib/minilibx-linux/
@@ -23,7 +22,7 @@ ${LIB}:	${OBJS}
 all: 	${LIB}
 
 clean:	
-		rm -f ${OBJS}
+		rm -f ${OBJS} $(DEPS)
 
 fclean:	clean;
 		rm -f ${LIB}
@@ -32,6 +31,6 @@ re:	fclean all
 
 macos: 
 
-.PHONY: all clean fclean re
+-include $(DEPS)
 
--include $(OBJS:.o=.d)
+.PHONY: all clean fclean re
