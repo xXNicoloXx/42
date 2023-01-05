@@ -16,19 +16,19 @@ FLAGSMACOS = -lmlx -framework OpenGL -framework AppKit -I ./lib/minilibx_macos -
 			${CC} -I. ${FLAGSLINUX} -MMD -c $< -o ${<:.c=.o}
 
 linux: 	${OBJS}
-		+$(MAKE) -C ./lib/minilibx-linux/
+		+${MAKE} -C ./lib/minilibx-linux/
 		${CC} -o ${LIB} ${OBJS} ${INCLUDE} ${FLAGSLINUX}
 
 macos: 	${OBJS}
-		+$(MAKE) -C ./lib/minilibx_macos/
+		+${MAKE} -C ./lib/minilibx_macos/
 		${CC} -o ${LIB} ${OBJS} ${INCLUDE} ${FLAGSMACOS}
 
 all:	linux
 
 clean:	
-		rm -f ${OBJS} $(DEPS)
-		+$(MAKE) -C ./lib/minilibx_macos/ clean
-		+$(MAKE) -C ./lib/minilibx_macos/ clean
+		rm -f ${OBJS} ${DEPS}
+		+${MAKE} -C ./lib/minilibx_macos/ clean
+		+${MAKE} -C ./lib/minilibx_macos/ clean
 
 fclean:	clean;
 		rm -f ${LIB}
@@ -37,6 +37,6 @@ re:	fclean all
 
 
 
--include $(DEPS)
+-include ${DEPS}
 
 .PHONY: all clean fclean re
