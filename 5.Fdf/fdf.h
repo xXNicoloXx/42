@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 01:34:48 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 01:52:48 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@
 #  define TOUCH_THREE 51
 #  define TOUCH_FOUR 52
 #  define TOUCH_FIVE 53
-#  define TOUCH_SIX 54
 #  define TOUCH_W 119
 #  define TOUCH_A 100
 #  define TOUCH_S 115

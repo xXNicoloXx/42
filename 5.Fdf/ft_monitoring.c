@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 11:13:18 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 22:26:13 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 02:03:36 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,17 +95,18 @@ void	ft_monitoring(t_map *m)
 		ft_monitoring_invalid_map(m);
 	else
 	{
-		while (i < 95)
-		{
-			while (j < 50)
-			{
-				mlx_pixel_put(m->mlx, m->mlx_win, j, i, 0x202020);
-				j++;
-			}
-			j = 0;
-			i++;
-		}
 		ft_monitoring_fade_color(m);
 		ft_monitoring_display_info_pt1(m);
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 11, 0xffffff, " WASD   |  MOVE");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 10, 0xffffff, "<- ->   |  ROTATE ");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 9, 0xffffff, " v ^    |  INCLINATION ");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 8, 0xffffff, " -  +   |  RELIEF DOWN/UP");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 7, 0xffffff, "1 2 3 4 |  PREPOSITION");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 6, 0xffffff, " 5      |  ANNIMATION");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 5, 0xffffff, " X  C   |  CHANGE COLOR");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 4, 0xffffff, " N  M   |  CHANGE MAP ");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 3, 0xffffff, " I      |  INFO OM/OFF ");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 2, 0xffffff, " ESC    |  EXIT");
+		mlx_string_put(m->mlx, m->mlx_win, 5, m->winy - 13 * 1, 0xffffff, "RIGHT CLICK x2 |  MOVE");
 	}
 }

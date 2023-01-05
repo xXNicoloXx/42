@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:07:05 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 11:56:15 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 01:53:04 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ void	ft_key_pt2(int keycode, t_map *m)
 		m->r = -45;
 		m->i = 20;
 	}
-	else if (keycode == TOUCH_SIX)
+	else if (keycode == TOUCH_FIVE)
 		ft_annimation(m);
 	else if (keycode == TOUCH_W)
 			m->movey = m->movey + 30;
