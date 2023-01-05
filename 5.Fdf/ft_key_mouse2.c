@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 19:20:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 14:32:45 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:37:50 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	ft_intdex_map(t_map *m)
 
 void	ft_key_pt5(int keycode, t_map *m)
 {
-	static float inc;
-	
+	static float	inc;
+
 	if (keycode == TOUCH_X)
 	{
 		m->setupcolor -= 1;
@@ -72,7 +72,6 @@ void	ft_key_pt5(int keycode, t_map *m)
 			m->verifprojection *= -1;
 			m->i = inc;
 		}
-		
 	}
 }
 
