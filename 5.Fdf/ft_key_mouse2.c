@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_key_mouse2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 19:20:20 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 14:37:50 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:01:25 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ void	ft_key_pt5(int keycode, t_map *m)
 
 void	ft_key_pt4(int keycode, t_map *m)
 {
+fprintf(stderr, "code %d\n", keycode);
+
 	if (keycode == TOUCH_M)
 	{
 		m->pathmap.indexmap += 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:11:57 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/06 13:26:13 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 19:43:51 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,6 @@ void	ft_clean(t_map *m)
 		m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
 	}
 	ft_free_map(m, 0);
-}
-
-int	ft_error_malloc_copy(t_map *m, int index, int y)
-{
-	ft_error_malloc_init(m->y - 1, m);
-	if (index == 1)
-	{
-		while (y != -1)
-		{
-			free(m->m[y]);
-			y--;
-		}
-		free(m->m);
-	}
-	mlx_destroy_image(m->mlx, m->img.i);
-	mlx_destroy_window(m->mlx, m->mlx_win);
-	mlx_destroy_display(m->mlx);
-	free(m->mlx);
-	return (-1);
 }
 
 int	ft_error_malloc_init(int y, t_map *m)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/06 14:39:54 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:05:31 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@
 //
 //	LINUX: 0		MacOS: 1	LINUX ECOLE: 2	MacBook Air 13.3: 3
 //
-# define OS 0
+# define OS 1
 //
 //	Resolution	
 //
-# define WIN_WIDTH 1000
-# define WIN_HEIGHT 1000
+# define WIN_WIDTH 1440
+# define WIN_HEIGHT 795
 //
 //	Message error
 //
@@ -110,6 +110,15 @@
 #  define TOUCH_A 0
 #  define TOUCH_S 1
 #  define TOUCH_D 2
+#  define ESC 53
+#  define TOUCH_C 8
+#  define TOUCH_X 7
+#  define TOUCH_M 46
+#  define TOUCH_N 45
+#  define TOUCH_I 34
+#  define TOUCH_P 35
+#  define TOUCH_FOUR 21
+#  define TOUCH_FIVE 23
 #  if OS == 3
 #   define WIDTH 1000
 #   define HEIGHT 1000
@@ -271,6 +280,7 @@ void	ft_clean_mac(t_map *m);
 void	ft_clean(t_map *m);
 int		ft_error_malloc_copy(t_map *m, int index, int y);
 int		ft_error_malloc_init(int y, t_map *m);
+int		ft_error_malloc_copy(t_map *m, int index, int y);
 
 // 		ANIMATION
 void	ft_annimation(t_map *m);

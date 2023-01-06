@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_start.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/06 14:11:54 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 19:45:14 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,17 +57,6 @@ int	ft_intivalue(t_map *m)
 	m->hauteur = m->z / 1000;
 	m->minh = 0;
 	m->maxh = 0;
-	return (1);
-}
-
-int	ft_cross_close(t_map *m)
-{
-	ft_free_map(m, 1);
-	mlx_destroy_image(m->mlx, m->img.i);
-	mlx_destroy_window(m->mlx, m->mlx_win);
-	mlx_destroy_display(m->mlx);
-	free(m->mlx);
-	exit(0);
 	return (1);
 }
 
