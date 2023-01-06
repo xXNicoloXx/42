@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/06 12:06:39 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:18:06 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,41 +71,38 @@ int	ft_cross_close(t_map *m)
 	return (1);
 }
 
-void	ft_launch(t_map *m, int argc, char **argv)
+int	ft_launch(t_map *m, int argc, char **argv)
 {
-	(void) argc;
+	if (argc != 2)
+		return (-1);
 	m->pathmap.indexmap = 0;
 	m->setupcolor = 0;
 	m->verifmonitor = 1;
 	m->pathmap.currentmap = argv[1];
 	m->pathmap.map0 = argv[1];
 	m->verifprojection = 1;
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_map	m;
 
-	ft_launch(&m, argc, argv);
+	if (ft_launch(&m, argc, argv) == -1)
+		return (write(1, "ARG ERROR\n", 11), 1);
 	if (ft_intivalue(&m) == -1)
-	{
-		write(1, "MALLOC ERROR INIT\n", 19);
-		return (-1);
-	}
+		return (write(1, "MALLOC ERROR INIT\n", 19), 1);
 	m.mlx = mlx_init();
 	m.mlx_win = mlx_new_window(m.mlx, m.winx, m.winy, "FDF");
 	mlx_string_put(m.mlx, m.mlx_win, 5, 13, 0xffffff, "Loading ...");
 	m.img.i = mlx_new_image(m.mlx, m.winx, m.winy);
 	m.img.data = mlx_get_data_addr(m.img.i, &m.img.p, &m.img.size, &m.img.e);
 	if (ft_all(&m) == -1)
-	{
-		write(1, "MALLOC ERROR COPY\n", 19);
-		return (-1);
-	}
+		return (write(1, "MALLOC ERROR COPY\n", 19), -1);
 	mlx_hook(m.mlx_win, 2, 1L << 0, &ft_key, &m);
 	mlx_hook(m.mlx_win, 17, 1L << 0, &ft_cross_close, &m);
 	mlx_mouse_hook(m.mlx_win, &ft_zoom, &m);
 	mlx_do_key_autorepeaton(m.mlx);
 	mlx_loop(m.mlx);
-	return (1);
+	return (0);
 }
