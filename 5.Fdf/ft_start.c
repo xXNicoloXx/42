@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/06 13:52:24 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:11:54 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,41 +82,6 @@ int	ft_launch(t_map *m, int argc, char **argv)
 	m->pathmap.map0 = argv[1];
 	m->verifprojection = 1;
 	return (1);
-}
-
-int ft_init_mlx(t_map *m)
-{
-	m->mlx = mlx_init();
-	if (m->mlx == NULL)
-		return (ft_free_map(m, 2), 1);
-	m->mlx_win = mlx_new_window(m->mlx, m->winx, m->winy, "FDF");
-	if (m->mlx_win == NULL)
-	{
-		mlx_destroy_display(m->mlx);
-		free(m->mlx);
-		return (ft_free_map(m, 2), 1);
-	}
-	mlx_string_put(m->mlx, m->mlx_win, 5, 13, 0xffffff, "Loading ...");
-	m->img.i = mlx_new_image(m->mlx, m->winx, m->winy);
-	if (m->img.i == NULL)
-	{
-		ft_free_map(m, 2);
-		mlx_destroy_window(m->mlx, m->mlx_win);
-		mlx_destroy_display(m->mlx);
-		free(m->mlx);
-		return (1);
-	}
-	m->img.data = mlx_get_data_addr(m->img.i, &m->img.p, &m->img.size, &m->img.e);
-	if (m->img.data == NULL)
-	{
-		ft_free_map(m, 2);
-		mlx_destroy_image(m->mlx, m->img.i);
-		mlx_destroy_window(m->mlx, m->mlx_win);
-		mlx_destroy_display(m->mlx);
-		free(m->mlx);
-		return (1);
-	}
-	return (0);
 }
 
 int	main(int argc, char **argv)

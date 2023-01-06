@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 18:44:51 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/06 12:02:26 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:17:59 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -281,4 +281,8 @@ int		ft_all(t_map *m);
 int		ft_intivalue(t_map *m);
 int		main(int argc, char **argv);
 int		ft_cross_close(t_map *m);
+
+//		MLX INIT
+int		ft_init_mlx(t_map *m);
+
 #endif
