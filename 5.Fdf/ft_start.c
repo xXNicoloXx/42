@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 14:47:59 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 17:43:27 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:06:39 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_all(t_map *m)
 
 int	ft_intivalue(t_map *m)
 {
-	printf("%d\n", m->verifprojection);
 	ft_init_path_map(m);
 	m->winx = WIDTH;
 	m->winy = HEIGHT;
