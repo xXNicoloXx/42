@@ -36,6 +36,7 @@ all:	linux
 
 clean:	
 		rm -f ${OBJSLINUX} ${DEPS} ${OBJSMACOS}
+		rm -rf *.d
 		+${MAKE} -C ./lib/minilibx_macos/ clean
 		+${MAKE} -C ./lib/minilibx_macos/ clean
 
