@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:11:57 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 17:29:34 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:38:10 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_clean_mac(t_map *m)
 
 void	ft_clean(t_map *m)
 {
-
 	if (OS == 1)
 		ft_clean_mac(m);
 	else

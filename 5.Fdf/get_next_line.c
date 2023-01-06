@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 17:56:26 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/05 17:31:26 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:38:34 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ char	*ft_new_line(char *buffer, int size, int fd)
 		ligne = ft_my_malloc(buffer, ligne, size);
 		if (ligne == NULL)
 		{
-			
 			return (NULL);
 		}
 		if (ligne[ft_s(ligne, 0)] == '\n')
