@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:11:57 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/06 10:38:10 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:26:13 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ void	ft_free_map(t_map *m, int exit)
 	y = 0;
 	while (y < m->y)
 	{
-		free(m->m[y]);
-		if (exit == 1)
+		if (exit == 1 || exit == 0)
+			free(m->m[y]);
+		if (exit == 1 || exit == 2)
 			free(m->initm[y]);
 		y++;
 	}
-	free(m->m);
-	if (exit == 1)
+	if (exit == 1 || exit == 0)
+		free(m->m);
+	if (exit == 1 || exit == 2)
 		free(m->initm);
 }
 
