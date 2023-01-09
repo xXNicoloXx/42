@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:31:01 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/09 19:12:25 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:33:53 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void ft_rb(t_swap *s)
 	s->tab2[i] = vtab;
 	s->filltab2[i] = itab;
 	s->move += 1;
-    write(1, "RA\n", 3);
+    write(1, "RB\n", 3);
 }
 
 void ft_rra(t_swap *s)
@@ -192,18 +192,18 @@ void ft_rra(t_swap *s)
 	while (s->tab1[lentab] != 0)
 		lentab++;
 	lentab--;
-	vtab = s->tab1[i];
-	itab = s->filltab1[i];
-	while (i < lentab)
+	vtab = s->tab1[lentab];
+	itab = s->filltab1[lentab];
+	while (lentab > 0)
 	{
-		s->tab1[i] = s->tab1[i + 1];
-		s->filltab1[i] = s->filltab1[i + 1];
-		i++;
+		s->tab1[lentab] = s->tab1[lentab - 1];
+		s->filltab1[lentab] = s->filltab1[lentab - 1];
+		lentab--;
 	}
-	s->tab1[i] = vtab;
-	s->filltab1[i] = itab;
+	s->tab1[0] = vtab;
+	s->filltab1[0] = itab;
 	s->move += 1;
-    write(1, "RA\n", 3);
+    write(1, "RRA\n", 4);
 }
 
 void ft_rrb(t_swap *s)
@@ -224,5 +224,5 @@ void ft_rrb(t_swap *s)
 	s->tab2[i] = vtab;
 	s->filltab2[i] = itab;
 	s->move += 1;
-    write(1, "RB\n", 3);
+    write(1, "RRB\n", 4);
 }

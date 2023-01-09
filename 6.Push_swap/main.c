@@ -6,11 +6,34 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/09 19:54:01 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:34:43 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_verif_eff(t_swap *s, int value)
+{
+	int len;
+	int pos;
+
+	len = 0;
+	while (s->filltab1[len] != value + 1)
+		len++;
+	pos = len;
+	while (s->filltab1[len] != 0)
+		len++;
+	// printf("pos = %d/%d(/2=%d)(value = %d)\n", pos, len, len/2, value+1);
+	if (len/2 < pos)
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
+		
+}
 
 void ft_init_fill_tab(t_swap *s)
 {
@@ -42,7 +65,6 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
     int i;
 	int j;
     
-    printf("argc = %d\n\n\n", argc-1);
     s->len = argc;
 	s->move = 0;
     s->tab1 = malloc(sizeof(int) * s->len - 1);
@@ -57,25 +79,29 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 	while (i < s->len - 1)
 	{
 		j = -1;
-		printf("\n\n");
-   		while (++j < argc - 1)
-		{
-			printf("\n---------------------------------------\n");
-			printf("%d\t", s->tab1[j]);
-			printf("%d\t", s->filltab1[j]);
-			printf("|\t" );
-			printf("%d\t", s->tab2[j]);
-			printf("%d", s->filltab2[j]);
-		}
-		printf("\n---------------------------------------\n\n\n");
+		// printf("\n\n");
+   		// while (++j < argc - 1)
+		// {
+		// 	printf("\n---------------------------------------\n");
+		// 	printf("%d\t", s->tab1[j]);
+		// 	printf("%d\t", s->filltab1[j]);
+		// 	printf("|\t" );
+		// 	printf("%d\t", s->tab2[j]);
+		// 	printf("%d", s->filltab2[j]);
+		// }
+		// printf("\n---------------------------------------\n\n\n");
 		if (i == s->filltab1[0] - 1)
 		{
 			ft_pb(s);
 			i++;
 		}
 		else
-			ft_ra(s);
-
+		{
+			if (ft_verif_eff(s, i) == 0)
+				ft_ra(s);
+			else
+				ft_rra(s);
+		}
 	}
 	i = -1;
 	while (++i < s->len - 1)
