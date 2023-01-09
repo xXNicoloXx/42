@@ -17,3 +17,16 @@ int	ft_atoi(const char *str);
 
 
 void ft_sa(t_swap *s);
+void ft_sb(t_swap *s);
+void ft_ss(t_swap *s);
+
+
+void ft_pa(t_swap *s);
+void ft_pb(t_swap *s);
+
+void ft_ra(t_swap *s);
+void ft_rb(t_swap *s);
+
+void ft_rra(t_swap *s);
+void ft_rrb(t_swap *s);
+
