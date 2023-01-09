@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:31:01 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/09 18:24:25 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:12:25 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,13 +157,18 @@ void ft_ra(t_swap *s)
 void ft_rb(t_swap *s)
 {
 	int i;
+	int lentab;
 	int vtab;
 	int itab;
 
 	i = 0;
+	lentab = 0;
+	while (s->tab2[lentab] != 0)
+		lentab++;
+	lentab--;
 	vtab = s->tab2[i];
 	itab = s->filltab2[i];
-	while (i < s->len - 2)
+	while (i < lentab)
 	{
 		s->tab2[i] = s->tab2[i + 1];
 		s->filltab2[i] = s->filltab2[i + 1];
@@ -172,19 +177,24 @@ void ft_rb(t_swap *s)
 	s->tab2[i] = vtab;
 	s->filltab2[i] = itab;
 	s->move += 1;
-    write(1, "RB\n", 3);
+    write(1, "RA\n", 3);
 }
 
 void ft_rra(t_swap *s)
 {
 	int i;
+	int lentab;
 	int vtab;
 	int itab;
 
 	i = 0;
+	lentab = 0;
+	while (s->tab1[lentab] != 0)
+		lentab++;
+	lentab--;
 	vtab = s->tab1[i];
 	itab = s->filltab1[i];
-	while (i < s->len - 2)
+	while (i < lentab)
 	{
 		s->tab1[i] = s->tab1[i + 1];
 		s->filltab1[i] = s->filltab1[i + 1];

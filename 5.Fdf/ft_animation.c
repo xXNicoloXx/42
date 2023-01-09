@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:13:13 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/04 15:33:39 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:52:45 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_annimationpt2(t_map *m)
 		m->r += 3;
 		ft_clean(m);
 		ft_all(m);
+		printf()
 	}
 	i = -1;
 	while (++i < 360 / 3)

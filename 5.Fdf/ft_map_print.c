@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 19:09:00 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/02 19:19:40 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:54:10 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,3 +55,4 @@ void	ft_print_map(t_map *m)
 		x = 0;
 	}
 }
+mlx_get_data_addr

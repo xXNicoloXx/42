@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/09 18:24:43 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:54:01 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,18 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 	i = 0;
 	while (i < s->len - 1)
 	{
-		// j = 0;
-   		// while (++j < argc - 1)
-		// {
-		// 	printf("---------------------------------------\n");
-		// 	printf("%d\t", s->tab1[j]);
-		// 	printf("%d\t", s->filltab1[j]);
-		// 	printf("|\t" );
-		// 	printf("%d\t", s->tab2[j]);
-		// 	printf("%d\n", s->filltab2[j]);
-		// }
+		j = -1;
+		printf("\n\n");
+   		while (++j < argc - 1)
+		{
+			printf("\n---------------------------------------\n");
+			printf("%d\t", s->tab1[j]);
+			printf("%d\t", s->filltab1[j]);
+			printf("|\t" );
+			printf("%d\t", s->tab2[j]);
+			printf("%d", s->filltab2[j]);
+		}
+		printf("\n---------------------------------------\n\n\n");
 		if (i == s->filltab1[0] - 1)
 		{
 			ft_pb(s);
@@ -104,5 +106,4 @@ int main(int argc, char **argv)
 	}
     printf("---------------------------------------\n");
 	printf("nombre de coups = %d", s.move);
-	
 }
