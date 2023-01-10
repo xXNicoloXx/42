@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/10 18:09:43 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:06:10 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_verif_eff(t_swap *s, int value, int valuemax)
 	posmax = len;
 	while (s->filltab1[len] != 0)
 		len++;
-	fprintf(stderr, "min = %d(%d)/%d(value = %d)\n", pos, len-pos + 1, len, value);
-	fprintf(stderr, "max = %d(%d)/%d(value = %d)\n", posmax,  len-posmax + 1, len, valuemax);
-	if (len/2 < pos)
+	// fprintf(stderr, "min = %d(%d)/%d(value = %d)\n", pos, len - pos + 1, len, value);
+	// fprintf(stderr, "max = %d(%d)/%d(value = %d)\n", posmax,  len - posmax + 1, len, valuemax);
+	if (len/2 < pos || len/2 < posmax)
 	{
 		return (1);
 	}
@@ -92,33 +92,33 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 	ft_init_fill_tab(s);
 	ibot = s->len/2;
 	itop = s->len/2 + 1;
-	printf("i = %d\timax = %d\n", ibot, itop);
+	// printf("i = %d\timax = %d\n", ibot, itop);
 	i = 0;
 
 	while (i < s->len - 1)
 	{
-		printf("val act = [%d][%d][%d]\n", ibot, itop, s->filltab1[0]);
-		j = -1;
-   		while (++j < argc - 1)
-		{
-			printf("\n---------------------------------------\n");
-			printf("%d\t", s->tab1[j]);
-			printf("%d\t", s->filltab1[j]);
-			printf("|\t" );
-			printf("%d\t", s->tab2[j]);
-			printf("%d", s->filltab2[j]);
-		}
-		printf("\n---------------------------------------\n\n\n\n\n");
+		// printf("val act = [%d][%d][%d]\n", ibot, itop, s->filltab1[0]);
+		// j = -1;
+   		// while (++j < argc - 1)
+		// {
+		// 	printf("\n---------------------------------------\n");
+		// 	printf("%d\t", s->tab1[j]);
+		// 	printf("%d\t", s->filltab1[j]);
+		// 	printf("|\t" );
+		// 	printf("%d\t", s->tab2[j]);
+		// 	printf("%d", s->filltab2[j]);
+		// }
+		// printf("\n---------------------------------------\n\n\n\n\n");
+		
 		if (itop == s->filltab1[0])
 		{
-			printf("ici %d\n", s->filltab1[0] - 1);
 			ft_pb(s);
 			i++;
 			itop++;
 		}
 		else if (ibot == s->filltab1[0])
 		{
-			printf("la %d\n", s->filltab1[0] - 1);
+			// printf("la %d\n", s->filltab1[0] - 1);
 			ft_pb(s);
 			ft_rb(s);
 			i++;
