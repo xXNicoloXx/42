@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/11 20:53:13 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:25:00 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,35 @@ void ft_sort_5(t_swap *s)
 {
 	int i;
 	int index;
+	int sizeb;
 	int pos1;
 	int pos2;
 
-	i = s->len - 1;
+	printf("SORT 5\n");
+	i = 0;
+	sizeb = s->len - 1;
 	index = s->len - 1;	
 	pos1 = -1;
 	pos2 = -1;
 	while (!(s->filltab2[0] == index) && !(s->filltab2[0] == index - 1))
 	{
+		i--;
+		printf("s->filltab2[0] = %d\tindex = %d\t\n", s->filltab2[0] ,  index);
+		ft_rb(s);
+		if (s->filltab2[0] - 3 > s->filltab2[1] - 2)
+			ft_sb(s);
+	}
+	ft_pa(s);
+	while (!(s->filltab2[0] == index) && !(s->filltab2[0] == index - 1))
+	{
+		i--;
 		printf("s->filltab2[0] = %d\tindex = %d\t\n", s->filltab2[0] ,  index);
 		ft_rb(s);
 	}
-	if (s->filltab2[0] == index)
-		ft_pa(s);
-	else
-	{
-		if (s->filltab2[1] == index)
-		{
-			ft_sb(s);
-			ft_pa(s);
-			ft_pa(s);
-		}
-	}
+	ft_pa(s);
+	if (s->filltab1[0] == index)
+		ft_ra(s);
+	printf("i = %d\n", i);
 }
 
 int ft_push_swap(int argc, char **argv, t_swap *s)
