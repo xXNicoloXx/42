@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/11 11:54:28 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:17:01 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ int	ft_verif_eff(t_swap *s, int value)
 	int pos2;
 	int pos3;
 	int pos4;
+	int pos5;
+	int pos6;
+	int pos7;
+	int pos8;
+	int pos9;
 
 	len = 0;
 	// value ++;
