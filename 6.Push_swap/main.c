@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/11 15:37:25 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:53:13 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	ft_verif_eff(t_swap *s, int imin, int imax)
 	i = 0; 
 	while (1)
 	{
-		if (s->filltab1[i] == imin)
+		if (imin <= s->filltab1[i] && s->filltab1[i] < s->len)
 			return (0);
-		if (s->filltab1[s->len -  i] == imax)
+		if ( s->len <= s->filltab1[s->len -  i] && s->filltab1[s->len -  i] < imax)
 			return (1);
 		i++;
 	}
@@ -52,6 +52,35 @@ void ft_init_fill_tab(t_swap *s)
 		s->filltab2[i] = 0;
 }
 
+void ft_sort_5(t_swap *s)
+{
+	int i;
+	int index;
+	int pos1;
+	int pos2;
+
+	i = s->len - 1;
+	index = s->len - 1;	
+	pos1 = -1;
+	pos2 = -1;
+	while (!(s->filltab2[0] == index) && !(s->filltab2[0] == index - 1))
+	{
+		printf("s->filltab2[0] = %d\tindex = %d\t\n", s->filltab2[0] ,  index);
+		ft_rb(s);
+	}
+	if (s->filltab2[0] == index)
+		ft_pa(s);
+	else
+	{
+		if (s->filltab2[1] == index)
+		{
+			ft_sb(s);
+			ft_pa(s);
+			ft_pa(s);
+		}
+	}
+}
+
 int ft_push_swap(int argc, char **argv, t_swap *s)
 {
 	int j;
@@ -75,26 +104,25 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 	imax = s->len / 2 + 5;
 	while (s->filltab1[0] != 0)
 	{
-		printf("val act = [%d]\n", s->filltab1[0]);
+		// printf("val act = [%d]\n", s->filltab1[0]);
 		j = -1;
-   		while (++j < argc - 1)
-		{
-			printf("\n---------------------------------------\n");
-			printf("%d\t", s->tab1[j]);
-			printf("%d\t", s->filltab1[j]);
-			printf("|\t" );
-			printf("%d\t", s->tab2[j]);
-			printf("%d", s->filltab2[j]);
-		}
-		printf("\n---------------------------------------\n\n\n\n\n");
+   		// while (++j < argc - 1)
+		// {
+		// 	// printf("\n---------------------------------------\n");
+		// 	printf("%d\t", s->tab1[j]);
+		// 	printf("%d\t", s->filltab1[j]);
+		// 	printf("|\t" );
+		// 	printf("%d\t", s->tab2[j]);
+		// 	printf("%d\n", s->filltab2[j]);
+		// }
+		// printf("imin = %d\tvaleurs = %d\t imax = %d\nn",imin ,s->filltab1[0], imax);
 		if(imin <= s->filltab1[0] && s->filltab1[0] <= imax)
 		{
-			printf("PUUUUSSSSHHHHHHHHHH\n\n\n\n\n");
+			// printf("PUUUUSSSSHHHHHHHHHH\n\n\n\n\n");
 			ft_pb(s);
-			printf("OHOH |%d|\t|%d|\t|%d|\n", imin, s->filltab1[0], s->len / 2);
+			// printf("OHOH |%d|\t|%d|\t|%d|\n", imin, s->filltab1[0], s->len / 2);
 			if (imin <= s->filltab2[0] && s->filltab2[0] <= s->len / 2)
 			{
-				fprintf(stderr, "s->filltab2[0] %d", s->filltab2[0]);
 				ft_rb(s);
 				indeximin++;
 			}
@@ -106,20 +134,21 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 			ft_ra(s);
 		else
 			ft_rra(s);
-		if (indeximax > 5)
+		// printf("indeximin = %d\tindeximax = %d\n", indeximin, indeximax);
+		if (indeximax == 5)
 		{
 			imax += 5;
 			indeximax = 0;
 		}
-		if (indeximin > 5)
+		if (indeximin == 5)
 		{
 			imin -= 5;
 			indeximin = 0;
 		}	
 	}
+	ft_sort_5(s);
 
 }
-
 
 int main(int argc, char **argv)
 {
@@ -130,7 +159,7 @@ int main(int argc, char **argv)
     ft_push_swap(argc, argv, &s);
 
     i = -1;
-	printf("\n\n");
+	printf("s->len = %d\n", s.len);
     while (++i < argc - 1)
 	{
         printf("---------------------------------------\n");
