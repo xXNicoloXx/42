@@ -6,46 +6,77 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/10 19:06:10 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/11 11:54:28 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_verif_eff(t_swap *s, int value, int valuemax)
+int	ft_verif_eff(t_swap *s, int value)
 {
 	int len;
-	int pos;
-	int posmax;
+	int i;
+	int pos0;
+	int pos1;
+	int pos2;
+	int pos3;
+	int pos4;
 
 	len = 0;
-	while (s->filltab1[len] != value && len < s->len)
+	// value ++;
+	while (s->filltab1[len] != value + 0  && len < s->len)
 		len++;
 	if (len < s->len)
-		pos = len;
+		pos0 = len;
 	else 
-		pos = s->len;
+		pos0 = s->len;
 	len = 0;
-	while (s->	filltab1[len] != valuemax && len < s->len)
+	while (s->filltab1[len] != value + 1  && len < s->len)
 		len++;
 	if (len < s->len)
-		posmax = len;
+		pos1 = len;
 	else 
-		posmax = s->len;
-	posmax = len;
+		pos1 = s->len;
+	len = 0;
+	while (s->filltab1[len] != value + 2  && len < s->len)
+		len++;
+	if (len < s->len)
+		pos2 = len;
+	else 
+		pos2 = s->len;
+	len = 0;
+	while (s->filltab1[len] != value + 3  && len < s->len)
+		len++;
+	if (len < s->len)
+		pos3 = len;
+	else 
+		pos3 = s->len;
+	len = 0;
+	while (s->filltab1[len] != value + 4  && len < s->len)
+		len++;
+	if (len < s->len)
+		pos4 = len;
+	else 
+		pos4 = s->len;
+	len = 0;
 	while (s->filltab1[len] != 0)
 		len++;
-	// fprintf(stderr, "min = %d(%d)/%d(value = %d)\n", pos, len - pos + 1, len, value);
-	// fprintf(stderr, "max = %d(%d)/%d(value = %d)\n", posmax,  len - posmax + 1, len, valuemax);
-	if (len/2 < pos || len/2 < posmax)
+	fprintf(stderr, "0 \t= %d(%d)\t len = %d(value = %d)\n", pos0, (len - pos0) + 1, len, value + 0);
+	fprintf(stderr, "1 \t= %d(%d)\t len = %d(value = %d)\n", pos1, (len - pos1) + 1, len, value + 1);
+	fprintf(stderr, "2 \t= %d(%d)\t len = %d(value = %d)\n", pos2, (len - pos2) + 1, len, value + 2);
+	fprintf(stderr, "3 \t= %d(%d)\t len = %d(value = %d)\n", pos3, (len - pos3) + 1, len, value + 3);
+	fprintf(stderr, "4 \t= %d(%d)\t len = %d(value = %d)\n\n\n", pos4, (len - pos4) + 1, len, value + 4);
+
+	i = 0;
+	while (i < s->len)
 	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
-		
+		if (pos0 == i || pos1 == i ||pos2 == i ||pos3 == i ||pos4 == i)
+			return (0);
+		else if ((len - pos0) + 1 == i || (len - pos1) + 1 == i ||(len - pos2) + 1 == i ||(len - pos3) + 1 == i ||(len - pos4) + 1 == i)
+			return (1);
+		else
+			 i++;
+	}		
 }
 
 void ft_init_fill_tab(t_swap *s)
@@ -77,8 +108,7 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 {
 	int j;
 	int i;
-    int ibot;
-	int itop;
+	int index;
     
     s->len = argc;
 	s->move = 0;
@@ -90,14 +120,11 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
     while (++i < s->len - 1)
 		s->tab1[i] = ft_atoi(argv[i + 1]);
 	ft_init_fill_tab(s);
-	ibot = s->len/2;
-	itop = s->len/2 + 1;
-	// printf("i = %d\timax = %d\n", ibot, itop);
-	i = 0;
-
-	while (i < s->len - 1)
+	i = 1;
+	index = 0;
+	while (i < s->len - 1 && s->filltab1[0] != 0)
 	{
-		// printf("val act = [%d][%d][%d]\n", ibot, itop, s->filltab1[0]);
+		// printf("val act = [%d]\tindex = %d\t i = %d\n", s->filltab1[0], index, i);
 		// j = -1;
    		// while (++j < argc - 1)
 		// {
@@ -109,32 +136,23 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 		// 	printf("%d", s->filltab2[j]);
 		// }
 		// printf("\n---------------------------------------\n\n\n\n\n");
-		
-		if (itop == s->filltab1[0])
+		if(i <= s->filltab1[0] && s->filltab1[0] <= i + 4)
 		{
+			printf("PUUUUSSSSHHHHHHHHHH\n\n\n\n\n");
+			index++;
 			ft_pb(s);
-			i++;
-			itop++;
 		}
-		else if (ibot == s->filltab1[0])
-		{
-			// printf("la %d\n", s->filltab1[0] - 1);
-			ft_pb(s);
-			ft_rb(s);
-			i++;
-			ibot--;
-		}
+		if (ft_verif_eff(s, i) == 0)
+			ft_ra(s);
 		else
+			ft_rra(s);
+		if (index > 4)
 		{
-			if (ft_verif_eff(s, ibot, itop) == 0)
-				ft_ra(s);
-			else
-				ft_rra(s);
+		index = 0;
+		i +=5;
 		}
 	}
-	i = -1;
-	while (++i < s->len - 1)
-		ft_pa(s);
+
 }
 
 
@@ -147,16 +165,16 @@ int main(int argc, char **argv)
     ft_push_swap(argc, argv, &s);
 
     i = -1;
-	// printf("\n\n");
-    // while (++i < argc - 1)
-	// {
-    //     printf("---------------------------------------\n");
-    //     printf("%d\t", s.tab1[i]);
-    //     printf("%d\t", s.filltab1[i]);
-    //     printf("|\t" );
-    //     printf("%d\t", s.tab2[i]);
-    //     printf("%d\n", s.filltab2[i]);
-	// }
-    // printf("---------------------------------------\n");
-	// printf("nombre de coups = %d", s.move);
+	printf("\n\n");
+    while (++i < argc - 1)
+	{
+        printf("---------------------------------------\n");
+        printf("%d\t", s.tab1[i]);
+        printf("%d\t", s.filltab1[i]);
+        printf("|\t" );
+        printf("%d\t", s.tab2[i]);
+        printf("%d\n", s.filltab2[i]);
+	}
+    printf("---------------------------------------\n");
+	printf("nombre de coups = %d", s.move);
 }

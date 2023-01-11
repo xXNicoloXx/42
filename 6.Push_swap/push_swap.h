@@ -11,6 +11,9 @@ typedef struct s_swap
     int	*filltab1;
     int	*tab2;
     int	*filltab2;
+
+    int verifsens;
+    int verifsensnbr;
 }	t_swap;
 
 int	ft_atoi(const char *str);
