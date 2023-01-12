@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nicolasgriveau <nicolasgriveau@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 17:42:26 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:20:40 by nicolasgriv      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void ft_monitoring(t_swap *s)
 	int j;
 
 	j = -1;
+
+	// return ;
 	while (++j < s->len - 1)
 	{
 		printf("%d\t", s->tab1[j]);
@@ -73,7 +75,7 @@ void ft_init_fill_tab(t_swap *s)
 		s->filltab2[i] = 0;
 }
 
-void ft_sort_5_a(t_swap *s, int max)
+int ft_sort_5_a(t_swap *s, int max)
 {
 	int len;
 
@@ -85,11 +87,14 @@ void ft_sort_5_a(t_swap *s, int max)
 	{
 		ft_monitoring(s);
 		printf("\nA\tALL VALUES = %d,%d,%d,%d,%d\n", max, max -1, max - 2, max - 3, max - 4);
+		printf("s->filltab1[0] == %d\n", s->filltab1[0]);
 		if (s->filltab1[1] == max - 4)
 		{	
 			ft_sa(s);
 			ft_pb(s);
 		}
+		if (s->filltab1[0] == max - 4)
+			ft_pb(s);
 		else if (s->filltab1[0] == max - 3)
 			ft_pb(s);
 		else if (s->filltab1[0] == max - 2 && s->filltab2[0] ==  max - 3 && s->filltab2[1] ==  max - 4)
@@ -115,7 +120,6 @@ void ft_sort_5_a(t_swap *s, int max)
 			ft_pa(s);
 			break ;
 		}
-
 		else if (s->filltab2[0] == max - 2 && s->filltab2[1] ==  max - 3 && s->filltab2[2] ==  max - 4)
 		{
 			while (s->verifrb)
@@ -131,10 +135,26 @@ void ft_sort_5_a(t_swap *s, int max)
 			s->verifrb += 1;
 			ft_ra(s, 0);
 		}
+		else if (s->filltab2[0] == max - 3 && s->filltab2[1] == max - 4)
+		{
+			while (s->verifrb)
+			{
+				ft_rra(s);
+				s->verifrb--;
+			}
+		}
+		else if (s->filltab1[2] == max - 4)
+		{
+			s->verifrb += 1;
+			ft_ra(s, 0);
+		}
+		else 
+			return (-1);
 	}
+	return (0);
 }
 
-void ft_sort_5_b(t_swap *s, int max)
+int ft_sort_5_b(t_swap *s, int max)
 {
 	int len;
 
@@ -147,16 +167,23 @@ void ft_sort_5_b(t_swap *s, int max)
 		ft_monitoring(s);
 		printf("max = %d\n", max);
 		printf("\nB\tALL VALUES = %d,%d,%d,%d,%d\n", max, max -1, max - 2, max - 3, max - 4);
-
-
+		printf("s->verifb = %d\n", s->verifrb);
 		 if (s->filltab1[0] == max - 4 && s->filltab1[1] == max - 3 && s->filltab1[2] == max - 2 && s->filltab1[3] == max - 1 && s->filltab1[4] == max)
 			break ;
 		else if (s->filltab1[0] == max - 3 && s->filltab1[1] == max - 2 && s->filltab1[2] == max - 1 && s->filltab1[3] == max)
+		{
+			while (s->verifrb)
+			{
+				ft_rrb(s);
+				s->verifrb--;
+			}
 			ft_pa(s);
+		}
 		else if (s->filltab1[0] == max - 2 && s->filltab1[1] == max - 1 && s->filltab1[2] == max && s->filltab2[0] == max - 3)
 			ft_pa(s);
 		else if (s->filltab1[0] == max - 2 && s->filltab1[1] == max - 1 && s->filltab1[2] == max)
 		{
+			printf("ici last ?????s->verifb = %d\n", s->verifrb);
 			while (s->verifrb)
 			{
 				ft_rrb(s);
@@ -187,6 +214,11 @@ void ft_sort_5_b(t_swap *s, int max)
 			s->verifrb += 1;
 			ft_rb(s, 0);
 		}
+		else if (s->filltab2[0] == max - 4)
+		{
+			s->verifrb += 1;
+			ft_rb(s, 0);
+		}
 		else if (s->filltab1[0] == max - 1 && s->filltab1[1] == max)
 		{
 			while (s->verifrb)
@@ -195,11 +227,13 @@ void ft_sort_5_b(t_swap *s, int max)
 				s->verifrb--;
 			}
 		}
-
+		else 
+			return (-1);
 	}
+	return (0);
 }
 
-void ft_cut_10_to_5(t_swap *s)
+int ft_cut_10_to_5(t_swap *s)
 {
 	int move;
 	int push;
@@ -208,16 +242,14 @@ void ft_cut_10_to_5(t_swap *s)
 
 	len = s->len - 1 + 5;
 	i = 0;
-	printf("i = %d\n\n", i);
-	while (i < 5)
+	// printf("i = %d\n\n", i);
+	while (i < 10)
 	{
 		len -= 5;
-		printf("len = %d\n\n\n", len);
 		push = 0;
 		move = 0;
 		while (push != 5)
 		{
-			printf("push = %d\n", push);
 			ft_monitoring(s);
 			if (len - 5  < s->filltab2[0] &&  s->filltab2[0] <= len)	
 			{
@@ -236,11 +268,14 @@ void ft_cut_10_to_5(t_swap *s)
 			move--;
 		}
 
-		ft_sort_5_a(s, len);
+		if (ft_sort_5_a(s, len) == -1)
+			return (-1);
 		len -= 5;
-		ft_sort_5_b(s, len);
+		if (ft_sort_5_b(s, len) == -1)
+			return (-1);
 		i++;
 	}
+	return (0);
 }
 
 int ft_push_swap(int argc, char **argv, t_swap *s)
@@ -278,7 +313,7 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 			}
 			ft_pb(s);
 			// printf("OHOH |%d|\t|%d|\t|%d|\n", imin, s->filltab1[0], s->len / 2);
-			if (imin <= s->filltab2[0] && s->filltab2[0] <= s->len / 2)
+			if (imin < s->filltab2[0] && s->filltab2[0] <= s->len / 2)
 			{
 				s->verifrb = 1;
 				indeximin++;
@@ -320,7 +355,9 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 		ft_rb(s, 0);
 		s->verifrb = 0;
 	}
-	// ft_cut_10_to_5(s);
+	if (ft_cut_10_to_5(s) == -1)
+		return (-1);
+	return (0);
 
 }
 
@@ -330,7 +367,11 @@ int main(int argc, char **argv)
     int i;
 
     i = -1;
-    ft_push_swap(argc, argv, &s);
+    if (ft_push_swap(argc, argv, &s) == -1)
+	{
+		printf("ERROR");
+		return (0);
+	}
 
     i = -1;
 	printf("s->len = %d\n", s.len);
@@ -345,4 +386,7 @@ int main(int argc, char **argv)
 	}
     printf("---------------------------------------\n");
 	printf("nombre de coups = %d", s.move);
+	printf("\n\nOK\n\n");
+
+	return (0);
 }
