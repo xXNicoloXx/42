@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 17:33:04 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:39:43 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void ft_sort_5_a(t_swap *s, int max)
 	while (1)
 	{
 		ft_monitoring(s);
+		printf("\nA\tALL VALUES = %d,%d,%d,%d,%d\n", max, max -1, max - 2, max - 3, max - 4);
 		if (s->filltab1[1] == max - 4)
 		{	
 			ft_sa(s);
@@ -125,7 +126,12 @@ void ft_sort_5_a(t_swap *s, int max)
 			if (s->filltab1[0] == max)
 				ft_sa(s);
 		}
-		
+		else if (s->filltab1[0] == max - 2)
+		{
+			s->verifrb += 1;
+			ft_ra(s, 0);
+		}
+		else if ()
 	}
 }
 
@@ -139,9 +145,9 @@ void ft_sort_5_b(t_swap *s, int max)
 		len++;
 	while (1)
 	{
-		ft_monitoring(s); //
+		ft_monitoring(s);
 		printf("max = %d\n", max);
-		printf("\nALL VALUES = %d,%d,%d,%d,%d\n", max, max -1, max - 2, max - 3, max - 4);
+		printf("\nB\tALL VALUES = %d,%d,%d,%d,%d\n", max, max -1, max - 2, max - 3, max - 4);
 
 
 		 if (s->filltab1[0] == max - 4 && s->filltab1[1] == max - 3 && s->filltab1[2] == max - 2 && s->filltab1[3] == max - 1 && s->filltab1[4] == max)
@@ -162,6 +168,8 @@ void ft_sort_5_b(t_swap *s, int max)
 			ft_pa(s);
 			ft_pa(s);
 		}
+		else if (s->filltab2[0] == max || s->filltab2[0] == max - 1)
+			ft_pa(s);
 		else if (s->filltab1[0] == max - 1 && s->filltab1[1] == max && s->filltab2[0] == max - 2)
 			ft_pa(s);
 		else if(s->filltab1[0] == max && s->filltab1[1] == max - 1)
@@ -170,8 +178,6 @@ void ft_sort_5_b(t_swap *s, int max)
 			ft_sb(s);
 		else if (s->filltab2[0] == max - 4 && s->filltab2[1] == max - 3)
 			ft_sb(s);
-		else if (s->filltab2[0] == max || s->filltab2[0] == max - 1)
-			ft_pa(s);
 		else if (s->filltab2[0] == max - 2)
 		{
 			s->verifrb += 1;
@@ -204,7 +210,7 @@ void ft_cut_10_to_5(t_swap *s)
 	len = s->len - 1 + 5;
 	i = 0;
 	printf("i = %d\n\n", i);
-	while (i < 3)
+	while (i < 6)
 	{
 		len -= 5;
 		printf("len = %d\n\n\n", len);
