@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 16:09:19 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:27:13 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,8 @@ void ft_sort_5_b(t_swap *s, int max)
 			ft_pa(s);
 		else if (s->filltab1[0] == max - 3 && s->filltab1[1] == max - 2 && s->filltab1[2] == max - 1 && s->filltab1[3] == max)
 			ft_pa(s);
+		else if (s->filltab1[0] == max - 4 && s->filltab1[1] == max - 3 && s->filltab1[2] == max - 2 && s->filltab1[3] == max - 1 && s->filltab1[4] == max)
+			break ;
 	}
 }
 
@@ -147,52 +149,49 @@ void ft_cut_10_to_5(t_swap *s)
 	int len;
 	int i;
 
-	len = s->len - 1;
+	len = s->len - 1 + 5;
+	i = 0;
 	printf("i = %d\n\n", i);
-	push = 0;
-	move = 0;
+	while (i < 2)
+	{
+		len -= 5;
+		push = 0;
+		move = 0;
+		while (push != 5)
+		{
+			int j = -1;
+			while (++j < s->len - 1)
+			{
+				// printf("\n---------------------------------------\n");
+				printf("%d\t", s->tab1[j]);
+				printf("%d\t", s->filltab1[j]);
+				printf("|\t" );
+				printf("%d\t", s->tab2[j]);
+				printf("%d\n", s->filltab2[j]);
+			}
+			if (len - 5  <= s->filltab2[0] &&  s->filltab2[0] < len)	
+			{
+				push++;
+				ft_pa(s);
+			}
+			else
+			{
+				move++;
+				ft_rb(s, 0);
+			}
+		}
+		while (move)
+		{
+			ft_rrb(s);
+			move--;
+		}
 
-	while (push != 5)
-	{
-		int j = -1;
-   		while (++j < s->len - 1)
-		{
-			// printf("\n---------------------------------------\n");
-			printf("%d\t", s->tab1[j]);
-			printf("%d\t", s->filltab1[j]);
-			printf("|\t" );
-			printf("%d\t", s->tab2[j]);
-			printf("%d\n", s->filltab2[j]);
-		}
-		if (s->len - 5  <= s->filltab2[0] &&  s->filltab2[0] < s->len)	
-		{
-			push++;
-			ft_pa(s);
-		}
-		else
-		{
-			move++;
-			ft_rb(s, 0);
-		}
+		ft_sort_5_a(s, len);
+		len -= 5;
+		ft_sort_5_b(s, len);
+		
+		i++;
 	}
-	ft_sort_5_a(s, len);
-	printf("coucou\n\n\n\n");
-	while (move)
-	{
-		ft_rrb(s);
-		move--;
-	}
-	int j = -1;
-   		while (++j < s->len - 1)
-		{
-			printf("\n---------------------------------------\n");
-			printf("%d\t", s->tab1[j]);
-			printf("%d\t", s->filltab1[j]);
-			printf("|\t" );
-			printf("%d\t", s->tab2[j]);
-			printf("%d\n", s->filltab2[j]);
-		}
-	ft_sort_5_b(s, len - 5);
 }
 
 int ft_push_swap(int argc, char **argv, t_swap *s)
