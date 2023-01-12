@@ -6,11 +6,28 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 16:27:40 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:02:21 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+
+void ft_monitoring(t_swap *s)
+{
+	int j;
+
+	j = 0;
+	while (++j < s->len - 1 - 50)
+	{
+		printf("%d\t", s->tab1[j]);
+		printf("%d\t", s->filltab1[j]);
+		printf("|\t" );
+		printf("%d\t", s->tab2[j]);
+		printf("%d\n", s->filltab2[j]);
+	}
+	printf("coups: %d\n", s->move);
+}
 
 int	ft_verif_eff(t_swap *s, int imin, int imax)
 {
@@ -63,10 +80,11 @@ void ft_sort_5_a(t_swap *s, int max)
 	len = 0;
 	while (s->filltab1[len] != 0)
 		len++;
+	s->verifrb = 0;
 	while (1)
 	{
 		int j = -1;
-   		while (++j < s->len - 1)
+   		while (++j < s->len - 1 - 50)
 		{
 			// printf("\n---------------------------------------\n");
 			printf("%d\t", s->tab1[j]);
@@ -75,29 +93,50 @@ void ft_sort_5_a(t_swap *s, int max)
 			printf("%d\t", s->tab2[j]);
 			printf("%d\n", s->filltab2[j]);
 		}
-		printf("\ns->filltab1[%d-1] = %d\n", len - 1, s->filltab1[len - 1]);
+		printf("max = %d\n", max);
+
 		if (s->filltab1[1] == max - 4)
 		{	
 			ft_sa(s);
 			ft_pb(s);
 		}
-		if (s->filltab1[0] == max - 3 && s->filltab2[0] ==  max - 4)
+		else if (s->filltab1[0] == max - 3)
 			ft_pb(s);
-		if (s->filltab1[0] == max - 2 && s->filltab2[0] ==  max - 3 && s->filltab2[1] ==  max - 4)
+		else if (s->filltab1[0] == max - 2 && s->filltab2[0] ==  max - 3 && s->filltab2[1] ==  max - 4)
 			ft_pb(s);
-		if (s->filltab1[0] == max && s->filltab1[1] ==  max - 1)
+		else if (s->filltab1[0] == max)
+		{
+			s->verifrb += 1;
 			ft_ra(s, 0);
-		if (s->filltab1[0] == max - 1 && s->filltab1[1] ==  max - 2)
+		}
+		else if (s->filltab1[0] == max - 1 && s->filltab1[1] ==  max - 2)
+		{
+			s->verifrb += 1;
 			ft_ra(s, 0);
-		if (s->filltab1[1] == max - 3)
+		}
+		else if (s->filltab1[1] == max - 3)
 			ft_sa(s);
-		if (s->filltab2[0] == max - 2 && s->filltab2[1] ==  max - 3 && s->filltab2[2] ==  max - 4)
+		else if (s->filltab2[0] == max - 4 && s->filltab2[1] == max - 3)
+			ft_sb(s);
+		else if (s->filltab2[0] == max - 2 && s->filltab2[1] ==  max - 3 && s->filltab2[2] ==  max - 4 && s->filltab1[0] == max-1 && s->filltab1[1] ==  max)
 		{
 			ft_pa(s);
 			ft_pa(s);
 			ft_pa(s);
-			break;
+			break ;
 		}
+
+		else if (s->filltab2[0] == max - 2 && s->filltab2[1] ==  max - 3 && s->filltab2[2] ==  max - 4)
+		{
+			while (s->verifrb)
+			{
+				ft_rra(s);
+				s->verifrb--;
+			}
+			if (s->filltab1[0] == max)
+				ft_sa(s);
+		}
+		
 	}
 }
 
@@ -122,7 +161,7 @@ void ft_sort_5_b(t_swap *s, int max)
 			printf("%d\n", s->filltab2[j]);
 		}
 		printf("max = %d\n", max);
-		printf("\ncoucou = %d(%d)\n", max - 4, s->filltab1[1]);
+		printf("\ncoucou = %d(%d)\n", max - 4, max);
 		if (s->filltab2[0] == max || s->filltab2[0] == max - 1)
 			ft_pa(s);
 		else if(s->filltab1[0] == max && s->filltab1[1] == max - 1)
@@ -152,12 +191,15 @@ void ft_cut_10_to_5(t_swap *s)
 	len = s->len - 1 + 5;
 	i = 0;
 	printf("i = %d\n\n", i);
-	while (i < 1)
+	while (i < 2)
 	{
+		len -= 5;
+		printf("len = %d\n\n\n", len);
 		push = 0;
 		move = 0;
 		while (push != 5)
 		{
+			printf("push = %d\n", push);
 			int j = -1;
 			while (++j < s->len - 1)
 			{
@@ -168,7 +210,7 @@ void ft_cut_10_to_5(t_swap *s)
 				printf("%d\t", s->tab2[j]);
 				printf("%d\n", s->filltab2[j]);
 			}
-			if (s->len - 5  <= s->filltab2[0] &&  s->filltab2[0] < s->len)	
+			if (len - 5  < s->filltab2[0] &&  s->filltab2[0] <= len)	
 			{
 				push++;
 				ft_pa(s);
@@ -184,7 +226,7 @@ void ft_cut_10_to_5(t_swap *s)
 			ft_rrb(s);
 			move--;
 		}
-		len -= 5;
+
 		ft_sort_5_a(s, len);
 		len -= 5;
 		ft_sort_5_b(s, len);
