@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 16:27:13 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:27:40 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,8 @@ void ft_cut_10_to_5(t_swap *s)
 	len = s->len - 1 + 5;
 	i = 0;
 	printf("i = %d\n\n", i);
-	while (i < 2)
+	while (i < 1)
 	{
-		len -= 5;
 		push = 0;
 		move = 0;
 		while (push != 5)
@@ -169,7 +168,7 @@ void ft_cut_10_to_5(t_swap *s)
 				printf("%d\t", s->tab2[j]);
 				printf("%d\n", s->filltab2[j]);
 			}
-			if (len - 5  <= s->filltab2[0] &&  s->filltab2[0] < len)	
+			if (s->len - 5  <= s->filltab2[0] &&  s->filltab2[0] < s->len)	
 			{
 				push++;
 				ft_pa(s);
@@ -185,11 +184,10 @@ void ft_cut_10_to_5(t_swap *s)
 			ft_rrb(s);
 			move--;
 		}
-
+		len -= 5;
 		ft_sort_5_a(s, len);
 		len -= 5;
 		ft_sort_5_b(s, len);
-		
 		i++;
 	}
 }
