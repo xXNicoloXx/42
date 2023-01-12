@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:31:01 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 13:38:45 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:42:25 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,20 +220,25 @@ void ft_rra(t_swap *s)
 void ft_rrb(t_swap *s)
 {
 	int i;
+	int lentab;
 	int vtab;
 	int itab;
 
 	i = 0;
-	vtab = s->tab2[i];
-	itab = s->filltab2[i];
-	while (i < s->len - 2)
+	lentab = 0;
+	while (s->tab2[lentab] != 0)
+		lentab++;
+	lentab--;
+	vtab = s->tab2[lentab];
+	itab = s->filltab2[lentab];
+	while (lentab > 0)
 	{
-		s->tab2[i] = s->tab2[i + 1];
-		s->filltab2[i] = s->filltab2[i + 1];
-		i++;
+		s->tab2[lentab] = s->tab2[lentab - 1];
+		s->filltab2[lentab] = s->filltab2[lentab - 1];
+		lentab--;
 	}
-	s->tab2[i] = vtab;
-	s->filltab2[i] = itab;
+	s->tab2[0] = vtab;
+	s->filltab2[0] = itab;
 	s->move += 1;
     write(1, "rrb\n", 4);
 }
