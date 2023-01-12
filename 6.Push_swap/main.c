@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 17:32:10 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:33:04 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ void ft_sort_5_b(t_swap *s, int max)
 		len++;
 	while (1)
 	{
-		ft_monitoring(s);
+		ft_monitoring(s); //
 		printf("max = %d\n", max);
 		printf("\nALL VALUES = %d,%d,%d,%d,%d\n", max, max -1, max - 2, max - 3, max - 4);
 
