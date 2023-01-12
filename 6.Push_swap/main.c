@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/12 17:02:21 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:32:10 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void ft_monitoring(t_swap *s)
 {
 	int j;
 
-	j = 0;
-	while (++j < s->len - 1 - 50)
+	j = -1;
+	while (++j < s->len - 1)
 	{
 		printf("%d\t", s->tab1[j]);
 		printf("%d\t", s->filltab1[j]);
@@ -83,18 +83,7 @@ void ft_sort_5_a(t_swap *s, int max)
 	s->verifrb = 0;
 	while (1)
 	{
-		int j = -1;
-   		while (++j < s->len - 1 - 50)
-		{
-			// printf("\n---------------------------------------\n");
-			printf("%d\t", s->tab1[j]);
-			printf("%d\t", s->filltab1[j]);
-			printf("|\t" );
-			printf("%d\t", s->tab2[j]);
-			printf("%d\n", s->filltab2[j]);
-		}
-		printf("max = %d\n", max);
-
+		ft_monitoring(s);
 		if (s->filltab1[1] == max - 4)
 		{	
 			ft_sa(s);
@@ -150,34 +139,58 @@ void ft_sort_5_b(t_swap *s, int max)
 		len++;
 	while (1)
 	{
-		int j = -1;
-   		while (++j < s->len - 1 - 70)
-		{
-			// printf("\n---------------------------------------\n");
-			printf("%d\t", s->tab1[j]);
-			printf("%d\t", s->filltab1[j]);
-			printf("|\t" );
-			printf("%d\t", s->tab2[j]);
-			printf("%d\n", s->filltab2[j]);
-		}
+		ft_monitoring(s);
 		printf("max = %d\n", max);
-		printf("\ncoucou = %d(%d)\n", max - 4, max);
-		if (s->filltab2[0] == max || s->filltab2[0] == max - 1)
+		printf("\nALL VALUES = %d,%d,%d,%d,%d\n", max, max -1, max - 2, max - 3, max - 4);
+
+
+		 if (s->filltab1[0] == max - 4 && s->filltab1[1] == max - 3 && s->filltab1[2] == max - 2 && s->filltab1[3] == max - 1 && s->filltab1[4] == max)
+			break ;
+		else if (s->filltab1[0] == max - 3 && s->filltab1[1] == max - 2 && s->filltab1[2] == max - 1 && s->filltab1[3] == max)
+			ft_pa(s);
+		else if (s->filltab1[0] == max - 2 && s->filltab1[1] == max - 1 && s->filltab1[2] == max && s->filltab2[0] == max - 3)
+			ft_pa(s);
+		else if (s->filltab1[0] == max - 2 && s->filltab1[1] == max - 1 && s->filltab1[2] == max)
+		{
+			while (s->verifrb)
+			{
+				ft_rrb(s);
+				s->verifrb--;
+			}
+			if (s->filltab2[0] == max - 4 && s->filltab2[1] == max - 3)
+				ft_sb(s);
+			ft_pa(s);
+			ft_pa(s);
+		}
+		else if (s->filltab1[0] == max - 1 && s->filltab1[1] == max && s->filltab2[0] == max - 2)
 			ft_pa(s);
 		else if(s->filltab1[0] == max && s->filltab1[1] == max - 1)
 			ft_sa(s);
-		else if (s->filltab2[1] == max)
+		else if (s->filltab2[1] == max || s->filltab2[1] == max - 1)
 			ft_sb(s);
-		else if (s->filltab1[0] == max - 1 && s->filltab1[1] == max && s->filltab2[0] == max - 2)
-			ft_pa(s);
 		else if (s->filltab2[0] == max - 4 && s->filltab2[1] == max - 3)
 			ft_sb(s);
-		else if (s->filltab1[0] == max - 2 && s->filltab1[1] == max - 1 && s->filltab1[2] == max && s->filltab2[0] == max - 3)
+		else if (s->filltab2[0] == max || s->filltab2[0] == max - 1)
 			ft_pa(s);
-		else if (s->filltab1[0] == max - 3 && s->filltab1[1] == max - 2 && s->filltab1[2] == max - 1 && s->filltab1[3] == max)
-			ft_pa(s);
-		else if (s->filltab1[0] == max - 4 && s->filltab1[1] == max - 3 && s->filltab1[2] == max - 2 && s->filltab1[3] == max - 1 && s->filltab1[4] == max)
-			break ;
+		else if (s->filltab2[0] == max - 2)
+		{
+			s->verifrb += 1;
+			ft_rb(s, 0);
+		}
+		else if (s->filltab2[0] == max - 3)
+		{
+			s->verifrb += 1;
+			ft_rb(s, 0);
+		}
+		else if (s->filltab1[0] == max - 1 && s->filltab1[1] == max)
+		{
+			while (s->verifrb)
+			{
+				ft_rrb(s);
+				s->verifrb--;
+			}
+		}
+
 	}
 }
 
@@ -191,7 +204,7 @@ void ft_cut_10_to_5(t_swap *s)
 	len = s->len - 1 + 5;
 	i = 0;
 	printf("i = %d\n\n", i);
-	while (i < 2)
+	while (i < 3)
 	{
 		len -= 5;
 		printf("len = %d\n\n\n", len);
@@ -200,16 +213,7 @@ void ft_cut_10_to_5(t_swap *s)
 		while (push != 5)
 		{
 			printf("push = %d\n", push);
-			int j = -1;
-			while (++j < s->len - 1)
-			{
-				// printf("\n---------------------------------------\n");
-				printf("%d\t", s->tab1[j]);
-				printf("%d\t", s->filltab1[j]);
-				printf("|\t" );
-				printf("%d\t", s->tab2[j]);
-				printf("%d\n", s->filltab2[j]);
-			}
+			ft_monitoring(s);
 			if (len - 5  < s->filltab2[0] &&  s->filltab2[0] <= len)	
 			{
 				push++;
@@ -257,17 +261,7 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 	imax = s->len / 2 + 10;
 	while (s->filltab1[0] != 0)
 	{
-		// printf("val act = [%d]\n", s->filltab1[0]);
-		j = -1;
-   		// while (++j < argc - 1)
-		// {
-		// 	// printf("\n---------------------------------------\n");
-		// 	printf("%d\t", s->tab1[j]);
-		// 	printf("%d\t", s->filltab1[j]);
-		// 	printf("|\t" );
-		// 	printf("%d\t", s->tab2[j]);
-		// 	printf("%d\n", s->filltab2[j]);
-		// }
+		ft_monitoring(s);
 		// printf("imin = %d\tvaleurs = %d\t imax = %d\nn",imin ,s->filltab1[0], imax);
 		if(imin < s->filltab1[0] && s->filltab1[0] <= imax)
 		{
