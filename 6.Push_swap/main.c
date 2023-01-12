@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:07:34 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/11 21:25:00 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:57:48 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ int	ft_verif_eff(t_swap *s, int imin, int imax)
 	while (1)
 	{
 		if (imin <= s->filltab1[i] && s->filltab1[i] < s->len)
+		{
 			return (0);
-		if ( s->len <= s->filltab1[s->len -  i] && s->filltab1[s->len -  i] < imax)
+		}
+		if ( s->len <= s->filltab1[s->len -  i - 1] && s->filltab1[s->len -  i] < imax)
+		{
 			return (1);
+		}
 		i++;
 	}
 }
@@ -70,7 +74,7 @@ void ft_sort_5(t_swap *s)
 	{
 		i--;
 		printf("s->filltab2[0] = %d\tindex = %d\t\n", s->filltab2[0] ,  index);
-		ft_rb(s);
+		ft_rb(s, 0);
 		if (s->filltab2[0] - 3 > s->filltab2[1] - 2)
 			ft_sb(s);
 	}
@@ -79,11 +83,11 @@ void ft_sort_5(t_swap *s)
 	{
 		i--;
 		printf("s->filltab2[0] = %d\tindex = %d\t\n", s->filltab2[0] ,  index);
-		ft_rb(s);
+		ft_rb(s, 0);
 	}
 	ft_pa(s);
 	if (s->filltab1[0] == index)
-		ft_ra(s);
+		ft_ra(s, 0);
 	printf("i = %d\n", i);
 }
 
@@ -106,8 +110,8 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
     while (++i < s->len - 1)
 		s->tab1[i] = ft_atoi(argv[i + 1]);
 	ft_init_fill_tab(s);
-	imin = s->len / 2 - 5;
-	imax = s->len / 2 + 5;
+	imin = s->len / 2 - 10;
+	imax = s->len / 2 + 10;
 	while (s->filltab1[0] != 0)
 	{
 		// printf("val act = [%d]\n", s->filltab1[0]);
@@ -122,37 +126,53 @@ int ft_push_swap(int argc, char **argv, t_swap *s)
 		// 	printf("%d\n", s->filltab2[j]);
 		// }
 		// printf("imin = %d\tvaleurs = %d\t imax = %d\nn",imin ,s->filltab1[0], imax);
-		if(imin <= s->filltab1[0] && s->filltab1[0] <= imax)
+		if(imin < s->filltab1[0] && s->filltab1[0] <= imax)
 		{
 			// printf("PUUUUSSSSHHHHHHHHHH\n\n\n\n\n");
+			if (s->verifrb == 1)
+			{
+				ft_rb(s,0);
+				s->verifrb = 0;
+			}
 			ft_pb(s);
 			// printf("OHOH |%d|\t|%d|\t|%d|\n", imin, s->filltab1[0], s->len / 2);
 			if (imin <= s->filltab2[0] && s->filltab2[0] <= s->len / 2)
 			{
-				ft_rb(s);
+				s->verifrb = 1;
 				indeximin++;
 			}
 			else
 				indeximax++;
 				
 		}
-		if (ft_verif_eff(s, imin, imax) == 0)
-			ft_ra(s);
 		else
-			ft_rra(s);
-		// printf("indeximin = %d\tindeximax = %d\n", indeximin, indeximax);
-		if (indeximax == 5)
 		{
-			imax += 5;
+			if (ft_verif_eff(s, imin, imax) == 0)
+			{
+				if (s->verifrb == 1)	
+				{
+					ft_rr(s);
+					s->verifrb = 0;
+				}
+				else
+					ft_ra(s, 0);
+			}
+			else
+				ft_rra(s);
+		}
+		// fprintf(stdout, "imin = %d\timax = %d\n", imin, imax);
+		if (indeximax == 10)
+		{
+			imax += 10;
 			indeximax = 0;
 		}
-		if (indeximin == 5)
+		if (indeximin == 10)
 		{
-			imin -= 5;
+			imin -= 10;
 			indeximin = 0;
 		}	
 	}
-	ft_sort_5(s);
+	// ft_sort_5(s);
 
 }
 
@@ -164,17 +184,17 @@ int main(int argc, char **argv)
     i = -1;
     ft_push_swap(argc, argv, &s);
 
-    i = -1;
-	printf("s->len = %d\n", s.len);
-    while (++i < argc - 1)
-	{
-        printf("---------------------------------------\n");
-        printf("%d\t", s.tab1[i]);
-        printf("%d\t", s.filltab1[i]);
-        printf("|\t" );
-        printf("%d\t", s.tab2[i]);
-        printf("%d\n", s.filltab2[i]);
-	}
-    printf("---------------------------------------\n");
-	printf("nombre de coups = %d", s.move);
+    // i = -1;
+	// printf("s->len = %d\n", s.len);
+    // while (++i < argc - 1)
+	// {
+    //     printf("---------------------------------------\n");
+    //     printf("%d\t", s.tab1[i]);
+    //     printf("%d\t", s.filltab1[i]);
+    //     printf("|\t" );
+    //     printf("%d\t", s.tab2[i]);
+    //     printf("%d\n", s.filltab2[i]);
+	// }
+    // printf("---------------------------------------\n");
+	// printf("nombre de coups = %d", s.move);
 }

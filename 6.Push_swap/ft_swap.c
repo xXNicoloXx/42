@@ -6,7 +6,7 @@
 /*   By: ngriveau <ngriveau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 13:31:01 by ngriveau          #+#    #+#             */
-/*   Updated: 2023/01/10 11:46:58 by ngriveau         ###   ########.fr       */
+/*   Updated: 2023/01/12 13:38:45 by ngriveau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,16 @@ void ft_pb(t_swap *s)
 
 }
 
-void ft_ra(t_swap *s)
+void ft_rr(t_swap *s)
+{
+	ft_ra(s, 1);
+	ft_rb(s, 1);
+    write(1, "rr\n", 3);
+
+	
+}
+
+void ft_ra(t_swap *s, int rr)
 {
 	int i;
 	int lentab;
@@ -151,10 +160,11 @@ void ft_ra(t_swap *s)
 	s->tab1[i] = vtab;
 	s->filltab1[i] = itab;
 	s->move += 1;
-    write(1, "ra\n", 3);
+	if (rr == 0)
+    	write(1, "ra\n", 3);
 }
 
-void ft_rb(t_swap *s)
+void ft_rb(t_swap *s, int rr)
 {
 	int i;
 	int lentab;
@@ -177,7 +187,8 @@ void ft_rb(t_swap *s)
 	s->tab2[i] = vtab;
 	s->filltab2[i] = itab;
 	s->move += 1;
-    write(1, "rb\n", 3);
+	if (rr == 0)
+   		write(1, "rb\n", 3);
 }
 
 void ft_rra(t_swap *s)
